@@ -3748,7 +3748,7 @@ const $=q=>document.querySelector(q);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const LS=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
 const put=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}};
-let S=Object.assign({key:"",per:50,pe:5,pm:3,srs:{},notes:{},sel:{},nd:{d:0,w:0,e:0,m:0},sh:0,st:{last:0,n:0},dn:{d:0,n:0},xp:0,days:[],rw:"",th:0,lap:{},rp:{},dp:0},LS("ox2",{}));
+let S=Object.assign({key:"",per:50,pe:5,pm:3,srs:{},notes:{},sel:{},nd:{d:0,w:0,e:0,m:0},sh:0,st:{last:0,n:0},dn:{d:0,n:0},xp:0,days:[],rw:"",th:0,lap:{},rp:{},dp:0,weakLock:{},reviewLog:[],practice:[]},LS("ox2",{}));
 let DC=LS("ox3d",{}),KC=LS("ox2k",{});
 const app=$("#app"),busy=new Set(),RR={},PERR={};
 let Q=[],TOT=1,flip=false,tm;
@@ -3855,7 +3855,39 @@ function copyReq(){const id=Q[0],it=get(id),n=(S.notes[id]||"").trim(),t=id[0];l
  if(t==="m")p=`영어 회화 연습 첨삭을 부탁해요.\n문제: ${it.s} (${it.h})\n내 답: ${n||"(아직 안 썼어요)"}\n정답 예시: ${it.a.join(" / ")}\n틀린 부분과 이유를 한국어로 짧게 알려 주고, 원어민이 실제로 쓰는 더 자연스러운 표현도 알려 주세요.`;
  else p=`영어 문장 첨삭을 부탁해요.\n표현: ${t==="w"?it.w:it.e}\n내가 쓴 문장: ${n||"(아직 안 썼어요)"}\n문법 오류와 어색한 부분을 한국어로 짧게 설명하고, 더 자연스러운 문장도 알려 주세요.`;
  (navigator.clipboard?navigator.clipboard.writeText(p):Promise.reject()).then(()=>toast("복사했어요! Claude 채팅에 붙여넣으면 첨삭해 줘요")).catch(()=>{try{prompt("아래 글을 복사해서 채팅에 붙여넣어 주세요",p)}catch(e){toast("복사하지 못했어요")}})}
-const weak=()=>Object.keys(S.lap).filter(i=>S.lap[i]>0&&S.srs[i]).sort((a,b)=>S.lap[b]-S.lap[a]);
+const weak=()=>Object.keys(S.lap).filter(i=>S.lap[i]>0&&S.srs[i]).sort((a,b)=>(S.lap[b]||0)-(S.lap[a]||0));
+function ensureLearningData(){
+ for(const k of ["srs","notes","lap","weakLock","review10"])if(!S[k]||typeof S[k]!=="object"||Array.isArray(S[k]))S[k]={};
+ if(!Array.isArray(S.reviewLog))S.reviewLog=[];
+ if(!Array.isArray(S.practice))S.practice=[];
+}
+function recordReview(id,ok,source,previousDue){
+ ensureLearningData();
+ S.reviewLog.push({id,d:today(),ok:!!ok,source,delayed:Number.isFinite(previousDue)&&previousDue<today()});
+ if(S.reviewLog.length>1500)S.reviewLog=S.reviewLog.slice(-1500);
+}
+function retentionSummary(){
+ ensureLearningData();
+ const now=today(),log=S.reviewLog.filter(x=>x.delayed&&x.source==="card"&&x.d>=now-30);
+ const good=log.filter(x=>x.ok).length;
+ return log.length?("최근 30일 하루 이상 간격을 둔 카드 복습: "+good+"/"+log.length+"회 성공 ("+Math.round(good/log.length*100)+"%)"):"하루 이상 간격을 둔 카드 복습 결과가 쌓이면 여기에 표시돼요.";
+}
+function updateWeak(id,success){
+ ensureLearningData();
+ const T=today();
+ if(!success){
+  const prior=S.weakLock[id];
+  S.weakLock[id]={days:[],last:T};
+  S.lap[id]=Math.max(1,(S.lap[id]||0)+1);
+  return;
+ }
+ if(!S.weakLock[id]&&!(S.lap[id]>0))return;
+ const entry=S.weakLock[id]||{days:[],last:0};
+ if(!entry.days.includes(T))entry.days.push(T);
+ if(entry.days.length>=3){delete S.weakLock[id];S.lap[id]=0}
+ else{S.weakLock[id]=entry;S.lap[id]=Math.max(1,S.lap[id]||0)}
+}
+ensureLearningData();
 function gain(x){const T=today(),L0=lvOf(S.xp);S.xp+=x;if(!S.days.includes(T)){S.days.push(T);S.days=S.days.slice(-90)}if(S.st.last!==T){S.st.n=S.st.last===T-1?S.st.n+1:1;S.st.last=T}if(S.dn.d!==T)S.dn={d:T,n:0};S.dn.n++;save();pop(x,lvOf(S.xp)>L0)}
 function cmp(ans,ms){const u=norm(ans);if(!u.length)return null;let best=null;
  for(const m of ms){const t=norm(m),r=lcs(u,t),sc=r.len/Math.max(u.length,t.length);if(!best||sc>best.sc)best={m,t,r,sc}}
@@ -3947,17 +3979,31 @@ function qPool(){const p=[];W.forEach((it,i)=>{const c=cw(it);if(c)p.push({id:"w
 function qMake(p,mode,pool){let t=mode==="mx"?["mc","mk","cz","ty"][Math.floor(Math.random()*4)]:mode;
  const opts=k=>{const s=new Set([p[k]]);let g=0;while(s.size<4&&g++<60)s.add(pool[Math.floor(Math.random()*pool.length)][k]);return shuf([...s])};
  if(t==="cz"){const base=p.en.replace(/\.\.\.|\?/g,"").trim(),re=new RegExp(base.replace(/[.*+?^${}()|[\]\\]/g,"\\$&").replace(/[’']/g,"[’']"),"i");
-  if(p.ex&&base&&re.test(p.ex))return{id:p.id,t,q:p.ex.replace(re,"_____"),h:p.ko,o:opts("en"),a:p.en};t="mc"}
- if(t==="mk")return{id:p.id,t,q:p.ko,h:"영어로는?",o:opts("en"),a:p.en};
- if(t==="ty")return{id:p.id,t,q:p.ko,h:"영어로 써 보세요",a:p.en};
- return{id:p.id,t:"mc",q:p.en,h:"뜻은?",o:opts("ko"),a:p.ko}}
+  if(p.ex&&base&&re.test(p.ex))return{id:p.id,ex:p.ex,t,q:p.ex.replace(re,"_____"),h:p.ko,o:opts("en"),a:p.en};t="mc"}
+ if(t==="mk")return{id:p.id,ex:p.ex,t,q:p.ko,h:"영어로는?",o:opts("en"),a:p.en};
+ if(t==="ty")return{id:p.id,ex:p.ex,t,q:p.ko,h:"영어로 써 보세요",a:p.en};
+ return{id:p.id,ex:p.ex,t:"mc",q:p.en,h:"뜻은?",o:opts("ko"),a:p.ko}}
 function qMenu(){app.innerHTML=`<div class="top"><button class="lk" data-a="home">← 홈</button><b>퀴즈</b><span></span></div><p class="mut">검수된 단어와 표현(구동사·숙어·상황 표현)에서 10문제를 내요. 틀린 카드는 취약 카드에 모여요.</p>`+[["mx","🎲 섞어서 풀기"],["mc","📝 객관식: 영어 → 뜻"],["mk","🔁 객관식: 뜻 → 영어"],["cz","🧩 빈칸 채우기 (객관식)"],["ty","⌨️ 뜻 보고 영어 쓰기"]].map(([m,n])=>`<button class="wide2 ${m==="mx"?"p":""}" data-a="qs" data-m="${m}">${n}</button>`).join("")}
-function qStart(m){const pool=qPool(),L=shuf(pool).slice(0,10).map(p=>qMake(p,m,pool));QZ={l:L,n:0,ok:0,sel:null,val:"",fb:null};qShow()}
+function qStart(m){
+ ensureLearningData();
+ const pool=qPool(),T=today();
+ const priority=p=>{
+  const o=S.srs[p.id],miss=S.lap[p.id]||0,wait=S.review10[p.id]||0;
+  return (miss?Math.min(miss,5)*5:0)+(o&&o.due<=T&&wait<=Date.now()?8:0)+(o&&o.due<T?4:0)+(S.weakLock[p.id]?6:0);
+ };
+ const ranked=shuf(pool).map(p=>({p,score:priority(p)})).sort((a,b)=>b.score-a.score);
+ // Mix high-priority cards with new material, rather than always repeating the same ten.
+ const focus=ranked.filter(x=>x.score>0).slice(0,7).map(x=>x.p);
+ const seen=new Set(focus.map(p=>p.id));
+ const rest=shuf(pool.filter(p=>!seen.has(p.id))).slice(0,10-focus.length);
+ const L=shuf(focus.concat(rest)).map((p,i)=>qMake(p,m==="mx"?(i%2===0?"ty":"mx"):m,pool));
+ QZ={l:L,n:0,ok:0,sel:null,val:"",fb:null};qShow()
+}
 function qShow(){const q=QZ.l[QZ.n],lab={mc:"객관식",mk:"객관식",cz:"빈칸 채우기",ty:"쓰기"}[q.t];
  let h=`<div class="top"><button class="lk" data-a="home">← 홈</button><span>퀴즈 ${QZ.n+1}/${QZ.l.length} · 정답 ${QZ.ok}</span></div><div class="pbar"><i style="width:${QZ.n/QZ.l.length*100}%"></i></div><div class="card" style="cursor:default"><span class="lv">${lab}</span><div class="sit">${esc(q.q)}${q.t==="mc"?sayBtn(q.q):""}</div><div class="hint">${esc(q.h)}</div></div>`;
  if(q.t==="ty")h+=QZ.fb?`<div class="bub me">${esc(QZ.val)}</div>`:`<textarea id="qza" placeholder="영어로 써 보세요">${esc(QZ.val)}</textarea>`;
  else h+=`<div class="opts">${q.o.map((o,i)=>`<button class="${QZ.sel!=null?(o===q.a?"ok":i===QZ.sel?"no":""):""}" data-a="qo" data-i="${i}" ${QZ.sel!=null?"disabled":""}>${esc(o)}</button>`).join("")}</div>`;
- if(QZ.fb)h+=`<div class="fb ${QZ.fb.lv}"><b>${QZ.fb.t}</b><div>정답: ${esc(q.a)} ${sayBtn(q.a)}</div>${QZ.fb.html||""}</div>`;
+ if(QZ.fb)h+=`<div class="fb ${QZ.fb.lv}"><b>${QZ.fb.t}</b><div>정답: ${esc(q.a)} ${sayBtn(q.a)}</div>${QZ.fb.html||""}</div>${q.ex?`<div class="note">실제 사용 예문: ${esc(q.ex)} ${sayBtn(q.ex)}</div>`:""}<label for="qctx">이 표현을 써서 내 상황을 영어 한 문장으로 말하거나 써 보세요 (선택)</label><textarea id="qctx" placeholder="내 상황에 맞는 문장"></textarea><small class="mut">직접 만든 문장은 저장되지만 자동 문법 첨삭은 하지 않아요.</small>`;
  h+=`<div id="msg"></div><div class="bar2"><div class="in">`+(QZ.fb?`<button class="p big" data-a="qn">${QZ.n+1<QZ.l.length?"다음":"결과 보기"}</button>`:q.t==="ty"?`<button class="p big" data-a="qc">확인하기</button>`:"")+`</div></div>`;
  app.innerHTML=h}
 function qDone(ok,q){
@@ -3970,20 +4016,24 @@ function qDone(ok,q){
   if(!prev){o.s=0;o.due=T+1}
   // A correct answer during the 10-minute relearning window must not
   // silently cancel the scheduled active-recall check.
-  if(!S.review10[q.id])S.lap[q.id]=Math.max(0,(S.lap[q.id]||0)-1);
+  // Correct recognition does not graduate a weak card.
  }else{
   // Every wrong answer, including a never-studied card, enters today's review queue.
   o.s=0;o.due=T;
   S.review10[q.id]=Date.now()+10*60*1000;
-  S.lap[q.id]=(S.lap[q.id]||0)+1;
+  updateWeak(q.id,false);
  }
  S.srs[q.id]=o;
+ recordReview(q.id,ok,q.t==="ty"?"typed":"quiz",prev&&prev.due);
  // Do not increment S.nd here: quiz questions are not counted as daily new-card sessions.
  gain(ok?4:1)
 }
 function qPick(i){const q=QZ.l[QZ.n];if(QZ.sel!=null)return;QZ.sel=i;const ok=q.o[i]===q.a;QZ.fb={lv:ok?"ok":"bad2",t:ok?"✅ 정답!":"❌ 아쉬워요"};qDone(ok,q);qShow()}
 function qCheck(){const q=QZ.l[QZ.n],c=cmp(QZ.val,[q.a]);if(!c)return toast("먼저 영어로 써 보세요");const ok=c.sc>=.99;QZ.fb={lv:ok?"ok":c.lv,t:ok?"✅ 정답!":c.sc>=.6?"👍 거의 맞아요":"❌ 아쉬워요",html:ok?"":c.html};qDone(ok,q);qShow()}
-function qNext(){QZ.n++;QZ.sel=null;QZ.val="";QZ.fb=null;if(QZ.n<QZ.l.length){qShow();scrollTo(0,0);return}
+function qNext(){
+ const field=$("#qctx"),sentence=field&&field.value.trim();
+ if(sentence){ensureLearningData();S.practice.push({id:QZ.l[QZ.n].id,d:today(),text:sentence.slice(0,500)});S.practice=S.practice.slice(-300);save()}
+ QZ.n++;QZ.sel=null;QZ.val="";QZ.fb=null;if(QZ.n<QZ.l.length){qShow();scrollTo(0,0);return}
  app.innerHTML=`<div class="done"><div class="em">🎯</div><div class="big2">퀴즈 끝!</div><p class="mut">${QZ.l.length}문제 중 ${QZ.ok}문제 정답</p><div class="row"><button data-a="qm">다른 퀴즈</button><button class="p" data-a="home">홈으로</button></div></div>`;confetti()}
 function nextType(){for(const t of["w","e","m"]){const l=lists(t);if(l.due.length+l.fresh.length)return t}return""}
 function home(){resetDay();const T=today(),names={w:"단어",e:"구동사 · 숙어 · 표현",m:"회화 미션"},ic={w:"📚",e:"💬",m:"🗣️"};
@@ -4014,10 +4064,13 @@ function show(){const id=Q[0];if(!id)return fin();const t=id[0],it=get(id);
  h+=`<div id="msg"></div><div class="bar2"><div class="in">`+(flip?`<div class="rate">${[["몰라요",0],["헷갈려요",1],["알아요",2],["쉬워요",3]].map(([n,r])=>`<button class="r${r}${g&&g.sug===r?" sug":""}" data-a="rate" data-r="${r}"><b>${n}</b><small>${lab(id,r)}</small></button>`).join("")}</div>`:`<button class="p big" data-a="${t==="m"?"grade":"flip"}">${t==="m"?"채점하고 정답 보기":"정답 보기"}</button>`)+`</div></div>`;
  app.innerHTML=h;
  if(t==="w"){load1(id);if(Q[1]&&Q[1][0]==="w")load1(Q[1])}}
-function rate(r){const id=Q.shift(),t=id[0],fresh=!S.srs[id],o=S.srs[id]||{s:0,due:0},T=today();
+function rate(r){const id=Q.shift(),t=id[0],fresh=!S.srs[id],o=S.srs[id]||{s:0,due:0},T=today(),previousDue=fresh?null:o.due;
  if(r===0){o.s=0;o.due=T}else if(r===1)o.due=T+1;else{o.s=Math.min(7,o.s+(r===3?2:1));o.due=T+ST[o.s]}
  if(S.review10&&S.review10[id])delete S.review10[id];
- S.srs[id]=o;S.lap[id]=r<=1?(S.lap[id]||0)+1:Math.max(0,(S.lap[id]||0)-1);if(fresh)S.nd[t]++;if(r===0)Q.push(id);
+ S.srs[id]=o;
+ if(r<=1)updateWeak(id,false);else updateWeak(id,true);
+ recordReview(id,r>=2,"card",previousDue);
+ if(fresh)S.nd[t]++;if(r===0)Q.push(id);
  if(S.st.last!==T){S.st.n=S.st.last===T-1?S.st.n+1:1;S.st.last=T}
  if(S.dn.d!==T)S.dn={d:T,n:0};if(r>0)S.dn.n++;
  const g=t==="m"?grade(id):null,xp=[1,3,5,6][r]+(g&&g.lv==="ok"?5:0),L0=lvOf(S.xp);S.xp+=xp;if(!S.days.includes(T)){S.days.push(T);S.days=S.days.slice(-90)}
@@ -4033,6 +4086,7 @@ function settings(){app.innerHTML=`<div class="top"><button class="lk" data-a="h
  <label for="rw">100단어마다 나에게 줄 보상</label><input type="text" id="rw" value="${esc(S.rw)}" placeholder="예: 치킨 먹기">
  <label>색상 테마</label><div class="th">${TH.map((t,i)=>`<button data-a="th" data-i="${i}" style="background:${t[0]}" aria-label="테마 ${i+1}"></button>`).join("")}</div>
  <button class="p big" style="margin-top:14px" data-a="sv">저장</button>
+ <div class="sec">학습 효과</div><div class="note">${retentionSummary()}<div class="mut">실제 카드 복습 기록 기준 · 과거 데이터는 추정하지 않아요. 취약 카드는 서로 다른 3일에 기억해야 졸업해요.</div></div>
  <div class="sec">백업</div><div class="row"><button data-a="bk">백업 저장</button><button data-a="rs">백업 복원</button></div>
  <div class="note">학습 기록·메모·발음 및 사전 캐시를 이 기기의 브라우저에 저장해요. 새 백업은 모두 포함하며, 예전 백업 파일도 복원할 수 있어요. 복원하면 현재 기록을 덮어쓰니 먼저 백업하세요. 발음기호·뜻·예문은 온라인 사전에서 불러오고, 한국어 뜻은 자동 번역이라 틀릴 수 있어요.</div><div id="msg"></div>`}
 async function testKey(){S.key=$("#k").value.trim();if(!S.key)return toast("키를 먼저 입력해 주세요");toast("확인하는 중…");
@@ -4075,7 +4129,7 @@ $("#rf").onchange=e=>{
    try{
     for(const k of keys)localStorage.setItem(k,JSON.stringify(data[k]));
    }catch(err){for(const k of keys){try{if(before[k]===null)localStorage.removeItem(k);else localStorage.setItem(k,before[k])}catch(_){}}throw Error("저장 공간이 부족하거나 저장할 수 없어요. 기존 데이터를 유지했어요")}
-   S=Object.assign(S,data.ox2);
+   S=Object.assign(S,data.ox2);ensureLearningData();
    if(modern){DC=data.ox3d;KC=data.ox2k}
    home();toast(modern?"전체 학습 데이터를 복원했어요":"기존 백업의 학습 기록을 복원했어요")
   }catch(err){alert("복원 실패: "+err.message)}
