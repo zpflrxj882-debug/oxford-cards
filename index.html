@@ -3960,7 +3960,22 @@ function qShow(){const q=QZ.l[QZ.n],lab={mc:"객관식",mk:"객관식",cz:"빈�
  if(QZ.fb)h+=`<div class="fb ${QZ.fb.lv}"><b>${QZ.fb.t}</b><div>정답: ${esc(q.a)} ${sayBtn(q.a)}</div>${QZ.fb.html||""}</div>`;
  h+=`<div id="msg"></div><div class="bar2"><div class="in">`+(QZ.fb?`<button class="p big" data-a="qn">${QZ.n+1<QZ.l.length?"다음":"결과 보기"}</button>`:q.t==="ty"?`<button class="p big" data-a="qc">확인하기</button>`:"")+`</div></div>`;
  app.innerHTML=h}
-function qDone(ok,q){if(ok)QZ.ok++;else if(S.srs[q.id])S.lap[q.id]=(S.lap[q.id]||0)+1;gain(ok?4:1)}
+function qDone(ok,q){
+ const T=today(),prev=S.srs[q.id],o=prev?{...prev}:{s:0,due:T};
+ if(ok){
+  QZ.ok++;
+  // A correct quiz answer advances an overdue card once; do not shorten future reviews.
+  if(!prev||o.due<=T){o.s=Math.min(7,(o.s||0)+1);o.due=T+ST[o.s]}
+  S.lap[q.id]=Math.max(0,(S.lap[q.id]||0)-1);
+ }else{
+  // Every wrong answer, including a never-studied card, enters today's review queue.
+  o.s=0;o.due=T;
+  S.lap[q.id]=(S.lap[q.id]||0)+1;
+ }
+ S.srs[q.id]=o;
+ // Do not increment S.nd here: quiz questions are not counted as daily new-card sessions.
+ gain(ok?4:1)
+}
 function qPick(i){const q=QZ.l[QZ.n];if(QZ.sel!=null)return;QZ.sel=i;const ok=q.o[i]===q.a;QZ.fb={lv:ok?"ok":"bad2",t:ok?"✅ 정답!":"❌ 아쉬워요"};qDone(ok,q);qShow()}
 function qCheck(){const q=QZ.l[QZ.n],c=cmp(QZ.val,[q.a]);if(!c)return toast("먼저 영어로 써 보세요");const ok=c.sc>=.99;QZ.fb={lv:ok?"ok":c.lv,t:ok?"✅ 정답!":c.sc>=.6?"👍 거의 맞아요":"❌ 아쉬워요",html:ok?"":c.html};qDone(ok,q);qShow()}
 function qNext(){QZ.n++;QZ.sel=null;QZ.val="";QZ.fb=null;if(QZ.n<QZ.l.length){qShow();scrollTo(0,0);return}
