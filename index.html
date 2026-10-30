@@ -1,0 +1,4034 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f766e">
+<title>Oxford 3000 회화 카드</title>
+<style>
+:root{--bg:#f1f6f5;--sf:#fff;--tx:#10201e;--mut:#62736f;--ac:#0f766e;--ac2:#14b8a6;--bd:#dce6e3;--bad:#c2410c;--r0:#fde4df;--r1:#fdf0cf;--r2:#d8f3ec;--r3:#dbeafe;--sh:0 6px 20px rgba(16,32,30,.07);color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root{--bg:#0c1312;--sf:#16201f;--tx:#e9f3f1;--mut:#8fa5a1;--ac:#2dd4bf;--ac2:#0f766e;--bd:#27373a;--bad:#fb923c;--r0:#4a2620;--r1:#473a1a;--r2:#17413a;--r3:#1b3150;--sh:none}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--tx);font:17px/1.55 -apple-system,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;padding:env(safe-area-inset-top) 0 0}
+main{max-width:480px;margin:0 auto;padding:14px 16px 130px}
+button,input,textarea{font:inherit;color:var(--tx)}
+button{padding:12px 12px;border-radius:14px;border:1px solid var(--bd);background:var(--sf);cursor:pointer}
+button:disabled{opacity:.4}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+button.p{background:var(--ac);border-color:var(--ac);color:#fff;font-weight:700}
+@media (prefers-color-scheme:dark){button.p{color:#06201c}}
+button.big{width:100%;padding:16px;font-size:18px;border-radius:16px}
+button.lk{border:0;background:none;color:var(--ac);padding:6px 0;font-weight:600}
+button.ic{border:0;background:none;padding:0 6px;font-size:22px}
+.top{display:flex;justify-content:space-between;align-items:center;color:var(--mut);font-size:15px;margin-bottom:6px}
+.pbar{height:8px;background:var(--bd);border-radius:6px;margin-bottom:14px;overflow:hidden}.pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--ac2),var(--ac));border-radius:6px;transition:width .3s}
+.hero{display:flex;gap:16px;align-items:center;background:linear-gradient(135deg,var(--ac2),var(--ac));color:#fff;border-radius:24px;padding:20px;margin-bottom:14px;box-shadow:var(--sh)}
+.hero .mut{color:rgba(255,255,255,.85)}
+.ring{flex:0 0 auto;width:88px;height:88px;border-radius:50%;background:conic-gradient(#fff calc(var(--p)*1%),rgba(255,255,255,.3) 0);display:grid;place-items:center}
+.ring span{width:68px;height:68px;border-radius:50%;background:var(--ac);display:grid;place-items:center;font-weight:800;font-size:19px}
+.big2{font-size:21px;font-weight:800}.streak{margin-top:4px;font-weight:700}
+.tcard{display:flex;align-items:center;gap:12px;background:var(--sf);border-radius:20px;padding:14px;margin-top:10px;box-shadow:var(--sh)}
+.tcard .ico{font-size:30px}.tcard>div:nth-child(2){flex:1;min-width:0}
+.tcard button{flex:0 0 auto;min-width:76px}
+.mini{height:6px;background:var(--bd);border-radius:4px;margin-top:6px;overflow:hidden}.mini i{display:block;height:100%;background:var(--ac)}
+.card{position:relative;background:var(--sf);border-radius:26px;padding:14px 14px 20px;text-align:center;cursor:pointer;user-select:none;margin-bottom:12px;box-shadow:var(--sh)}
+.phw{position:relative}
+.ph{position:relative;aspect-ratio:1/1;border-radius:18px;overflow:hidden;background:var(--bd);display:flex;align-items:center;justify-content:center;color:var(--mut)}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.q{font-size:72px;font-weight:800;color:var(--mut);padding:12px}.q small{display:block;font-size:15px;font-weight:500}.q.err{font-size:15px;font-weight:600;color:var(--bad)}
+.tools{position:absolute;top:8px;right:8px;display:flex;gap:6px}.tools button{padding:6px 10px;background:rgba(0,0,0,.45);color:#fff;border:0;border-radius:12px;font-size:18px}
+.cr{position:absolute;left:8px;bottom:8px;font-size:11px;color:#fff;background:rgba(0,0,0,.55);padding:2px 8px;border-radius:8px;text-decoration:none}
+.lv{display:inline-block;font-size:12px;font-weight:700;background:var(--r2);color:var(--ac);border-radius:10px;padding:2px 10px;margin-bottom:6px}
+.lv.abs{position:absolute;top:22px;left:22px;z-index:1;background:var(--ac);color:#fff}
+.w{font-size:36px;font-weight:800;margin-top:14px;line-height:1.2}.w2{font-size:21px;font-weight:700;margin:8px 0}
+.ipa{color:var(--mut);font-size:18px}.pos{color:var(--mut);font-size:14px}
+.ko{font-size:24px;font-weight:700;color:var(--ac);margin-top:4px}
+.def{color:var(--mut);margin-top:8px;font-size:16px;text-align:left}.ex{margin-top:8px;font-style:italic}
+.sit{font-size:22px;font-weight:700;margin:6px 0;line-height:1.4}
+.hint{color:var(--mut);font-size:15px;margin-top:12px}
+.bad{color:var(--bad);font-size:15px;margin-top:10px}
+.fb{border-radius:18px;padding:14px;margin-bottom:12px;text-align:left;font-size:16px}
+.fb.ok{background:var(--r2)}.fb.near{background:var(--r1)}.fb.bad2,.fb.warn{background:var(--r0)}.fb.n{background:var(--sf)}
+.fb s{color:var(--bad)}.fb b.mi{color:var(--ac);text-decoration:underline}
+.fb small{display:block;color:var(--mut);margin-top:6px}
+textarea,input[type=text],input[type=password],input[type=number]{width:100%;border:2px solid var(--bd);border-radius:16px;background:var(--sf);padding:12px;font-size:17px}
+textarea{min-height:96px;resize:vertical;margin-bottom:10px}
+label{display:block;font-size:15px;color:var(--mut);margin:14px 0 6px}
+.row{display:flex;gap:8px;margin-bottom:10px}.row>*{flex:1}
+.bar2{position:fixed;left:0;right:0;bottom:0;padding:18px 16px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(rgba(0,0,0,0),var(--bg) 35%)}
+.bar2 .in{max-width:480px;margin:0 auto}
+.rate{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.rate button{display:flex;flex-direction:column;padding:12px 2px;border:2px solid transparent;font-size:16px}
+.rate small{color:var(--mut);font-size:12px;font-weight:500}
+.rate .r0{background:var(--r0)}.rate .r1{background:var(--r1)}.rate .r2{background:var(--r2)}.rate .r3{background:var(--r3)}
+.rate .sug{border-color:var(--ac);box-shadow:0 0 0 3px var(--r2)}
+.mut{color:var(--mut);font-size:15px}.sec{margin:18px 0 8px;font-weight:800}
+.note{background:var(--sf);border-radius:16px;padding:12px 14px;font-size:15px;color:var(--mut);margin-bottom:10px}
+.done{text-align:center;padding:40px 10px}.done .em{font-size:64px}
+#msg{min-height:22px;margin-top:6px;font-size:15px;color:var(--mut);text-align:center}
+
+@keyframes in{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
+.card{animation:in .25s ease}
+.lvl{display:flex;justify-content:space-between;align-items:baseline;margin:2px 2px 6px}
+.week{display:flex;gap:6px}.week>div{flex:1;text-align:center}.week small{color:var(--mut);font-size:12px;display:block}.week span{display:grid;place-items:center;height:34px;border-radius:50%;background:var(--bd);font-weight:800;color:#fff}.week .on span{background:var(--ac)}
+.bdg{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.bdg span{flex:0 0 calc(25% - 6px);text-align:center;padding:8px 2px;border-radius:14px;background:var(--sf);font-size:24px;opacity:.35;filter:grayscale(1)}.bdg span.on{opacity:1;filter:none}.bdg small{display:block;font-size:11px;color:var(--mut)}
+.wide2{width:100%;margin:8px 0;padding:12px;border-radius:14px}
+.popx{position:fixed;left:50%;top:22%;transform:translateX(-50%);background:var(--ac);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.4);font-weight:800;padding:8px 16px;border-radius:20px;z-index:9;animation:pop 1s ease forwards;pointer-events:none;white-space:nowrap}
+@keyframes pop{0%{opacity:0;transform:translate(-50%,10px)}20%{opacity:1}100%{opacity:0;transform:translate(-50%,-40px)}}
+.cf{position:fixed;top:-30px;font-size:26px;z-index:8;animation:fall 2.4s linear forwards;pointer-events:none}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+.th{display:flex;gap:10px;margin:6px 0}.th button{width:42px;height:42px;border-radius:50%;border:3px solid var(--bg);padding:0}
+@media (prefers-reduced-motion:reduce){.card,.popx,.cf{animation:none}}
+
+.bub{background:var(--sf);padding:10px 14px;border-radius:18px 18px 18px 4px;margin:8px 36px 8px 0;box-shadow:var(--sh)}
+.bub.me{margin:8px 0 8px 36px;border-radius:18px 18px 4px 18px;background:var(--r2)}
+
+.cap{position:absolute;left:0;right:0;bottom:0;padding:34px 14px 12px;background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.72));color:#fff;font-size:26px;font-weight:800;text-align:center;border-radius:0 0 18px 18px}
+.cap small{display:block;font-size:12px;font-weight:500;opacity:.85}
+.cr{top:8px;bottom:auto}
+.ety{background:var(--r1);border-radius:14px;padding:10px 12px;margin-top:10px;text-align:left;font-size:15px}
+.svgw{background:var(--r2);border-radius:18px;margin-bottom:8px;padding:6px}.svgw svg{width:100%;height:auto;display:block;color:var(--tx)}
+.opts{display:grid;gap:8px;margin:8px 0}.opts button{text-align:left;padding:14px;font-size:17px}.opts .ok{background:var(--r2);border-color:var(--ac);opacity:1}.opts .no{background:var(--r0);opacity:1}
+.etl{background:var(--sf);border-radius:14px;padding:10px 14px;margin-bottom:8px}
+
+.btn{display:inline-block;padding:12px 14px;border-radius:14px;border:1px solid var(--bd);background:var(--sf);color:var(--tx);text-decoration:none;text-align:center;font-weight:700;flex:0 0 auto;min-width:72px}
+.btn.p{background:var(--ac);border-color:var(--ac);color:#fff}.btn.wide2{display:block;margin-top:10px}
+@media (prefers-color-scheme:dark){.btn.p{color:#06201c}}
+.etl{display:flex;gap:12px;align-items:center}.etsv{flex:0 0 104px;background:var(--r2);border-radius:12px;padding:4px}.etsv svg{width:100%;display:block;color:var(--tx)}
+</style></head><body><main id="app"></main>
+<input type="file" id="file" accept="image/*" hidden><input type="file" id="rf" accept="application/json" hidden>
+<script>
+const LV=["A1","A2","B1","B2"],ST=[0,1,3,7,14,30,60,120];
+const W=`a, an|indefinite article||0
+about|prep., adv.||0
+above|prep., adv.||0
+across|prep., adv.||0
+action|n.||0
+activity|n.||0
+actor|n.||0
+actress|n.||0
+add|v.||0
+address|n.||0
+adult|n.||0
+advice|n.||0
+afraid|adj.||0
+after|prep.||0
+afternoon|n.||0
+again|adv.||0
+age|n.||0
+ago|adv.||0
+agree|v.||0
+air|n.||0
+airport|n.||0
+all|det., pron.||0
+also|adv.||0
+always|adv.||0
+amazing|adj.||0
+and|conj.||0
+angry|adj.||0
+animal|n.||0
+another|det./pron.||0
+answer|n., v.||0
+any|det., pron.||0
+anyone|pron.||0
+anything|pron.||0
+apartment|n.||0
+apple|n.||0
+April|n.||0
+area|n.||0
+arm|n.||0
+around|prep., adv.||0
+arrive|v.||0
+art|n.||0
+article|n.||0
+artist|n.||0
+as|prep.||0
+ask|v.||0
+at|prep.||0
+August|n.||0
+aunt|n.||0
+autumn|n.||0
+away|adv.||0
+baby|n.||0
+back|n., adv.||0
+bad|adj.||0
+bag|n.||0
+ball|n.||0
+banana|n.||0
+band|n.||0
+bank|n.|money|0
+bath|n.||0
+bathroom|n.||0
+be|v., auxiliary v.||0
+beach|n.||0
+beautiful|adj.||0
+because|conj.||0
+become|v.||0
+bed|n.||0
+bedroom|n.||0
+beer|n.||0
+before|prep.||0
+begin|v.||0
+beginning|n.||0
+behind|prep., adv.||0
+believe|v.||0
+below|adv., prep.||0
+best|adj.||0
+better|adj.||0
+between|prep.||0
+bicycle|n.||0
+big|adj.||0
+bike|n.||0
+bill|n.||0
+bird|n.||0
+birthday|n.||0
+black|adj., n.||0
+blog|n.||0
+blonde|adj.||0
+blue|adj., n.||0
+boat|n.||0
+body|n.||0
+book|n.||0
+boot|n.||0
+bored|adj.||0
+boring|adj.||0
+born|v.||0
+both|det./pron.||0
+bottle|n.||0
+box|n.||0
+boy|n.||0
+boyfriend|n.||0
+bread|n.||0
+break|v., n.||0
+breakfast|n.||0
+bring|v.||0
+brother|n.||0
+brown|adj., n.||0
+build|v.||0
+building|n.||0
+bus|n.||0
+business|n.||0
+busy|adj.||0
+but|conj.||0
+butter|n.||0
+buy|v.||0
+by|prep.||0
+bye|exclam.||0
+cafe|n.||0
+cake|n.||0
+call|v., n.||0
+camera|n.||0
+can|modal v.||0
+cannot|modal v.||0
+capital|n., adj.||0
+car|n.||0
+card|n.||0
+career|n.||0
+carrot|n.||0
+carry|v.||0
+cat|n.||0
+CD|n.||0
+cent|n.||0
+centre|n.||0
+century|n.||0
+chair|n.||0
+change|v., n.||0
+chart|n.||0
+cheap|adj.||0
+check|v.||0
+cheese|n.||0
+chicken|n.||0
+child|n.||0
+chocolate|n.||0
+choose|v.||0
+cinema|n.||0
+city|n.||0
+class|n.||0
+classroom|n.||0
+clean|adj., v.||0
+climb|v.||0
+clock|n.||0
+close|v.||0
+clothes|n.||0
+club|n.||0
+coat|n.||0
+coffee|n.||0
+cold|adj., n.||0
+college|n.||0
+colour|n.||0
+come|v.||0
+common|adj.||0
+company|n.||0
+compare|v.||0
+complete|adj., v.||0
+computer|n.||0
+concert|n.||0
+conversation|n.||0
+cook|v.||0
+cooking|n.||0
+cool|adj.||0
+correct|adj., v.||0
+cost|n., v.||0
+could|modal v.||0
+country|n.||0
+course|n.||0
+cousin|n.||0
+cow|n.||0
+cream|n.||0
+create|v.||0
+culture|n.||0
+cup|n.||0
+customer|n.||0
+cut|v.||0
+dad|n.||0
+dance|n., v.||0
+dancer|n.||0
+dancing|n.||0
+dangerous|adj.||0
+dark|adj.||0
+date|n.||0
+daughter|n.||0
+day|n.||0
+dear|adj.||0
+December|n.||0
+decide|v.||0
+delicious|adj.||0
+describe|v.||0
+description|n.||0
+design|n., v.||0
+desk|n.||0
+detail|n.||0
+dialogue|n.||0
+dictionary|n.||0
+die|v.||0
+diet|n.||0
+difference|n.||0
+different|adj.||0
+difficult|adj.||0
+dinner|n.||0
+dirty|adj.||0
+discuss|v.||0
+dish|n.||0
+do|v., auxiliary v.||0
+doctor|n.||0
+dog|n.||0
+dollar|n.||0
+door|n.||0
+down|adv., prep.||0
+downstairs|adv.||0
+draw|v.||0
+dress|n., v.||0
+drink|n., v.||0
+drive|v.||0
+driver|n.||0
+during|prep.||0
+DVD|n.||0
+each|det./pron./adv.||0
+ear|n.||0
+early|adj., adv.||0
+east|n., adj., adv.||0
+easy|adj.||0
+eat|v.||0
+egg|n.||0
+eight|number||0
+eighteen|number||0
+eighty|number||0
+elephant|n.||0
+eleven|number||0
+else|adv.||0
+email|n., v.||0
+end|n., v.||0
+enjoy|v.||0
+enough|det., pron., adv.||0
+euro|n.||0
+even|adv.||0
+evening|n.||0
+event|n.||0
+ever|adv.||0
+every|det.||0
+everybody|pron.||0
+everyone|pron.||0
+everything|pron.||0
+exam|n.||0
+example|n.||0
+excited|adj.||0
+exciting|adj.||0
+exercise|n., v.||0
+expensive|adj.||0
+explain|v.||0
+extra|adj.||0
+eye|n.||0
+face|n.||0
+fact|n.||0
+fall|v.||0
+false|adj.||0
+family|n., adj.||0
+famous|adj.||0
+fantastic|adj.||0
+far|adv.||0
+farm|n.||0
+farmer|n.||0
+fast|adj., adv.||0
+fat|adj.||0
+father|n.||0
+favourite|adj., n.||0
+February|n.||0
+feel|v.||0
+feeling|n.||0
+festival|n.||0
+few|det./adj., pron.||0
+fifteen|number||0
+fifth|number||0
+fifty|number||0
+fill|v.||0
+film|n.||0
+final|adj.||0
+find|v.||0
+fine|adj.||0
+finish|v.||0
+fire|n.||0
+first|det./number, adv.||0
+fish|n.||0
+five|number||0
+flat|n.||0
+flight|n.||0
+floor|n.||0
+flower|n.||0
+fly|v.||0
+follow|v.||0
+food|n.||0
+foot|n.||0
+football|n.||0
+for|prep.||0
+forget|v.||0
+form|n., v.||0
+forty|number||0
+four|number||0
+fourteen|number||0
+fourth|number||0
+free|adj.||0
+Friday|n.||0
+friend|n.||0
+friendly|adj.||0
+from|prep.||0
+front|n., adj.||0
+fruit|n.||0
+full|adj.||0
+fun|n.||0
+funny|adj.||0
+future|n.||0
+game|n.||0
+garden|n.||0
+geography|n.||0
+get|v.||0
+girl|n.||0
+girlfriend|n.||0
+give|v.||0
+glass|n.||0
+go|v.||0
+good|adj.||0
+goodbye|exclam./n.||0
+grandfather|n.||0
+grandmother|n.||0
+grandparent|n.||0
+great|adj.||0
+green|adj., n.||0
+grey|adj., n.||0
+group|n.||0
+grow|v.||0
+guess|v., n.||0
+guitar|n.||0
+gym|n.||0
+hair|n.||0
+half|n., det./pron.||0
+hand|n.||0
+happen|v.||0
+happy|adj.||0
+hard|adj., adv.||0
+hat|n.||0
+hate|v.||0
+have|v.||0
+have to|modal v.||0
+he|pron.||0
+head|n.||0
+health|n.||0
+healthy|adj.||0
+hear|v.||0
+hello|exclam./n.||0
+help|v., n.||0
+her|pron., det.||0
+here|adv.||0
+hey|exclam.||0
+hi|exclam.||0
+high|adj.||0
+him|pron.||0
+his|det.||0
+history|n.||0
+hobby|n.||0
+holiday|n.||0
+home|n., adv.||0
+homework|n.||0
+hope|v.||0
+horse|n.||0
+hospital|n.||0
+hot|adj.||0
+hotel|n.||0
+hour|n.||0
+house|n.||0
+how|adv.||0
+however|adv.||0
+hundred|number||0
+hungry|adj.||0
+husband|n.||0
+I|pron.||0
+ice|n.||0
+ice cream|n.||0
+idea|n.||0
+if|conj.||0
+imagine|v.||0
+important|adj.||0
+improve|v.||0
+in|prep., adv.||0
+include|v.||0
+information|n.||0
+interest|n., v.||0
+interested|adj.||0
+interesting|adj.||0
+internet|n.||0
+interview|n., v.||0
+into|prep.||0
+introduce|v.||0
+island|n.||0
+it|pron.||0
+its|det.||0
+jacket|n.||0
+January|n.||0
+jeans|n.||0
+job|n.||0
+join|v.||0
+journey|n.||0
+juice|n.||0
+July|n.||0
+June|n.||0
+just|adv.||0
+keep|v.||0
+key|n., adj.||0
+kilometre|n.||0
+kind|n.|type|0
+kitchen|n.||0
+know|v.||0
+land|n.||0
+language|n.||0
+large|adj.||0
+last|det.|final|0
+late|adj., adv.||0
+later|adv.||0
+laugh|v., n.||0
+learn|v.||0
+leave|v.||0
+left|adj., adv., n.||0
+leg|n.||0
+lesson|n.||0
+let|v.||0
+letter|n.||0
+library|n.||0
+lie|v.||0
+life|n.||0
+light|n., adj.|from the sun/a lamp|0
+like|prep.|similar|0
+like|v.|find sb/sth pleasant|0
+line|n.||0
+lion|n.||0
+list|n., v.||0
+listen|v.||0
+little|adj., det./pron.||0
+live|v.||0
+local|adj.||0
+long|adj., adv.||0
+look|v.||0
+lose|v.||0
+lot|pron., det., adv.||0
+love|n., v.||0
+lunch|n.||0
+machine|n.||0
+magazine|n.||0
+main|adj.||0
+make|v.||0
+man|n.||0
+many|det./pron.||0
+map|n.||0
+March|n.||0
+market|n.||0
+married|adj.||0
+match|n., v.|contest/correspond|0
+May|n.||0
+maybe|adv.||0
+me|pron.||0
+meal|n.||0
+mean|v.||0
+meaning|n.||0
+meat|n.||0
+meet|v.||0
+meeting|n.||0
+member|n.||0
+menu|n.||0
+message|n.||0
+metre|n.||0
+midnight|n.||0
+mile|n.||0
+milk|n.||0
+million|number||0
+minute|n.||0
+miss|v.||0
+mistake|n.||0
+model|n.||0
+modern|adj.||0
+moment|n.||0
+Monday|n.||0
+money|n.||0
+month|n.||0
+more|det./pron., adv.||0
+morning|n.||0
+most|det./pron., adv.||0
+mother|n.||0
+mountain|n.||0
+mouse|n.||0
+mouth|n.||0
+move|v.||0
+movie|n.||0
+much|det./pron., adv.||0
+mum|n.||0
+museum|n.||0
+music|n.||0
+must|modal v.||0
+my|det.||0
+name|n., v.||0
+natural|adj.||0
+near|prep., adj., adv.||0
+need|v.||0
+negative|adj.||0
+neighbour|n.||0
+never|adv.||0
+new|adj.||0
+news|n.||0
+newspaper|n.||0
+next|adj., adv.||0
+next to|prep.||0
+nice|adj.||0
+night|n.||0
+nine|number||0
+nineteen|number||0
+ninety|number||0
+no|exclam., det.||0
+no one|pron.||0
+nobody|pron.||0
+north|n., adj., adv.||0
+nose|n.||0
+not|adv.||0
+note|n.||0
+nothing|pron.||0
+November|n.||0
+now|adv.||0
+number|n.||0
+nurse|n.||0
+object|n.||0
+o’clock|adv.||0
+October|n.||0
+of|prep.||0
+off|adv., prep.||0
+office|n.||0
+often|adv.||0
+oh|exclam.||0
+OK|exclam., adj./adv.||0
+old|adj.||0
+on|prep., adv.||0
+once|adv.||0
+one|number/det., pron.||0
+onion|n.||0
+online|adj., adv.||0
+only|adj., adv.||0
+open|adj., v.||0
+opinion|n.||0
+opposite|adj., n., prep., adv.||0
+or|conj.||0
+orange|n., adj.||0
+order|n., v.||0
+other|adj./pron.||0
+our|det.||0
+out|adv./prep.||0
+outside|adv.||0
+over|prep., adv.||0
+own|adj./pron.||0
+page|n.||0
+paint|v., n.||0
+painting|n.||0
+pair|n.||0
+paper|n.||0
+paragraph|n.||0
+parent|n.||0
+park|n., v.||0
+part|n.||0
+partner|n.||0
+party|n.||0
+passport|n.||0
+past|adj., n., prep.||0
+pay|v.||0
+pen|n.||0
+pencil|n.||0
+people|n.||0
+pepper|n.||0
+perfect|adj.||0
+period|n.||0
+person|n.||0
+personal|adj.||0
+phone|n., v.||0
+photo|n.||0
+photograph|n.||0
+phrase|n.||0
+piano|n.||0
+picture|n.||0
+piece|n.||0
+pig|n.||0
+pink|adj., n.||0
+place|n.||0
+plan|n., v.||0
+plane|n.||0
+plant|n.||0
+play|v., n.||0
+player|n.||0
+please|exclam.||0
+point|n.||0
+police|n.||0
+policeman|n.||0
+pool|n.||0
+poor|adj.||0
+popular|adj.||0
+positive|adj.||0
+possible|adj.||0
+post|n., v.||0
+potato|n.||0
+pound|n.||0
+practice|n.||0
+practise|v.||0
+prefer|v.||0
+prepare|v.||0
+present|adj., n.||0
+pretty|adj., adv.||0
+price|n.||0
+probably|adv.||0
+problem|n.||0
+product|n.||0
+programme|n.||0
+project|n.||0
+purple|adj., n.||0
+put|v.||0
+quarter|n.||0
+question|n.||0
+quick|adj.||0
+quickly|adv.||0
+quiet|adj.||0
+quite|adv.||0
+radio|n.||0
+rain|n., v.||0
+read|v.||0
+reader|n.||0
+reading|n.||0
+ready|adj.||0
+real|adj.||0
+really|adv.||0
+reason|n.||0
+red|adj., n.||0
+relax|v.||0
+remember|v.||0
+repeat|v.||0
+report|n.||0
+restaurant|n.||0
+result|n.||0
+return|v., n.||0
+rice|n.||0
+rich|adj.||0
+ride|v.||0
+right|adj., adv., n.||0
+river|n.||0
+road|n.||0
+room|n.||0
+routine|n.||0
+rule|n.||0
+run|v.||0
+sad|adj.||0
+salad|n.||0
+salt|n.||0
+same|adj., pron., adv.||0
+sandwich|n.||0
+Saturday|n.||0
+say|v.||0
+school|n.||0
+science|n.||0
+scientist|n.||0
+sea|n.||0
+second|det./ number|next after the first|0
+second|n.|unit of time|0
+section|n.||0
+see|v.||0
+sell|v.||0
+send|v.||0
+sentence|n.||0
+September|n.||0
+seven|number||0
+seventeen|number||0
+seventy|number||0
+share|v.||0
+she|pron.||0
+sheep|n.||0
+shirt|n.||0
+shoe|n.||0
+shop|n., v.||0
+shopping|n.||0
+short|adj.||0
+should|modal v.||0
+show|v., n.||0
+shower|n.||0
+sick|adj.||0
+similar|adj.||0
+sing|v.||0
+singer|n.||0
+sister|n.||0
+sit|v.||0
+situation|n.||0
+six|number||0
+sixteen|number||0
+sixty|number||0
+skill|n.||0
+skirt|n.||0
+sleep|v.||0
+slow|adj.||0
+small|adj.||0
+snake|n.||0
+snow|n., v.||0
+so|adv., conj.||0
+some|det., pron.||0
+somebody|pron.||0
+someone|pron.||0
+something|pron.||0
+sometimes|adv.||0
+son|n.||0
+song|n.||0
+soon|adv.||0
+sorry|adj., exclam.||0
+sound|n., v.||0
+soup|n.||0
+south|n., adj., adv.||0
+space|n.||0
+speak|v.||0
+special|adj.||0
+spell|v.||0
+spelling|n.||0
+spend|v.||0
+sport|n.||0
+spring|n.||0
+stand|v.||0
+star|n.||0
+start|v.||0
+statement|n.||0
+station|n.||0
+stay|v.||0
+still|adv.||0
+stop|v., n.||0
+story|n.||0
+street|n.||0
+strong|adj.||0
+student|n.||0
+study|n., v.||0
+style|n.||0
+subject|n.||0
+success|n.||0
+sugar|n.||0
+summer|n.||0
+sun|n.||0
+Sunday|n.||0
+supermarket|n.||0
+sure|adj.||0
+sweater|n.||0
+swim|v.||0
+swimming|n.||0
+table|n.||0
+take|v.||0
+talk|v.||0
+tall|adj.||0
+taxi|n.||0
+tea|n.||0
+teach|v.||0
+teacher|n.||0
+team|n.||0
+teenager|n.||0
+telephone|n., v.||0
+television|n.||0
+tell|v.||0
+ten|number||0
+tennis|n.||0
+terrible|adj.||0
+test|n., v.||0
+text|n.||0
+than|conj.||0
+thank|v.||0
+thanks|exclam., n.||0
+that|det., pron., conj.||0
+the|definite article||0
+theatre|n.||0
+their|det.||0
+them|pron.||0
+then|adv.||0
+there|adv.||0
+they|pron.||0
+thing|n.||0
+think|v.||0
+third|number||0
+thirsty|adj.||0
+thirteen|number||0
+thirty|number||0
+this|det./pron.||0
+thousand|number||0
+three|number||0
+through|prep., adv.||0
+Thursday|n.||0
+ticket|n.||0
+time|n.||0
+tired|adj.||0
+title|n.||0
+to|prep., infinitive marker||0
+today|adv., n.||0
+together|adv.||0
+toilet|n.||0
+tomato|n.||0
+tomorrow|adv., n.||0
+tonight|adv., n.||0
+too|adv.||0
+tooth|n.||0
+topic|n.||0
+tourist|n.||0
+town|n.||0
+traffic|n.||0
+train|n.||0
+travel|v., n.||0
+tree|n.||0
+trip|n.||0
+trousers|n.||0
+true|adj.||0
+try|v.||0
+T-shirt|n.||0
+Tuesday|n.||0
+turn|v., n.||0
+TV|n.||0
+twelve|number||0
+twenty|number||0
+twice|adv.||0
+two|number||0
+type|n.||0
+umbrella|n.||0
+uncle|n.||0
+under|prep., adv.||0
+understand|v.||0
+university|n.||0
+until|conj./prep.||0
+up|adv., prep.||0
+upstairs|adv.||0
+us|pron.||0
+use|v.||0
+useful|adj.||0
+usually|adv.||0
+vacation|n.||0
+vegetable|n.||0
+very|adv.||0
+video|n.||0
+village|n.||0
+visit|v., n.||0
+visitor|n.||0
+wait|v.||0
+waiter|n.||0
+wake|v.||0
+walk|v., n.||0
+wall|n.||0
+want|v.||0
+warm|adj.||0
+wash|v.||0
+watch|v., n.||0
+water|n.||0
+way|n.||0
+we|pron.||0
+wear|v.||0
+weather|n.||0
+website|n.||0
+Wednesday|n.||0
+week|n.||0
+weekend|n.||0
+welcome|exclam., v., adj.||0
+well|adv., adj., exclam.||0
+west|n., adj., adv.||0
+what|pron./det.||0
+when|adv., pron., conj.||0
+where|adv., conj.||0
+which|pron./det.||0
+white|adj., n.||0
+who|pron.||0
+why|adv.||0
+wife|n.||0
+will|modal v.||0
+win|v.||0
+window|n.||0
+wine|n.||0
+winter|n.||0
+with|prep.||0
+without|prep.||0
+woman|n.||0
+wonderful|adj.||0
+word|n.||0
+work|v., n.||0
+worker|n.||0
+world|n.||0
+would|modal v.||0
+write|v.||0
+writer|n.||0
+writing|n.||0
+wrong|adj.||0
+yeah|exclam.||0
+year|n.||0
+yellow|adj., n.||0
+yes|exclam.||0
+yesterday|adv., n.||0
+you|pron.||0
+young|adj.||0
+your|det.||0
+yourself|pron.||0
+ability|n.||1
+able|adj.||1
+abroad|adv.||1
+accept|v.||1
+accident|n.||1
+according to|prep.||1
+achieve|v.||1
+act|v.||1
+active|adj.||1
+actually|adv.||1
+adult|adj.||1
+advantage|n.||1
+adventure|n.||1
+advertise|v.||1
+advertisement|n.||1
+advertising|n.||1
+affect|v.||1
+after|conj., adv.||1
+against|prep.||1
+ah|exclam.||1
+airline|n.||1
+alive|adj.||1
+all|adv.||1
+all right|adj./adv., exclam.||1
+allow|v.||1
+almost|adv.||1
+alone|adj./adv.||1
+along|prep., adv.||1
+already|adv.||1
+alternative|n.||1
+although|conj.||1
+among|prep.||1
+amount|n.||1
+ancient|adj.||1
+angrily|adv.||1
+ankle|n.||1
+any|adv.||1
+anybody|pron.||1
+any more|adv.||1
+anyway|adv.||1
+anywhere|adv., pron.||1
+app|n.||1
+appear|v.||1
+appearance|n.||1
+apply|v.||1
+architect|n.||1
+architecture|n.||1
+argue|v.||1
+argument|n.||1
+army|n.||1
+arrange|v.||1
+arrangement|n.||1
+as|adv., conj.||1
+asleep|adj.||1
+assistant|n., adj.||1
+athlete|n.||1
+attack|n., v.||1
+attend|v.||1
+attention|n., exclam.||1
+attractive|adj.||1
+audience|n.||1
+author|n.||1
+available|adj.||1
+average|adj., n.||1
+avoid|v.||1
+award|n.||1
+awful|adj.||1
+back|adj.||1
+background|n.||1
+badly|adv.||1
+bar|n.||1
+baseball|n.||1
+based|adj.||1
+basketball|n.||1
+bean|n.||1
+bear|n.|animal|1
+beat|v.||1
+beef|n.||1
+before|conj., adv.||1
+behave|v.||1
+behaviour|n.||1
+belong|v.||1
+belt|n.||1
+benefit|n.||1
+best|adv., n.||1
+better|adv.||1
+between|adv.||1
+billion|number||1
+bin|n.||1
+biology|n.||1
+birth|n.||1
+biscuit|n.||1
+bit|n.||1
+blank|adj., n.||1
+blood|n.||1
+blow|v.||1
+board|n.||1
+boil|v.||1
+bone|n.||1
+book|v.||1
+borrow|v.||1
+boss|n.||1
+bottom|n., adj.||1
+bowl|n.||1
+brain|n.||1
+bridge|n.||1
+bright|adj.||1
+brilliant|adj.||1
+broken|adj.||1
+brush|v., n.||1
+burn|v.||1
+businessman|n.||1
+button|n.||1
+camp|n., v.||1
+camping|n.||1
+can|n.||1
+care|n., v.||1
+careful|adj.||1
+carefully|adv.||1
+carpet|n.||1
+cartoon|n.||1
+case|n.||1
+cash|n.||1
+castle|n.||1
+catch|v.||1
+cause|n., v.||1
+celebrate|v.||1
+celebrity|n.||1
+certain|adj.||1
+certainly|adv.||1
+chance|n.||1
+character|n.||1
+charity|n.||1
+chat|v., n.||1
+check|n.||1
+chef|n.||1
+chemistry|n.||1
+chip|n.||1
+choice|n.||1
+church|n.||1
+cigarette|n.||1
+circle|n., v.||1
+classical|adj.||1
+clear|adj.||1
+clearly|adv.||1
+clever|adj.||1
+climate|n.||1
+close|adj.||1
+closed|adj.||1
+clothing|n.||1
+cloud|n.||1
+coach|n.||1
+coast|n.||1
+code|n.||1
+colleague|n.||1
+collect|v.||1
+column|n.||1
+comedy|n.||1
+comfortable|adj.||1
+comment|n.||1
+communicate|v.||1
+community|n.||1
+compete|v.||1
+competition|n.||1
+complain|v.||1
+completely|adv.||1
+condition|n.||1
+conference|n.||1
+connect|v.||1
+connected|adj.||1
+consider|v.||1
+contain|v.||1
+context|n.||1
+continent|n.||1
+continue|v.||1
+control|n., v.||1
+cook|n.||1
+cooker|n.||1
+copy|n., v.||1
+corner|n.||1
+correctly|adv.||1
+count|v.||1
+couple|n.||1
+cover|v.||1
+crazy|adj.||1
+creative|adj.||1
+credit|n.||1
+crime|n.||1
+criminal|n.||1
+cross|v., n.||1
+crowd|n.||1
+crowded|adj.||1
+cry|v.||1
+cupboard|n.||1
+curly|adj.||1
+cycle|n., v.||1
+daily|adj.||1
+danger|n.||1
+dark|n.||1
+data|n.||1
+dead|adj.||1
+deal|v.||1
+dear|exclam.||1
+death|n.||1
+decision|n.||1
+deep|adj.||1
+definitely|adv.||1
+degree|n.||1
+dentist|n.||1
+department|n.||1
+depend|v.||1
+desert|n.||1
+designer|n.||1
+destroy|v.||1
+detective|n.||1
+develop|v.||1
+device|n.||1
+diary|n.||1
+differently|adv.||1
+digital|adj.||1
+direct|adj.||1
+direction|n.||1
+director|n.||1
+disagree|v.||1
+disappear|v.||1
+disaster|n.||1
+discover|v.||1
+discovery|n.||1
+discussion|n.||1
+disease|n.||1
+distance|n.||1
+divorced|adj.||1
+document|n.||1
+double|adj., det., pron., v.||1
+download|v., n.||1
+downstairs|adj.||1
+drama|n.||1
+drawing|n.||1
+dream|n., v.||1
+drive|n.||1
+driving|n.||1
+drop|v.||1
+drug|n.||1
+dry|adj., v.||1
+earn|v.||1
+earth|n.||1
+easily|adv.||1
+education|n.||1
+effect|n.||1
+either|det./pron., adv.||1
+electric|adj.||1
+electrical|adj.||1
+electricity|n.||1
+electronic|adj.||1
+employ|v.||1
+employee|n.||1
+employer|n.||1
+empty|adj.||1
+ending|n.||1
+energy|n.||1
+engine|n.||1
+engineer|n.||1
+enormous|adj.||1
+enter|v.||1
+environment|n.||1
+equipment|n.||1
+error|n.||1
+especially|adv.||1
+essay|n.||1
+everyday|adj.||1
+everywhere|adv.||1
+evidence|n.||1
+exact|adj.||1
+exactly|adv.||1
+excellent|adj.||1
+except|prep.||1
+exist|v.||1
+expect|v.||1
+experience|n.||1
+experiment|n.||1
+expert|n.,adj.||1
+explanation|n.||1
+express|v.||1
+expression|n.||1
+extreme|adj.||1
+extremely|adv.||1
+factor|n.||1
+factory|n.||1
+fail|v.||1
+fair|adj.||1
+fall|n.||1
+fan|n.||1
+farm|v.||1
+farming|n.||1
+fashion|n.||1
+fat|n.||1
+fear|n.||1
+feature|n.||1
+feed|v.||1
+female|adj., n.||1
+fiction|n.||1
+field|n.||1
+fight|v., n.||1
+figure|n.||1
+film|v.||1
+final|n.||1
+finally|adv.||1
+finger|n.||1
+finish|n.||1
+first|n.||1
+firstly|adv.||1
+fish|v.||1
+fishing|n.||1
+fit|v., adj.||1
+fix|v.||1
+flat|adj.||1
+flu|n.||1
+fly|n.||1
+flying|n., adj.||1
+focus|v., n.||1
+following|adj.||1
+foreign|adj.||1
+forest|n.||1
+fork|n.||1
+formal|adj.||1
+fortunately|adv.||1
+forward|adv.||1
+free|adv.||1
+fresh|adj.||1
+fridge|n.||1
+frog|n.||1
+fun|adj.||1
+furniture|n.||1
+further|adj.||1
+future|adj.||1
+gallery|n.||1
+gap|n.||1
+gas|n.||1
+gate|n.||1
+general|adj.||1
+gift|n.||1
+goal|n.||1
+god|n.||1
+gold|n., adj.||1
+golf|n.||1
+good|n.||1
+government|n.||1
+grass|n.||1
+greet|v.||1
+ground|n.||1
+guest|n.||1
+guide|n., v.||1
+gun|n.||1
+guy|n.||1
+habit|n.||1
+half|adv.||1
+hall|n.||1
+happily|adv.||1
+have|auxiliary v.||1
+headache|n.||1
+heart|n.||1
+heat|n., v.||1
+heavy|adj.||1
+height|n.||1
+helpful|adj.||1
+hero|n.||1
+hers|pron.||1
+herself|pron.||1
+hide|v.||1
+high|adv.||1
+hill|n.||1
+himself|pron.||1
+his|pron.||1
+hit|v., n.||1
+hockey|n.||1
+hold|v.||1
+hole|n.||1
+home|adj.||1
+hope|n.||1
+huge|adj.||1
+human|adj., n.||1
+hurt|v., adj.||1
+ideal|adj.||1
+identify|v.||1
+ill|adj.||1
+illness|n.||1
+image|n.||1
+immediately|adv.||1
+impossible|adj.||1
+included|adj.||1
+including|prep.||1
+increase|v., n.||1
+incredible|adj.||1
+independent|adj.||1
+individual|n., adj.||1
+industry|n.||1
+informal|adj.||1
+injury|n.||1
+insect|n.||1
+inside|prep., adv., n., adj.||1
+instead|adv.||1
+instruction|n.||1
+instructor|n.||1
+instrument|n.||1
+intelligent|adj.||1
+international|adj.||1
+introduction|n.||1
+invent|v.||1
+invention|n.||1
+invitation|n.||1
+invite|v.||1
+involve|v.||1
+item|n.||1
+itself|pron.||1
+jam|n.||1
+jazz|n.||1
+jewellery|n.||1
+joke|n., v.||1
+journalist|n.||1
+jump|v., n.||1
+kid|n.||1
+kill|v.||1
+king|n.||1
+knee|n.||1
+knife|n.||1
+knock|v.||1
+knowledge|n.||1
+lab|n.||1
+lady|n.||1
+lake|n.||1
+lamp|n.||1
+land|v.||1
+laptop|n.||1
+last|adv., n.|final|1
+last|v.|taking time|1
+later|adj.||1
+laughter|n.||1
+law|n.||1
+lawyer|n.||1
+lazy|adj.||1
+lead|v.||1
+leader|n.||1
+learning|n.||1
+least|det./pron., adv.||1
+lecture|n., v.||1
+lemon|n.||1
+lend|v.||1
+less|det./pron., adv.||1
+level|n.||1
+lifestyle|n.||1
+lift|v., n.||1
+light|v.|from the sun/a lamp|1
+light|adj.|not heavy|1
+likely|adj.||1
+link|n., v.||1
+listener|n.||1
+little|adv.||1
+lock|v., n.||1
+look|n.||1
+lorry|n.||1
+lost|adj.||1
+loud|adj., adv.||1
+loudly|adv.||1
+lovely|adj.||1
+low|adj., adv.||1
+luck|n.||1
+lucky|adj.||1
+mail|n., v.||1
+major|adj.||1
+male|adj., n.||1
+manage|v.||1
+manager|n.||1
+manner|n.||1
+mark|v., n.||1
+marry|v.||1
+material|n.||1
+mathematics|n.||1
+maths|n.||1
+matter|n., v.||1
+may|modal v.||1
+media|n.||1
+medical|adj.||1
+medicine|n.||1
+memory|n.||1
+mention|v.||1
+metal|n.||1
+method|n.||1
+middle|n., adj.||1
+might|modal v.||1
+mind|n., v.||1
+mine|pron.|belongs to me|1
+mirror|n.||1
+missing|adj.||1
+mobile|adj., n.||1
+monkey|n.||1
+moon|n.||1
+mostly|adv.||1
+motorcycle|n.||1
+movement|n.||1
+musical|adj.||1
+musician|n.||1
+myself|pron.||1
+narrow|adj.||1
+national|adj.||1
+nature|n.||1
+nearly|adv.||1
+necessary|adj.||1
+neck|n.||1
+need|n.||1
+neither|det./pron.||1
+nervous|adj.||1
+network|n.||1
+noise|n.||1
+noisy|adj.||1
+none|pron.||1
+normal|adj.||1
+normally|adv.||1
+notice|v., n.||1
+novel|n.||1
+nowhere|adv.||1
+number|v.||1
+nut|n.||1
+ocean|n.||1
+offer|v., n.||1
+officer|n.||1
+oil|n.||1
+onto|prep.||1
+opportunity|n.||1
+option|n.||1
+ordinary|adj.||1
+organization|n.||1
+organize|v.||1
+original|adj.||1
+ourselves|pron.||1
+outside|prep., n., adj.||1
+oven|n.||1
+own|v.||1
+owner|n.||1
+pack|v.||1
+pain|n.||1
+painter|n.||1
+palace|n.||1
+pants|n.||1
+parking|n.||1
+particular|adj.||1
+pass|v.||1
+passenger|n.||1
+past|adv.||1
+patient|n.||1
+pattern|n.||1
+pay|n.||1
+peace|n.||1
+penny|n.||1
+per|prep.||1
+per cent|n., adj./adv.||1
+perform|v.||1
+perhaps|adv.||1
+permission|n.||1
+personality|n.||1
+pet|n.||1
+petrol|n.||1
+photograph|v.||1
+physical|adj.||1
+physics|n.||1
+pick|v.||1
+pilot|n.||1
+planet|n.||1
+plant|v.||1
+plastic|n., adj.||1
+plate|n.||1
+platform|n.||1
+please|v.||1
+pleased|adj.||1
+pocket|n.||1
+polite|adj.||1
+pollution|n.||1
+pop|n., adj.||1
+population|n.||1
+position|n.||1
+possession|n.||1
+possibility|n.||1
+poster|n.||1
+power|n.||1
+predict|v.||1
+present|v.||1
+president|n.||1
+prevent|v.||1
+print|v.||1
+printer|n.||1
+prison|n.||1
+prize|n.||1
+process|n.||1
+produce|v.||1
+professional|adj.||1
+professor|n.||1
+profile|n.||1
+program|n.||1
+progress|n.||1
+promise|v., n.||1
+pronounce|v.||1
+protect|v.||1
+provide|v.||1
+pub|n.||1
+public|adj., n.||1
+publish|v.||1
+pull|v.||1
+purpose|n.||1
+push|v.||1
+quality|n.||1
+quantity|n.||1
+queen|n.||1
+question|v.||1
+quietly|adv.||1
+race|n., v.|competition|1
+railway|n.||1
+raise|v.||1
+rate|n.||1
+rather|adv.||1
+reach|v.||1
+react|v.||1
+realize|v.||1
+receive|v.||1
+recent|adj.||1
+recently|adv.||1
+reception|n.||1
+recipe|n.||1
+recognize|v.||1
+recommend|v.||1
+record|n., v.||1
+recording|n.||1
+recycle|v.||1
+reduce|v.||1
+refer|v.||1
+refuse|v.||1
+region|n.||1
+regular|adj.||1
+relationship|n.||1
+remove|v.||1
+repair|v.||1
+replace|v.||1
+reply|v., n.||1
+report|v.||1
+reporter|n.||1
+request|n.||1
+research|n., v.||1
+researcher|n.||1
+respond|v.||1
+response|n.||1
+rest|n.|remaining part|1
+rest|n., v.|sleep/relax|1
+review|n., v.||1
+ride|n.||1
+ring|n.||1
+ring|v.||1
+rise|v.||1
+rock|n.|stone|1
+rock|n.|music|1
+role|n.||1
+roof|n.||1
+round|adj., adv., prep.||1
+route|n.||1
+rubbish|n.||1
+rude|adj.||1
+run|n.||1
+runner|n.||1
+running|n.||1
+sadly|adv.||1
+safe|adj.||1
+sail|v.||1
+sailing|n.||1
+salary|n.||1
+sale|n.||1
+sauce|n.||1
+save|v.||1
+scared|adj.||1
+scary|adj.||1
+scene|n.||1
+schedule|n.||1
+score|v., n.||1
+screen|n.||1
+search|n., v.||1
+season|n.||1
+seat|n.||1
+second|adv.|next after the first|1
+secondly|adv.||1
+secret|adj., n.||1
+secretary|n.||1
+seem|v.||1
+sense|n.||1
+separate|adj.||1
+series|n.||1
+serious|adj.||1
+serve|v.||1
+service|n.||1
+several|det./pron.||1
+shake|v.||1
+shall|modal v.||1
+shape|n.||1
+sheet|n.||1
+ship|n.||1
+shoulder|n.||1
+shout|v., n.||1
+shut|v., adj.||1
+side|n.||1
+sign|n., v.||1
+silver|n., adj.||1
+simple|adj.||1
+since|prep., conj.||1
+singing|n.||1
+single|adj., n.||1
+sir|n.||1
+site|n.||1
+size|n.||1
+ski|v., adj., n.||1
+skiing|n.||1
+skin|n.||1
+sky|n.||1
+sleep|n.||1
+slowly|adv.||1
+smell|v., n.||1
+smile|v., n.||1
+smoke|n., v.||1
+smoking|n.||1
+soap|n.||1
+soccer|n.||1
+social|adj.||1
+society|n.||1
+sock|n.||1
+soft|adj.||1
+soldier|n.||1
+solution|n.||1
+solve|v.||1
+somewhere|adv., pron.||1
+sort|n.||1
+source|n.||1
+speaker|n.||1
+specific|adj.||1
+speech|n.||1
+speed|n.||1
+spider|n.||1
+spoon|n.||1
+square|adj., n.||1
+stage|n.||1
+stair|n.||1
+stamp|n.||1
+star|v.||1
+start|n.||1
+state|n.||1
+stay|n.||1
+steal|v.||1
+step|n.||1
+stomach|n.||1
+stone|n.||1
+store|n.||1
+storm|n.||1
+straight|adv., adj.||1
+strange|adj.||1
+strategy|n.||1
+stress|n., v.||1
+structure|n.||1
+stupid|adj.||1
+succeed|v.||1
+successful|adj.||1
+such|det./pron.||1
+suddenly|adv.||1
+suggest|v.||1
+suggestion|n.||1
+suit|n.||1
+support|v., n.||1
+suppose|v.||1
+sure|adv.||1
+surprise|n., v.||1
+surprised|adj.||1
+surprising|adj.||1
+survey|n.||1
+sweet|adj., n.||1
+symbol|n.||1
+system|n.||1
+tablet|n.||1
+talk|n.||1
+target|n.||1
+task|n.||1
+taste|n., v.||1
+teaching|n.||1
+technology|n.||1
+teenage|adj.||1
+temperature|n.||1
+term|n.||1
+themselves|pron.||1
+thick|adj.||1
+thief|n.||1
+thin|adj.||1
+thinking|n.||1
+third|n.||1
+thought|n.||1
+throw|v.||1
+tidy|adj., v.||1
+tie|v., n.||1
+tip|n.||1
+tool|n.||1
+top|n., adj.||1
+touch|v.||1
+tour|n.||1
+tourism|n.||1
+towards|prep.||1
+towel|n.||1
+tower|n.||1
+toy|n., adj.||1
+track|n.||1
+tradition|n.||1
+traditional|adj.||1
+train|v.||1
+trainer|n.||1
+training|n.||1
+transport|n.||1
+traveller|n.||1
+trouble|n.||1
+truck|n.||1
+twin|n., adj.||1
+typical|adj.||1
+underground|adj., adv.||1
+understanding|n.||1
+unfortunately|adv.||1
+unhappy|adj.||1
+uniform|n.||1
+unit|n.||1
+united|adj.||1
+unusual|adj.||1
+upstairs|adj.||1
+use|n.||1
+used to|modal v.||1
+user|n.||1
+usual|adj.||1
+valley|n.||1
+van|n.||1
+variety|n.||1
+vehicle|n.||1
+view|n.||1
+virus|n.||1
+voice|n.||1
+wait|n.||1
+war|n.||1
+wash|n.||1
+washing|n.||1
+wave|n.||1
+weak|adj.||1
+web|n.||1
+wedding|n.||1
+weight|n.||1
+welcome|n.||1
+wet|adj.||1
+wheel|n.||1
+while|conj.||1
+whole|adj.||1
+whose|det./pron.||1
+wide|adj.||1
+wild|adj.||1
+wind|n.||1
+winner|n.||1
+wish|v., n.||1
+wood|n.||1
+wooden|adj.||1
+working|adj.||1
+worried|adj.||1
+worry|v.||1
+worse|adj.||1
+worst|adj.||1
+wow|exclam.||1
+yet|adv.||1
+yours|pron.||1
+zero|number||1
+absolutely|adv.||2
+academic|adj.||2
+access|n., v.||2
+accommodation|n.||2
+account|n.||2
+achievement|n.||2
+act|n.||2
+ad|n.||2
+addition|n.||2
+admire|v.||2
+admit|v.||2
+advanced|adj.||2
+advise|v.||2
+afford|v.||2
+age|v.||2
+aged|adj.||2
+agent|n.||2
+agreement|n.||2
+ahead|adv.||2
+aim|v., n.||2
+alarm|n.||2
+album|n.||2
+alcohol|n.||2
+alcoholic|adj.||2
+alternative|adj.||2
+amazed|adj.||2
+ambition|n.||2
+ambitious|adj.||2
+analyse|v.||2
+analysis|n.||2
+announce|v.||2
+announcement|n.||2
+annoy|v.||2
+annoyed|adj.||2
+annoying|adj.||2
+apart|adv.||2
+apologize|v.||2
+application|n.||2
+appointment|n.||2
+appreciate|v.||2
+approximately|adv.||2
+arrest|v., n.||2
+arrival|n.||2
+assignment|n.||2
+assist|v.||2
+atmosphere|n.||2
+attach|v.||2
+attitude|n.||2
+attract|v.||2
+attraction|n.||2
+authority|n.||2
+average|v.||2
+award|v.||2
+aware|adj.||2
+backwards|adv.||2
+bake|v.||2
+balance|n., v.||2
+ban|v., n.||2
+bank|n.|river|2
+base|n., v.||2
+basic|adj.||2
+basis|n.||2
+battery|n.||2
+battle|n.||2
+beauty|n.||2
+bee|n.||2
+belief|n.||2
+bell|n.||2
+bend|v., n.||2
+benefit|v.||2
+better|n.||2
+bite|v., n.||2
+block|n., v.||2
+board|v.||2
+bomb|n., v.||2
+border|n.||2
+bother|v.||2
+branch|n.||2
+brand|n., v.||2
+brave|adj.||2
+breath|n.||2
+breathe|v.||2
+breathing|n.||2
+bride|n.||2
+bubble|n.||2
+bury|v.||2
+by|adv.||2
+calm|adj., v., n.||2
+campaign|n., v.||2
+campus|n.||2
+candidate|n.||2
+cap|n.||2
+captain|n.||2
+careless|adj.||2
+category|n.||2
+ceiling|n.||2
+celebration|n.||2
+central|adj.||2
+centre|v.||2
+ceremony|n.||2
+chain|n.||2
+challenge|n.||2
+champion|n.||2
+channel|n.||2
+chapter|n.||2
+charge|n., v.||2
+cheap|adv.||2
+cheat|v., n.||2
+cheerful|adj.||2
+chemical|adj., n.||2
+chest|n.||2
+childhood|n.||2
+claim|v., n.||2
+clause|n.||2
+clear|v.||2
+click|v., n.||2
+client|n.||2
+climb|n.||2
+close|adv.||2
+cloth|n.||2
+clue|n.||2
+coach|v.||2
+coal|n.||2
+coin|n.||2
+collection|n.||2
+coloured|adj.||2
+combine|v.||2
+comment|v.||2
+commercial|adj., n.||2
+commit|v.||2
+communication|n.||2
+comparison|n.||2
+competitor|n.||2
+competitive|adj.||2
+complaint|n.||2
+complex|adj.||2
+concentrate|v.||2
+conclude|v.||2
+conclusion|n.||2
+confident|adj.||2
+confirm|v.||2
+confuse|v.||2
+confused|adj.||2
+connection|n.||2
+consequence|n.||2
+consist|v.||2
+consume|v.||2
+consumer|n.||2
+contact|n., v.||2
+container|n.||2
+content|n.||2
+continuous|adj.||2
+contrast|n., v.||2
+convenient|adj.||2
+convince|v.||2
+cool|v.||2
+costume|n.||2
+cottage|n.||2
+cotton|n.||2
+count|n.||2
+countryside|n.||2
+court|n.||2
+cover|n.||2
+covered|adj.||2
+cream|adj.||2
+criminal|adj.||2
+cruel|adj.||2
+cultural|adj.||2
+currency|n.||2
+current|adj.||2
+currently|adv.||2
+curtain|n.||2
+custom|n.||2
+cut|n.||2
+daily|adv.||2
+damage|n., v.||2
+deal|n.||2
+decade|n.||2
+decorate|v.||2
+deep|adv.||2
+define|v.||2
+definite|adj.||2
+definition|n.||2
+deliver|v.||2
+departure|n.||2
+despite|prep.||2
+destination|n.||2
+determine|v.||2
+determined|adj.||2
+development|n.||2
+diagram|n.||2
+diamond|n.||2
+difficulty|n.||2
+direct|v., adv.||2
+directly|adv.||2
+dirt|n.||2
+disadvantage|n.||2
+disappointed|adj.||2
+disappointing|adj.||2
+discount|n.||2
+dislike|v., n.||2
+divide|v.||2
+documentary|n.||2
+donate|v.||2
+double|adv.||2
+doubt|n., v.||2
+dressed|adj.||2
+drop|n.||2
+drum|n.||2
+drunk|adj.||2
+due|adj.||2
+dust|n.||2
+duty|n.||2
+earthquake|n.||2
+eastern|adj.||2
+economic|adj.||2
+economy|n.||2
+edge|n.||2
+editor|n.||2
+educate|v.||2
+educated|adj.||2
+educational|adj.||2
+effective|adj.||2
+effectively|adv.||2
+effort|n.||2
+election|n.||2
+element|n.||2
+embarrassed|adj.||2
+embarrassing|adj.||2
+emergency|n.||2
+emotion|n.||2
+employment|n.||2
+empty|v.||2
+encourage|v.||2
+enemy|n.||2
+engaged|adj.||2
+engineering|n.||2
+entertain|v.||2
+entertainment|n.||2
+entrance|n.||2
+entry|n.||2
+environmental|adj.||2
+episode|n.||2
+equal|adj., v.||2
+equally|adv.||2
+escape|v., n.||2
+essential|adj.||2
+eventually|adv.||2
+examine|v.||2
+except|conj.||2
+exchange|n., v.||2
+excitement|n.||2
+exhibition|n.||2
+expand|v.||2
+expected|adj.||2
+expedition|n.||2
+experience|v.||2
+experienced|adj.||2
+experiment|v.||2
+explode|v.||2
+explore|v.||2
+explosion|n.||2
+export|n., v.||2
+extra|n., adv.||2
+face|v.||2
+fairly|adv.||2
+familiar|adj.||2
+fancy|v., adj.||2
+far|adj.||2
+fascinating|adj.||2
+fashionable|adj.||2
+fasten|v.||2
+favour|n.||2
+fear|v.||2
+feature|v.||2
+fence|n.||2
+fighting|n.||2
+file|n.||2
+financial|adj.||2
+fire|v.||2
+fitness|n.||2
+fixed|adj.||2
+flag|n.||2
+flood|n., v.||2
+flour|n.||2
+flow|v., n.||2
+fold|v.||2
+folk|n., adj.||2
+following|n.||2
+force|n., v.||2
+forever|adv.||2
+frame|n., v.||2
+freeze|v.||2
+frequently|adv.||2
+friendship|n.||2
+frighten|v.||2
+frightened|adj.||2
+frightening|adj.||2
+frozen|adj.||2
+fry|v.||2
+fuel|n.||2
+function|n.||2
+fur|n.||2
+further|adv.||2
+garage|n.||2
+gather|v.||2
+generally|adv.||2
+generation|n.||2
+generous|adj.||2
+gentle|adj.||2
+gentleman|n.||2
+ghost|n.||2
+giant|adj., n.||2
+glad|adj.||2
+global|adj.||2
+glove|n.||2
+go|n.||2
+goods|n.||2
+grade|n.||2
+graduate|n., v.||2
+grain|n.||2
+grateful|adj.||2
+growth|n.||2
+guard|n., v.||2
+guilty|adj.||2
+hand|v.||2
+hang|v.||2
+happiness|n.||2
+hardly|adv.||2
+hate|n.||2
+head|v.||2
+headline|n.||2
+heating|n.||2
+heavily|adv.||2
+helicopter|n.||2
+highlight|v., n.||2
+highly|adv.||2
+hire|v.||2
+historic|adj.||2
+historical|adj.||2
+honest|adj.||2
+horrible|adj.||2
+horror|n.||2
+host|n.||2
+hunt|v.||2
+hurricane|n.||2
+hurry|n., v.||2
+identity|n.||2
+ignore|v.||2
+illegal|adj.||2
+imaginary|adj.||2
+immediate|adj.||2
+immigrant|n.||2
+impact|n., v.||2
+import|n., v.||2
+importance|n.||2
+impression|n.||2
+impressive|adj.||2
+improvement|n.||2
+incredibly|adv.||2
+indeed|adv.||2
+indicate|v.||2
+indirect|adj.||2
+indoor|adj.||2
+indoors|adv.||2
+influence|n., v.||2
+ingredient|n.||2
+injure|v.||2
+injured|adj.||2
+innocent|adj.||2
+intelligence|n.||2
+intend|v.||2
+intention|n.||2
+invest|v.||2
+investigate|v.||2
+involved|adj.||2
+iron|n., v.||2
+issue|n.||2
+IT|n.||2
+journal|n.||2
+judge|n., v.||2
+keen|adj.||2
+key|v.||2
+keyboard|n.||2
+kick|v., n.||2
+killing|n.||2
+kind|adj.|caring|2
+kiss|v., n.||2
+knock|n.||2
+label|n., v.||2
+laboratory|n.||2
+lack|n., v.||2
+latest|adj.||2
+lay|v.||2
+layer|n.||2
+lead|n.||2
+leading|adj.||2
+leaf|n.||2
+leather|n.||2
+legal|adj.||2
+leisure|n.||2
+length|n.||2
+level|adj.||2
+lie|v., n.|tell a lie|2
+like|n.|find sb/sth pleasant|2
+limit|n., v.||2
+lip|n.||2
+liquid|n., adj.||2
+literature|n.||2
+live|adj., adv.||2
+living|adj., n.||2
+local|n.||2
+locate|v.||2
+located|adj.||2
+location|n.||2
+lonely|adj.||2
+loss|n.||2
+luxury|n.||2
+mad|adj.||2
+magic|n., adj.||2
+mainly|adv.||2
+mall|n.||2
+management|n.||2
+market|v.||2
+marketing|n.||2
+marriage|n.||2
+meanwhile|adv.||2
+measure|v., n.||2
+medium|adj.||2
+mental|adj.||2
+mention|n.||2
+mess|n.||2
+mild|adj.||2
+mine|n.|hole in the ground|2
+mix|v., n.||2
+mixture|n.||2
+mood|n.||2
+move|n.||2
+mud|n.||2
+murder|n., v.||2
+muscle|n.||2
+musical|n.||2
+mystery|n.||2
+nail|n.||2
+narrative|n., adj.||2
+nation|n.||2
+native|adj., n.||2
+naturally|adv.||2
+necessarily|adv.||2
+need|modal v.||2
+needle|n.||2
+neighbourhood|n.||2
+neither|adv.||2
+net|n.||2
+next|n.||2
+nor|conj./adv.||2
+normal|n.||2
+northern|adj.||2
+note|v.||2
+now|conj.||2
+nuclear|adj.||2
+obvious|adj.||2
+obviously|adv.||2
+occasion|n.||2
+occur|v.||2
+odd|adj.||2
+official|adj.||2
+old-fashioned|adj.||2
+once|conj.||2
+operation|n.||2
+organized|adj.||2
+organizer|n.||2
+original|n.||2
+originally|adv.||2
+ought|modal v.||2
+ours|pron.||2
+outdoor|adj.||2
+outdoors|adv.||2
+pack|n.||2
+package|n.||2
+painful|adj.||2
+pale|adj.||2
+pan|n.||2
+participate|v.||2
+particularly|adv.||2
+pass|n.||2
+passion|n.||2
+path|n.||2
+payment|n.||2
+peaceful|adj.||2
+percentage|n.||2
+perfectly|adv.||2
+performance|n.||2
+personally|adv.||2
+persuade|v.||2
+photographer|n.||2
+photography|n.||2
+pin|n., v.||2
+pipe|n.||2
+place|v.||2
+planning|n.||2
+pleasant|adj.||2
+pleasure|n.||2
+plenty|pron.||2
+plot|n.||2
+plus|prep.||2
+poem|n.||2
+poet|n.||2
+poetry|n.||2
+point|v.||2
+poison|n., v.||2
+poisonous|adj.||2
+policy|n.||2
+political|adj.||2
+politician|n.||2
+politics|n.||2
+port|n.||2
+portrait|n.||2
+possibly|adv.||2
+pot|n.||2
+pour|v.||2
+poverty|n.||2
+powder|n.||2
+powerful|adj.||2
+practical|adj.||2
+pray|v.||2
+prayer|n.||2
+prediction|n.||2
+prepared|adj.||2
+presentation|n.||2
+press|n., v.||2
+pressure|n.||2
+pretend|v.||2
+previous|adj.||2
+previously|adv.||2
+priest|n.||2
+primary|adj.||2
+prince|n.||2
+princess|n.||2
+printing|n.||2
+prisoner|n.||2
+private|adj.||2
+producer|n.||2
+production|n.||2
+profession|n.||2
+profit|n.||2
+program|v.||2
+promote|v.||2
+proper|adj.||2
+properly|adv.||2
+property|n.||2
+protest|n., v.||2
+proud|adj.||2
+prove|v.||2
+pull|n.||2
+punish|v.||2
+punishment|n.||2
+push|n.||2
+qualification|n.||2
+qualified|adj.||2
+qualify|v.||2
+queue|n., v.||2
+quit|v.||2
+quotation|n.||2
+quote|v., n.||2
+race|n.|people|2
+racing|n.||2
+range|n.||2
+rare|adj.||2
+rarely|adv.||2
+reaction|n.||2
+reality|n.||2
+receipt|n.||2
+recommendation|n.||2
+reference|n.||2
+reflect|v.||2
+regularly|adv.||2
+reject|v.||2
+relate|v.||2
+related|adj.||2
+relation|n.||2
+relative|adj., n.||2
+relaxed|adj.||2
+relaxing|adj.||2
+release|v., n.||2
+reliable|adj.||2
+religion|n.||2
+religious|adj.||2
+remain|v.||2
+remind|v.||2
+remote|adj.||2
+rent|n., v.||2
+repair|n.||2
+repeat|n.||2
+repeated|adj.||2
+represent|v.||2
+request|v.||2
+require|v.||2
+reservation|n.||2
+resource|n.||2
+respect|n., v.||2
+responsibility|n.||2
+responsible|adj.||2
+result|v.||2
+retire|v.||2
+retired|adj.||2
+revise|v.||2
+ring|n.||2
+rise|n.||2
+risk|n., v.||2
+robot|n.||2
+roll|v., n.||2
+romantic|adj.||2
+rope|n.||2
+rough|adj.||2
+row|n.||2
+royal|adj.||2
+rugby|n.||2
+rule|v.||2
+safety|n.||2
+sail|n.||2
+sailor|n.||2
+sample|n.||2
+sand|n.||2
+scan|v.||2
+scientific|adj.||2
+script|n.||2
+sculpture|n.||2
+secondary|adj.||2
+security|n.||2
+seed|n.||2
+sensible|adj.||2
+separate|v.||2
+seriously|adv.||2
+servant|n.||2
+set|v.|put|2
+set|n.|group|2
+setting|n.||2
+sex|n.||2
+sexual|adj.||2
+shake|n.||2
+share|n.||2
+sharp|adj.||2
+shelf|n.||2
+shell|n.||2
+shift|n.||2
+shine|v.||2
+shiny|adj.||2
+shoot|v.||2
+shy|adj.||2
+sight|n.||2
+signal|n., v.||2
+silent|adj.||2
+silly|adj.||2
+similarity|n.||2
+similarly|adv.||2
+simply|adv.||2
+since|adv.||2
+sink|v.||2
+slice|n., v.||2
+slow|v.||2
+slightly|adv.||2
+smart|adj.||2
+smooth|adj.||2
+software|n.||2
+soil|n.||2
+solid|adj., n.||2
+sort|v.||2
+southern|adj.||2
+specifically|adv.||2
+spending|n.||2
+spicy|adj.||2
+spirit|n.||2
+spoken|adj.||2
+spot|n.||2
+spread|v.||2
+spring|v.||2
+stadium|n.||2
+staff|n.||2
+standard|n., adj.||2
+state|adj., v.||2
+statistic|n.||2
+statue|n.||2
+stick|v.|push into/attach|2
+stick|n.|piece of wood|2
+still|adj.||2
+store|v.||2
+stranger|n.||2
+strength|n.||2
+string|n.||2
+strongly|adv.||2
+studio|n.||2
+stuff|n.||2
+substance|n.||2
+successfully|adv.||2
+sudden|adj.||2
+suffer|v.||2
+suit|v.||2
+suitable|adj.||2
+summarize|v.||2
+summary|n.||2
+supply|n., v.||2
+supporter|n.||2
+surely|adv.||2
+surface|n.||2
+survive|v.||2
+swim|n.||2
+switch|v.||2
+symptom|n.||2
+tail|n.||2
+talent|n.||2
+talented|adj.||2
+tape|n.||2
+tax|n., v.||2
+technical|adj.||2
+technique|n.||2
+tend|v.||2
+tent|n.||2
+that|adv.||2
+theirs|pron.||2
+theme|n.||2
+theory|n.||2
+therefore|adv.||2
+this|adv.||2
+though|conj., adv.||2
+throat|n.||2
+throughout|prep./adv.||2
+tight|adj.||2
+till|conj./prep.||2
+tin|n.||2
+tiny|adj.||2
+tip|v.||2
+toe|n.||2
+tongue|n.||2
+total|adj., n.||2
+totally|adv.||2
+touch|n.||2
+tour|v.||2
+trade|n., v.||2
+translate|v.||2
+translation|n.||2
+transport|v.||2
+treat|v.||2
+treatment|n.||2
+trend|n.||2
+trick|n., v.||2
+truth|n.||2
+tube|n.||2
+type|v.||2
+typically|adv.||2
+tyre|n.||2
+ugly|adj.||2
+unable|adj.||2
+uncomfortable|adj.||2
+underwear|n.||2
+unemployed|adj.||2
+unemployment|n.||2
+unfair|adj.||2
+union|n.||2
+unless|conj.||2
+unlike|prep.||2
+unlikely|adj.||2
+unnecessary|adj.||2
+unpleasant|adj.||2
+update|v., n.||2
+upon|prep.||2
+upset|adj., v.||2
+used|adj.||2
+used|adj.||2
+valuable|adj.||2
+value|n.||2
+various|adj.||2
+version|n.||2
+victim|n.||2
+view|v.||2
+viewer|n.||2
+violent|adj.||2
+volunteer|n., v.||2
+vote|n., v.||2
+warm|v.||2
+warn|v.||2
+warning|n.||2
+waste|n., v., adj.||2
+water|v.||2
+wave|v.||2
+weapon|n.||2
+weigh|v.||2
+western|adj.||2
+whatever|det./pron.||2
+whenever|conj.||2
+whether|conj.||2
+while|n.||2
+whole|n.||2
+will|n.||2
+win|n.||2
+wing|n.||2
+within|prep.||2
+wonder|v., n.||2
+wool|n.||2
+worldwide|adj., adv.||2
+worry|n.||2
+worse|adv.||2
+worst|adv.||2
+worth|adj.||2
+written|adj.||2
+wrong|adv.||2
+yard|n.||2
+young|n.||2
+youth|n.||2
+abandon|v.||3
+absolute|adj.||3
+academic|n.||3
+acceptable|adj.||3
+accompany|v.||3
+account|v.||3
+accurate|adj.||3
+accuse|v.||3
+acknowledge|v.||3
+acquire|v.||3
+actual|adj.||3
+adapt|v.||3
+additional|adj.||3
+address|v.||3
+administration|n.||3
+adopt|v.||3
+advance|n., v., adj.||3
+affair|n.||3
+afterwards|adv.||3
+agency|n.||3
+agenda|n.||3
+aggressive|adj.||3
+aid|n., v.||3
+aircraft|n.||3
+alarm|v.||3
+alter|v.||3
+amount|v.||3
+anger|n.||3
+angle|n.||3
+anniversary|n.||3
+annual|adj.||3
+anxious|adj.||3
+apparent|adj.||3
+apparently|adv.||3
+appeal|n., v.||3
+approach|n., v.||3
+appropriate|adj.||3
+approval|n.||3
+approve|v.||3
+arise|v.||3
+armed|adj.||3
+arms|n.||3
+artificial|adj.||3
+artistic|adj.||3
+ashamed|adj.||3
+aspect|n.||3
+assess|v.||3
+assessment|n.||3
+associate|v.||3
+associated|adj.||3
+association|n.||3
+assume|v.||3
+attempt|n., v.||3
+back|v.||3
+bacteria|n.||3
+bar|v.||3
+barrier|n.||3
+basically|adv.||3
+battle|v.||3
+bear|v.|deal with|3
+beat|n.||3
+beg|v.||3
+being|n.||3
+bent|adj.||3
+bet|v., n.||3
+beyond|prep., adv.||3
+bill|v.||3
+bitter|adj.||3
+blame|v., n.||3
+blind|adj.||3
+bond|n.||3
+border|v.||3
+breast|n.||3
+brief|adj.||3
+broad|adj.||3
+broadcast|v., n.||3
+budget|n.||3
+bullet|n.||3
+bunch|n.||3
+burn|n.||3
+bush|n.||3
+but|prep.||3
+cable|n.||3
+calculate|v.||3
+cancel|v.||3
+cancer|n.||3
+capable|adj.||3
+capacity|n.||3
+capture|v., n.||3
+cast|n., v.||3
+catch|n.||3
+cell|n.||3
+chain|v.||3
+chair|v.||3
+chairman|n.||3
+challenge|v.||3
+characteristic|n., adj.||3
+chart|v.||3
+chief|adj., n.||3
+circumstance|n.||3
+cite|v.||3
+citizen|n.||3
+civil|adj.||3
+classic|adj., n.||3
+close|n.||3
+closely|adv.||3
+collapse|v., n.||3
+combination|n.||3
+comfort|n., v.||3
+command|n., v.||3
+commission|n., v.||3
+commitment|n.||3
+committee|n.||3
+commonly|adv.||3
+complex|n.||3
+complicated|adj.||3
+component|n.||3
+concentration|n.||3
+concept|n.||3
+concern|n., v.||3
+concerned|adj.||3
+conduct|v., n.||3
+confidence|n.||3
+conflict|n., v.||3
+confusing|adj.||3
+conscious|adj.||3
+conservative|adj., n.||3
+consideration|n.||3
+consistent|adj.||3
+constant|adj.||3
+constantly|adv.||3
+construct|v.||3
+construction|n.||3
+contemporary|adj.||3
+contest|n., v.||3
+contract|n., v.||3
+contribute|v.||3
+contribution|n.||3
+convert|v.||3
+convinced|adj.||3
+core|n., adj.||3
+corporate|adj.||3
+council|n.||3
+county|n.||3
+courage|n.||3
+crash|n., v.||3
+creation|n.||3
+creature|n.||3
+credit|v.||3
+crew|n.||3
+crisis|n.||3
+criterion|n.||3
+critic|n.||3
+critical|adj.||3
+criticism|n.||3
+criticize|v.||3
+crop|n.||3
+crucial|adj.||3
+cry|n.||3
+cure|v., n.||3
+current|n.||3
+curve|n., v.||3
+curved|adj.||3
+date|v.||3
+debate|n., v.||3
+debt|n.||3
+decent|adj.||3
+declare|v.||3
+decline|v., n.||3
+decoration|n.||3
+decrease|v., n.||3
+deeply|adv.||3
+defeat|v., n.||3
+defence|n.||3
+defend|v.||3
+delay|v., n.||3
+deliberate|adj.||3
+deliberately|adv.||3
+delight|v., n.||3
+delighted|adj.||3
+delivery|n.||3
+demand|n., v.||3
+demonstrate|v.||3
+deny|v.||3
+depressed|adj.||3
+depressing|adj.||3
+depth|n.||3
+desert|v.||3
+deserve|v.||3
+desire|n., v.||3
+desperate|adj.||3
+detail|v.||3
+detailed|adj.||3
+detect|v.||3
+dig|v.||3
+disc|n.||3
+discipline|n.||3
+discount|v.||3
+dishonest|adj.||3
+dismiss|v.||3
+display|v., n.||3
+distribute|v.||3
+distribution|n.||3
+district|n.||3
+divide|n.||3
+division|n.||3
+document|v.||3
+domestic|adj.||3
+dominate|v.||3
+downwards|adv.||3
+dozen|n., det.||3
+draft|n., v.||3
+drag|v.||3
+dramatic|adj.||3
+edit|v.||3
+edition|n.||3
+efficient|adj.||3
+elderly|adj.||3
+elect|v.||3
+elsewhere|adv.||3
+emerge|v.||3
+emotional|adj.||3
+emphasis|n.||3
+emphasize|v.||3
+enable|v.||3
+encounter|v., n.||3
+engage|v.||3
+enhance|v.||3
+enquiry|n.||3
+ensure|v.||3
+enthusiasm|n.||3
+enthusiastic|adj.||3
+entire|adj.||3
+entirely|adv.||3
+equal|n.||3
+establish|v.||3
+estate|n.||3
+estimate|v., n.||3
+ethical|adj.||3
+evaluate|v.||3
+even|adj.||3
+evil|adj., n.||3
+examination|n.||3
+excuse|n., v.||3
+executive|n., adj.||3
+existence|n.||3
+expectation|n.||3
+expense|n.||3
+exploration|n.||3
+expose|v.||3
+extend|v.||3
+extent|n.||3
+external|adj.||3
+extraordinary|adj.||3
+extreme|n.||3
+facility|n.||3
+failure|n.||3
+faith|n.||3
+fault|n.||3
+favour|v.||3
+feather|n.||3
+fee|n.||3
+feed|n.||3
+feedback|n.||3
+fellow|adj.||3
+figure|v.||3
+file|v.||3
+finance|n., v.||3
+finding|n.||3
+firm|n.||3
+fix|n.||3
+flame|n.||3
+flash|n., v.||3
+flexible|adj.||3
+float|v.||3
+fold|n.||3
+folding|adj.||3
+following|prep.||3
+forgive|v.||3
+former|adj.||3
+fortune|n.||3
+forward|adj.||3
+found|v.||3
+free|v.||3
+freedom|n.||3
+frequency|n.||3
+fuel|v.||3
+fully|adv.||3
+function|v.||3
+fund|n., v.||3
+fundamental|adj.||3
+funding|n.||3
+furthermore|adv.||3
+gain|v., n.||3
+gang|n.||3
+generate|v.||3
+genre|n.||3
+govern|v.||3
+grab|v.||3
+grade|v.||3
+gradually|adv.||3
+grand|adj.||3
+grant|v., n.||3
+guarantee|v., n.||3
+handle|v., n.||3
+harm|n., v.||3
+harmful|adj.||3
+hearing|n.||3
+heaven|n.||3
+heel|n.||3
+hell|n.||3
+hesitate|v.||3
+high|n.||3
+hire|n.||3
+hold|n.||3
+hollow|adj.||3
+holy|adj.||3
+honour|n., v.||3
+host|v.||3
+house|v.||3
+household|n.||3
+housing|n.||3
+humorous|adj.||3
+humour|n.||3
+hunt|n.||3
+hunting|n.||3
+hurt|n.||3
+ideal|n.||3
+illustrate|v.||3
+illustration|n.||3
+imagination|n.||3
+impatient|adj.||3
+imply|v.||3
+impose|v.||3
+impress|v.||3
+impressed|adj.||3
+inch|n.||3
+incident|n.||3
+income|n.||3
+increasingly|adv.||3
+industrial|adj.||3
+infection|n.||3
+inform|v.||3
+initial|adj.||3
+initially|adv.||3
+initiative|n.||3
+inner|adj.||3
+insight|n.||3
+insist|v.||3
+inspire|v.||3
+install|v.||3
+instance|n.||3
+institute|n.||3
+institution|n.||3
+insurance|n.||3
+intended|adj.||3
+intense|adj.||3
+internal|adj.||3
+interpret|v.||3
+interrupt|v.||3
+investigation|n.||3
+investment|n.||3
+issue|v.||3
+joy|n.||3
+judgement|n.||3
+junior|adj.||3
+justice|n.||3
+justify|v.||3
+labour|n.||3
+landscape|n.||3
+largely|adv.||3
+latest|n.||3
+launch|v., n.||3
+leadership|n.||3
+league|n.||3
+lean|v.||3
+leave|n.||3
+level|v.||3
+licence|n.||3
+limited|adj.||3
+line|v.||3
+lively|adj.||3
+load|n., v.||3
+loan|n.||3
+logical|adj.||3
+long-term|adj., adv.||3
+loose|adj.||3
+lord|n.||3
+low|n.||3
+lower|v.||3
+lung|n.||3
+maintain|v.||3
+majority|n.||3
+make|n.||3
+map|v.||3
+mass|n., adj.||3
+massive|adj.||3
+master|n., v.||3
+matching|adj.||3
+material|adj.||3
+maximum|adj., n.||3
+means|n.||3
+measurement|n.||3
+medium|n.||3
+melt|v.||3
+military|adj., n.||3
+mineral|n.||3
+minimum|adj., n.||3
+minister|n.||3
+minor|adj.||3
+minority|n.||3
+mission|n.||3
+mistake|v.||3
+mixed|adj.||3
+model|v.||3
+modify|v.||3
+monitor|n., v.||3
+moral|adj., n.||3
+motor|n., adj.||3
+mount|v.||3
+multiple|adj.||3
+multiply|v.||3
+mysterious|adj.||3
+narrow|v.||3
+national|n.||3
+neat|adj.||3
+negative|n.||3
+nerve|n.||3
+nevertheless|adv.||3
+nightmare|n.||3
+notion|n.||3
+numerous|adj.||3
+obey|v.||3
+object|v.||3
+objective|n., adj.||3
+obligation|n.||3
+observation|n.||3
+observe|v.||3
+obtain|v.||3
+occasionally|adv.||3
+offence|n.||3
+offend|v.||3
+offensive|adj.||3
+official|n.||3
+opening|n.||3
+operate|v.||3
+opponent|n.||3
+oppose|v.||3
+opposed|adj.||3
+opposition|n.||3
+organ|n.||3
+origin|n.||3
+otherwise|adv.||3
+outcome|n.||3
+outer|adj.||3
+outline|n., v.||3
+overall|adj., adv.||3
+owe|v.||3
+pace|n., v.||3
+package|v.||3
+panel|n.||3
+parliament|n.||3
+participant|n.||3
+partly|adv.||3
+passage|n.||3
+patient|adj.||3
+pension|n.||3
+permanent|adj.||3
+permit|v., n.||3
+perspective|n.||3
+phase|n.||3
+phenomenon|n.||3
+philosophy|n.||3
+pick|n.||3
+picture|v.||3
+pile|n., v.||3
+pitch|n.||3
+plain|adj.||3
+plot|v.||3
+plus|adj., n., conj.||3
+pointed|adj.||3
+popularity|n.||3
+pose|v.||3
+position|v.||3
+positive|n.||3
+possess|v.||3
+potential|adj., n.||3
+power|v.||3
+praise|n., v.||3
+pregnant|adj.||3
+preparation|n.||3
+presence|n.||3
+preserve|v.||3
+price|v.||3
+prime|adj.||3
+principle|n.||3
+print|n.||3
+priority|n.||3
+privacy|n.||3
+procedure|n.||3
+process|v.||3
+produce|n.||3
+professional|n.||3
+progress|v.||3
+project|v.||3
+proof|n.||3
+proposal|n.||3
+propose|v.||3
+prospect|n.||3
+protection|n.||3
+psychologist|n.||3
+psychology|n.||3
+publication|n.||3
+pupil|n.||3
+purchase|n., v.||3
+pure|adj.||3
+pursue|v.||3
+range|v.||3
+rank|n., v.||3
+rapid|adj.||3
+rapidly|adv.||3
+rate|v.||3
+raw|adj.||3
+reach|n.||3
+realistic|adj.||3
+reasonable|adj.||3
+recall|v.||3
+recover|v.||3
+reduction|n.||3
+regard|v., n.||3
+regional|adj.||3
+register|v., n.||3
+regret|v., n.||3
+regulation|n.||3
+relatively|adv.||3
+relevant|adj.||3
+relief|n.||3
+rely|v.||3
+remark|n., v.||3
+representative|n., adj.||3
+reputation|n.||3
+requirement|n.||3
+rescue|v., n.||3
+reserve|n., v.||3
+resident|n., adj.||3
+resist|v.||3
+resolve|v.||3
+resort|n.||3
+retain|v.||3
+reveal|v.||3
+revolution|n.||3
+reward|n., v.||3
+rhythm|n.||3
+rid|v.||3
+root|n.||3
+round|n.||3
+routine|adj.||3
+rub|v.||3
+rubber|n., adj.||3
+rural|adj.||3
+rush|v., n.||3
+sample|v.||3
+satellite|n.||3
+satisfied|adj.||3
+satisfy|v.||3
+saving|n.||3
+scale|n.||3
+schedule|v.||3
+scheme|n.||3
+scream|v., n.||3
+screen|v.||3
+seat|v.||3
+sector|n.||3
+secure|v., adj.||3
+seek|v.||3
+select|v.||3
+selection|n.||3
+self|n.||3
+senior|adj.||3
+sense|v.||3
+sensitive|adj.||3
+sentence|v.||3
+sequence|n.||3
+session|n.||3
+settle|v.||3
+severe|adj.||3
+shade|n.||3
+shadow|n.||3
+shallow|adj.||3
+shame|n.||3
+shape|v.||3
+shelter|n., v.||3
+shift|v.||3
+ship|v.||3
+shock|n., v.||3
+shocked|adj.||3
+shooting|n.||3
+shot|n.||3
+significant|adj.||3
+significantly|adv.||3
+silence|n.||3
+silk|n.||3
+sincere|adj.||3
+slave|n.||3
+slide|v., n.||3
+slight|adj.||3
+slip|v.||3
+slope|n., v.||3
+solar|adj.||3
+somewhat|adv.||3
+soul|n.||3
+specialist|n., adj.||3
+species|n.||3
+speed|v.||3
+spiritual|adj.||3
+split|v., n.||3
+sponsor|v., n.||3
+spot|v.||3
+spread|n.||3
+stable|adj.||3
+stage|v.||3
+stand|n.||3
+stare|v.||3
+status|n.||3
+steady|adj.||3
+steel|n.||3
+steep|adj.||3
+step|v.||3
+sticky|adj.||3
+stiff|adj.||3
+stock|n.||3
+stream|n.||3
+stretch|v., n.||3
+strict|adj.||3
+strike|v., n.||3
+structure|v.||3
+struggle|v., n.||3
+stuff|v.||3
+subject|adj.||3
+submit|v.||3
+sum|n., v.||3
+surgery|n.||3
+surround|v.||3
+surrounding|adj.||3
+survey|v.||3
+suspect|v., n.||3
+swear|v.||3
+sweep|v.||3
+switch|n.||3
+sympathy|n.||3
+tale|n.||3
+tank|n.||3
+target|v.||3
+tear|v., n.||3
+tear|n.||3
+temporary|adj.||3
+term|v.||3
+therapy|n.||3
+threat|n.||3
+threaten|v.||3
+thus|adv.||3
+time|v.||3
+title|v.||3
+tone|n.||3
+tough|adj.||3
+track|v.||3
+transfer|v., n.||3
+transform|v.||3
+transition|n.||3
+trial|n.||3
+trip|v.||3
+tropical|adj.||3
+trouble|v.||3
+truly|adv.||3
+trust|n., v.||3
+try|n.||3
+tune|n.||3
+tunnel|n.||3
+ultimately|adv.||3
+unconscious|adj.||3
+unexpected|adj.||3
+unique|adj.||3
+universe|n.||3
+unknown|adj.||3
+upper|adj.||3
+upwards|adv.||3
+urban|adj.||3
+urge|v.||3
+value|v.||3
+vary|v.||3
+vast|adj.||3
+venue|n.||3
+very|adj.||3
+via|prep.||3
+victory|n.||3
+violence|n.||3
+virtual|adj.||3
+vision|n.||3
+visual|adj.||3
+vital|adj.||3
+vitamin|n.||3
+volume|n.||3
+wage|n.||3
+way|adv.||3
+weakness|n.||3
+wealth|n.||3
+wealthy|adj.||3
+whereas|conj.||3
+wherever|conj.||3
+whisper|v., n.||3
+whom|pron.||3
+widely|adv.||3
+wildlife|n.||3
+willing|adj.||3
+wind|v.||3
+wire|n.||3
+wise|adj.||3
+witness|n., v.||3
+worse|n.||3
+worst|n.||3
+worth|n.||3
+wound|n., v.||3
+wrap|v.||3
+wrong|n.||3
+yet|conj.||3
+zone|n.||3`.split("\n").map(l=>{const a=l.split("|");return{w:a[0].replace(/\s+/g," ").trim(),pos:a[1].replace(/\s+/g," "),s:a[2],l:+a[3]}});
+const EX=[
+["figure out","알아내다, 이해하다","I can’t figure out this problem.","p"],
+["come up with","생각해내다","She came up with a great idea.","p"],
+["give up","포기하다","Don’t give up.","p"],
+["look forward to","~을 기대하다","I’m looking forward to the trip.","p"],
+["find out","알게 되다","I found out the truth.","p"],
+["hang out","놀다, 어울리다","Let’s hang out this weekend.","p"],
+["catch up","밀린 얘기를 나누다","We should catch up soon.","p"],
+["run into","우연히 마주치다","I ran into an old friend.","p"],
+["work out","운동하다, 잘 풀리다","Things worked out well.","p"],
+["pick up","데리러 가다, 집어 들다","Can you pick me up at six?","p"],
+["turn down","거절하다, 소리를 줄이다","He turned down the offer.","p"],
+["put off","미루다","Don’t put it off.","p"],
+["set up","준비하다, 설치하다","I set up a meeting.","p"],
+["show up","나타나다","He didn’t show up.","p"],
+["end up","결국 ~하게 되다","We ended up staying home.","p"],
+["deal with","처리하다, 다루다","I’ll deal with it.","p"],
+["get along with","~와 잘 지내다","I get along with my boss.","p"],
+["look into","조사하다, 알아보다","I’ll look into it.","p"],
+["take off","이륙하다, 벗다","The plane took off.","p"],
+["check out","확인해 보다","Check this out.","p"],
+["I’m not sure if...","~인지 잘 모르겠어","I’m not sure if he’s coming.","c"],
+["It turns out...","알고 보니 ~더라","It turns out she was right.","c"],
+["To be honest, ...","솔직히 말하면","To be honest, I was nervous.","c"],
+["That makes sense.","말 되네, 이해돼","Oh, that makes sense.","c"],
+["I’ll get back to you.","나중에 다시 연락할게","I’ll get back to you tomorrow.","c"],
+["How’s it going?","요즘 어때? 잘 지내?","Hey, how’s it going?","c"],
+["What do you mean?","무슨 뜻이야?","Wait, what do you mean?","c"],
+["I was wondering if...","~해 주실 수 있을까요?","I was wondering if you could help me.","c"],
+["Do you mind if I...?","~해도 될까요?","Do you mind if I sit here?","c"],
+["It depends on...","~에 따라 달라","It depends on the weather.","c"],
+["I’m used to...","~에 익숙해","I’m used to waking up early.","c"],
+["I’m about to...","막 ~하려던 참이야","I’m about to leave.","c"],
+["As far as I know, ...","내가 알기로는","As far as I know, it’s open.","c"],
+["The thing is, ...","문제는 말이야, ...","The thing is, I’m busy.","c"],
+["Let me know if...","~하면 알려 줘","Let me know if you need help.","c"],
+["No worries.","괜찮아, 걱정 마","Sorry I’m late. — No worries.","c"],
+["Sounds good.","좋아, 그러자","Dinner at seven? Sounds good.","c"],
+["I’m thinking about...","~할까 생각 중이야","I’m thinking about changing jobs.","c"],
+["It’s up to you.","네가 정해","Pizza or pasta? It’s up to you.","c"],
+["Long story short, ...","간단히 말하면","Long story short, we missed the train.","c"]
+].concat([["Hang out", "같이 놀다, 시간을 보내다", "", "i1"], ["What's up", "잘 지내?, 무슨 일이야?", "", "i1"], ["Oh my god (OMG)", "헐, 대박", "", "i1"], ["You guys", "너희들 (시청자 호명)", "", "i1"], ["Let's go", "가자!, 시작하자!", "", "i1"], ["Check it out", "이거 봐봐, 한번 봐봐", "", "i1"], ["So cute", "너무 귀여워", "", "i1"], ["I love it", "너무 좋아, 마음에 들어", "", "i1"], ["Don't worry", "걱정 마", "", "i1"], ["Anyway", "어쨌든, 아무튼", "", "i1"], ["Kind of (Kinda)", "좀, 약간, 어느정도", "", "i1"], ["By the way (BTW)", "그건 그렇고, 참고로", "", "i1"], ["No worries", "걱정 마, 괜찮아", "", "i1"], ["No way", "말도 안돼, 진짜?", "", "i1"], ["Make sense", "말이 되다, 이해되다", "", "i1"], ["Got it", "알겠어, 이해했어", "", "i1"], ["For sure", "당연하지, 확실히", "", "i1"], ["Sounds good", "좋아, 그러자", "", "i1"], ["Hang on", "잠깐만, 기다려", "", "i1"], ["Hold on", "잠깐만, 기다려봐", "", "i1"], ["My bad", "내 잘못이야, 미안", "", "i1"], ["Heads up", "미리 알려줌, 살짝 귀띔", "", "i1"], ["Grab a bite", "간단히 뭐 좀 먹다", "", "i1"], ["Catch up", "밀린 얘기하다, 근황 토크", "", "i1"], ["Can't wait", "너무 기대돼, 못 기다리겠어", "", "i1"], ["No big deal", "별거 아냐, 괜찮아", "", "i1"], ["Take care", "잘 지내, 조심해 (작별인사)", "", "i1"], ["So far so good", "지금까진 좋아", "", "i1"], ["Calm down", "진정해, 차분해져", "", "i1"], ["Right away", "지금 바로, 즉시", "", "i1"], ["Take a break", "잠깐 쉬다", "", "i1"], ["Way too", "너무 ~한 (강조)", "", "i1"], ["A little bit", "조금, 약간", "", "i1"], ["Show up", "나타나다, 등장하다", "", "i1"], ["Pick up", "가지러 가다, 데리러 가다", "", "i1"], ["Drop by", "잠깐 들르다", "", "i1"], ["Run errands", "볼일 보러 다니다", "", "i1"], ["Look forward to", "기대하다, 손꼽아 기다리다", "", "i1"], ["Good for you", "잘됐다! 축하해", "", "i1"], ["End up", "결국 ~하게 되다", "", "i1"], ["Figure out", "알아내다, 파악하다", "", "i1"], ["Get along", "잘 지내다, 사이가 좋다", "", "i1"], ["Wrap up", "마무리하다, 끝내다", "", "i1"], ["Get the hang of", "요령을 익히다, 감을 잡다", "", "i1"], ["So fun", "너무 재밌어", "", "i1"], ["Killing it", "끝내준다, 잘하고 있어", "", "i1"], ["The best", "최고야, 진짜 좋아", "", "i1"], ["Take it easy", "천천히 해, 무리하지 마", "", "i1"], ["Up for it", "좋아, 할게, 해볼래", "", "i1"], ["Burn out", "번아웃되다, 진이 빠지다", "", "i1"], ["Big deal", "큰 일, 대단한 거", "", "i1"], ["Pretty easy", "꽤 쉬워, 어렵지 않아", "", "i1"], ["Right here", "바로 여기", "", "i1"], ["Behind the scenes", "비하인드, 무대 뒤편", "", "i1"], ["Step up", "한 단계 더 잘하다, 나서다", "", "i1"], ["Long story short", "결론부터 말하면, 짧게 말해서", "", "i1"], ["Are you serious?", "진짜로?, 정말?", "", "i1"], ["I mean", "그러니까, 내 말은", "", "i1"], ["I guess", "아마, 그런 듯", "", "i1"], ["You know", "있잖아, 알지?", "", "i1"], ["Pretty much", "거의, 거의 다", "", "i1"], ["So good", "너무 좋아, 너무 맛있어", "", "i1"], ["I'm starving", "배고파 죽겠어", "", "i1"], ["I'm dead", "죽었다 (너무 웃겨/충격적)", "", "i1"], ["Exactly", "맞아, 정확히", "", "i1"], ["For real", "진짜로, 정말", "", "i1"], ["Honestly", "솔직히", "", "i1"], ["Literally", "진짜로, 말 그대로 (강조)", "", "i1"], ["Basically", "한마디로, 기본적으로", "", "i1"], ["Actually", "사실은, 실은", "", "i1"], ["Of course", "당연하지, 물론", "", "i1"], ["I have no idea", "전혀 모르겠어", "", "i1"], ["It depends", "상황에 따라, 그때그때 달라", "", "i1"], ["Whatever", "뭐든간에, 상관없어", "", "i1"], ["Bye guys", "안녕, 잘 가 (시청자에게)", "", "i1"], ["See you", "또 봐, 나중에 봐", "", "i1"], ["I got you", "내가 알아서 할게, 도와줄게", "", "i1"], ["I'll be right back(BRB)", "금방 돌아올게", "", "i1"], ["On my way (OMW)", "가는 중이야", "", "i1"], ["Almost there", "거의 다 왔어", "", "i1"], ["All good", "다 괜찮아, 문제 없어", "", "i1"], ["All set", "다 됐어, 준비 끝", "", "i1"], ["Good to go", "출발 OK, 가도 돼", "", "i1"], ["Definitely", "당연하지, 확실히", "", "i1"], ["Totally", "완전히, 진짜", "", "i1"], ["Absolutely", "당연하지, 확실히", "", "i1"], ["Cool", "좋아, 멋져", "", "i1"], ["Awesome", "대박, 짱", "", "i1"], ["Nice", "좋아, 굿", "", "i1"], ["Oops", "어이쿠, 앗", "", "i1"], ["Yum", "맛있다 (감탄)", "", "i1"], ["Pretty good", "꽤 괜찮아", "", "i1"], ["Not bad", "나쁘지 않아, 괜찮네", "", "i1"], ["Way better", "훨씬 나아", "", "i1"], ["So happy", "너무 행복해", "", "i1"], ["So tired", "너무 피곤해", "", "i1"], ["So excited", "너무 신나", "", "i1"], ["I'm in", "나도 할래, 좋아", "", "i1"], ["Sounds fun", "재밌겠다", "", "i1"], ["Like (필러)", "약간, 그러니까 (필러)", "", "i1"], ["Go-to", "단골의, 늘 찾는", "", "i2"], ["Make it", "성공하다, 도착하다", "", "i2"], ["Make up", "화해하다, 보충하다", "", "i2"], ["Go through", "겪다, 거치다", "", "i2"], ["Work out", "잘 풀리다, 운동하다", "", "i2"], ["Grow up", "자라다, 성장하다", "", "i2"], ["Set up", "설치하다, 준비하다", "", "i2"], ["Come on", "제발, 빨리, 에이", "", "i2"], ["Run out", "다 떨어지다, 다 쓰다", "", "i2"], ["Turn out", "~로 밝혀지다, 결과가 ~", "", "i2"], ["Get rid of", "없애다, 처분하다", "", "i2"], ["Head out", "출발하다, 나가다", "", "i2"], ["Open up", "속을 털어놓다", "", "i2"], ["Move on", "잊고 나아가다", "", "i2"], ["Take off", "이륙하다, 인기 끌다", "", "i2"], ["Sleep in", "늦잠 자다", "", "i2"], ["Sell out", "매진되다", "", "i2"], ["Fit in", "어울리다, 적응하다", "", "i2"], ["Hit the gym", "운동하러 가다", "", "i2"], ["Into someone", "~에게 빠진", "", "i2"], ["Back in the day", "옛날에는, 그 시절", "", "i2"], ["Must-have", "필수품", "", "i2"], ["Pop up", "갑자기 나타나다", "", "i2"], ["Break down", "무너지다, 흐느끼다", "", "i2"], ["Give up", "포기하다", "", "i2"], ["Mess up", "망치다, 실수하다", "", "i2"], ["Get going", "시작하다, 출발하다", "", "i2"], ["Run into", "우연히 마주치다", "", "i2"], ["Stand out", "눈에 띄다", "", "i2"], ["Freak out", "완전 패닉, 깜짝 놀라다", "", "i2"], ["Reach out", "연락하다", "", "i2"], ["Hang up", "전화 끊다", "", "i2"], ["On the go", "바쁜 중에, 이동 중", "", "i2"], ["Show off", "자랑하다, 과시하다", "", "i2"], ["Stay up", "늦게까지 깨어 있다", "", "i2"], ["Hold up", "잠깐, 멈춰봐", "", "i2"], ["Stressed out", "스트레스 폭발", "", "i2"], ["Lose it", "이성을 잃다, 폭발하다", "", "i2"], ["Shut down", "거절하다, 폐쇄하다", "", "i2"], ["Break up", "헤어지다", "", "i2"], ["Game changer", "판도 바꾸는 것, 혁신", "", "i2"], ["Chill out", "진정해, 긴장 풀어", "", "i2"], ["Fall apart", "무너지다, 산산조각", "", "i2"], ["Carry on", "계속하다, 이어가다", "", "i2"], ["On fire", "엄청 잘하는, 불타는", "", "i2"], ["Get away with", "들키지 않고 빠져나가다", "", "i2"], ["Pay off", "결실을 맺다, 보상받다", "", "i2"], ["Catch up on", "밀린 거 보충하다", "", "i2"], ["Jump on", "바로 시작하다, 뛰어들다", "", "i2"], ["Own it", "자신감 있게 해내다", "", "i2"], ["Give it a try", "한번 시도해 보다", "", "i2"], ["In the bag", "확정적이다, 다 됐다", "", "i2"], ["Roll out", "출시하다, 선보이다", "", "i2"], ["Whip up", "후딱 만들다, 즉석으로 만들다", "", "i2"], ["Watch out", "조심해, 주의해", "", "i2"], ["Wing it", "즉흥으로 하다, 임기응변", "", "i2"], ["Mess around", "빈둥대다, 장난치다", "", "i2"], ["Let it go", "잊어버려, 놓아버려", "", "i2"], ["Fired up", "의욕 충만, 열정 폭발", "", "i2"], ["Go viral", "바이럴되다, 급속도로 퍼지다", "", "i2"], ["Put up with", "참다, 견디다", "", "i2"], ["Get back together", "다시 사귀다, 재결합하다", "", "i2"], ["Out of nowhere", "난데없이, 갑자기", "", "i2"], ["Worn out", "완전히 지친, 녹초가 된", "", "i2"], ["Nail it", "완벽히 해내다, 성공시키다", "", "i2"], ["No-brainer", "고민할 필요도 없는 것", "", "i2"], ["Pass out", "기절하다, 의식을 잃다", "", "i2"], ["Call it a day", "오늘은 그만하다", "", "i2"], ["Give it a shot", "한번 시도해 보다", "", "i2"], ["Break the bank", "엄청 비싸다, 파산시키다", "", "i2"], ["Geek out", "덕질하다, 푹 빠지다", "", "i2"], ["Tear up", "눈물 글썽이다", "", "i2"], ["Get by", "근근이 살다, 그럭저럭 지내다", "", "i2"], ["Look down on", "무시하다, 깔보다", "", "i2"], ["Hook up", "만나다, 연결하다", "", "i2"], ["Crack open", "(병·캔) 따다", "", "i2"], ["Screw up", "크게 실수하다, 망치다", "", "i2"], ["Catch on", "유행하다, 이해하다", "", "i2"], ["Back off", "물러서, 그만해", "", "i2"], ["Crush it", "대박 내다, 끝내주게 잘하다", "", "i2"], ["Zone out", "멍때리다, 정신 놓다", "", "i2"], ["Sweet tooth", "단 거 좋아함", "", "i2"], ["Dig in", "먹기 시작하다, 잘 먹겠습니다", "", "i2"], ["Fall for", "속아 넘어가다, 빠지다", "", "i2"], ["Take forever", "엄청 오래 걸리다", "", "i2"], ["Small talk", "가벼운 잡담, 스몰토크", "", "i2"], ["No doubt", "의심의 여지 없이, 당연히", "", "i2"], ["Fill one in", "자세히 알려주다, 채워주다", "", "i2"], ["Red flag", "경계 신호, 위험 신호", "", "i2"], ["Get over it", "극복하다, 잊다", "", "i2"], ["Wipe out", "심하게 자빠지다, 완전 지치다", "", "i2"], ["Look up to", "존경하다, 우러러보다", "", "i2"], ["Kill time", "시간 때우다", "", "i2"], ["Call it a night", "오늘 밤 그만하다", "", "i2"], ["Worked up", "흥분한, 격앙된", "", "i2"], ["Zip it", "입 다물어, 그만 말해", "", "i2"], ["Bummed out", "기분 다운된, 실망한", "", "i2"], ["Shaken up", "충격 받은, 놀란 상태", "", "i2"], ["Have a crush", "짝사랑하다, 호감 있다", "", "i2"], ["Plot twist", "반전, 예상 밖 전개", "", "i2"]]).map(a=>({e:a[0],k:a[1],x:a[2],y:a[3]}));
+const MS=[
+{s:"카페에서 친구에게 “너 커피 마셔?”라고 묻기",h:"동사 drink를 쓰고, can은 쓰지 않아요",a:["Do you drink coffee?"],x:"Are you drinking coffee? (지금 마시는 중이냐는 뜻이 돼요)",n:"평소 습관은 현재형(Do you drink...?), 지금 이 순간은 현재진행(Are you drinking...?)이에요."},
+{s:"설거지하느라 연락이 늦었어요. “미안, 나 설거지하고 있었어”",h:"그때 하던 중이었던 일",a:["Sorry, I was doing the dishes.","Sorry, I was washing the dishes."],x:"I did / I washed (‘하던 중’이라는 느낌이 사라져요)",n:"그 시점에 한창 하던 중이면 과거진행(was + ~ing), 끝난 사실이면 과거형이에요."},
+{s:"이 동네에 산 지 1년 됐다고 말하기",h:"과거부터 지금까지 계속",a:["I’ve been living here for a year."],x:"I lived here for a year (지금은 안 산다는 뜻이 돼요)",n:"과거에 시작해 지금까지 이어지면 현재완료(진행) have been + ~ing와 for/since를 써요."},
+{s:"친구에게 “너 거기 가 본 적 없지”라고 말하기",h:"경험을 말해요",a:["You’ve never been there.","I’ve never been there. (내가 안 가 봤을 때)"],x:"You’ve never gone there (gone은 ‘가서 아직 안 돌아왔다’는 뜻)",n:"가 본 적 있다/없다는 have (never) been이에요. 영어의 go와 한국어 ‘가다’는 달라요."},
+{s:"고장 났던 엘리베이터가 작동하는 걸 보고 “오, 엘리베이터 고쳐졌네”",h:"고쳐진 상태",a:["Oh, the elevator is fixed.","Oh, the elevator’s fixed now!"],x:"The elevator fix.",n:"be + p.p.는 ‘~된 상태’예요. p.p.는 ‘~된, ~해진’이라는 뜻이에요."},
+{s:"세 문장의 뜻을 말해 보기: I would watch that movie / I might watch that movie / I could watch that movie",h:"would, might, could",a:["would: 그 영화 볼 것 같아","might: 볼 수도 있어, 볼지도 몰라","could: 볼 수 있어, 볼 수 있었어"],x:"",n:"would는 ‘그럴 것 같다’, might는 ‘가능성이 약간’, could는 ‘할 수 있다’예요."},
+{s:"“돈만 많았어도 랍스터 시켰을 텐데” (지금은 돈이 없어요)",h:"현재 사실과 반대로 가정",a:["If I had a lot of money, I would order a lobster."],x:"If I have a lot of money, I order a lobster.",n:"if + 과거형, would + 동사원형은 현재 사실과 반대되는 가정이에요."},
+{s:"친구가 내가 한 적 없는 말을 했다고 우길 때 “내가 말한 적 없어”",h:"절(what I said)을 써요",a:["That’s not what I said.","I never said that."],x:"That’s not I said.",n:"what I said처럼 문장이 명사 자리에 들어간 덩어리가 절이에요. 그 안에서는 ‘주어 + 동사’를 써요."},
+{s:"연락 없던 친구가 전화했어요. “걔가 나한테 전화했어. 이상하지?”를 한 문장으로",h:"앞 문장 전체를 받는 which",a:["He called me, which is strange."],x:"He called me. It’s strange. (두 문장으로 끊겨요)",n:", which는 앞 내용 전체를 받아서 설명을 덧붙여요."},
+{s:"“너 걔 몇 살인지 알아?”",h:"질문 안에 들어간 질문",a:["Do you know how old he is?"],x:"Do you know how old is he?",n:"간접의문문은 의문사 + 주어 + 동사 순서예요. 평서문 어순을 써요."}
+].concat([["친구에게 “너 운동해?”라고 묻기", "동사 exercise를 써요", ["Do you exercise?"], "Are you exercising? (지금 하는 중이냐는 뜻)", "평소 습관을 물을 땐 현재형이에요."], ["방에서 소리가 나서 “너 지금 뭐 해?”", "지금 이 순간", ["What are you doing?"], "What do you do? (직업을 묻는 말이 돼요)", "지금 하는 일을 물을 땐 현재진행이에요."], ["전화를 못 받았어요. “미안, 나 샤워하고 있었어”", "그때 하던 중이었던 일", ["Sorry, I was taking a shower."], "I took a shower.", "그 시점에 한창 하던 중이면 과거진행이에요."], ["“네가 왔을 때 나 요리하고 있었어”", "하던 중에 다른 일이 일어남", ["I was cooking when you came."], "I cooked when you came.", "하던 중이던 일은 was + ~ing, 끼어든 일은 과거형이에요."], ["이 회사에서 일한 지 3년 됐다고 말하기", "과거부터 지금까지 계속", ["I’ve been working here for three years."], "I worked here for three years. (지금은 안 다닌다는 뜻)", "현재완료진행: have been + ~ing + for."], ["“한 시간째 기다리고 있어”", "지금까지 계속 기다림", ["I’ve been waiting for an hour."], "I’m waiting for an hour.", "for + 기간은 현재진행이 아니라 현재완료(진행)와 써요."], ["친구에게 “너 한국 가 본 적 있어?”", "경험을 물어요", ["Have you ever been to Korea?"], "Have you ever gone to Korea?", "가 본 경험은 been이에요. gone은 ‘가고 없다’는 뜻이에요."], ["“나 스시 먹어 본 적 없어”", "경험이 없음", ["I’ve never tried sushi.", "I’ve never eaten sushi."], "I never eat sushi. (평소에 안 먹는다는 뜻)", "경험은 have + p.p.예요. never가 ‘한 번도’를 뜻해요."], ["와이파이가 연결된 걸 보고 “오, 와이파이 연결됐네”", "연결된 상태", ["Oh, the Wi-Fi is connected."], "The Wi-Fi connect.", "be + p.p.는 ‘~된 상태’예요."], ["“문이 잠겨 있어”", "잠겨 있는 상태", ["The door is locked."], "The door locks.", "상태는 be + p.p.로 말해요."], ["세 문장의 뜻: I would go there / I might go there / I could go there", "would, might, could", ["would: 거기 갈 것 같아", "might: 갈 수도 있어", "could: 갈 수 있어"], "", "would는 확신에 가까운 추측, might는 약한 가능성, could는 가능이에요."], ["파티에 오라고 해요. “갈 수도 있는데 아직 모르겠어”", "가능성이 반반", ["I might come, but I’m not sure yet."], "I would come, but I’m not sure yet.", "불확실한 가능성은 might예요."], ["“시간만 있었어도 같이 갔을 텐데” (시간이 없어요)", "현재 사실과 반대로 가정", ["If I had time, I would go with you."], "If I have time, I go with you.", "if + 과거형, would + 동사원형이에요."], ["“내가 너라면 그 일 안 할 거야”", "내가 너라고 가정", ["If I were you, I wouldn’t do that."], "If I am you, I don’t do that.", "가정에서는 If I were you처럼 were를 써요."], ["“이게 내가 찾던 거야”", "절(what I was looking for)", ["This is what I was looking for."], "This is I was looking for.", "what 뒤에는 ‘주어 + 동사’를 이어 써요."], ["“그게 내가 하고 싶은 말이야”", "절(what I want to say)", ["That’s what I want to say.", "That’s what I’m trying to say."], "That’s I want to say.", "what I want to say는 하나의 명사 덩어리(절)예요."], ["“그가 늦게 왔는데, 그건 드문 일이야”를 한 문장으로", "앞 문장 전체를 받는 which", ["He came late, which is rare."], "He came late. It is rare.", "쉼표 + which는 앞 내용 전체를 받아요."], ["“비가 왔어. 그래서 우리 계획이 망했어”를 which로 한 문장", "앞 문장 전체를 받는 which", ["It rained, which ruined our plans."], "It rained, that ruined our plans.", "쉼표 뒤에는 that이 아니라 which를 써요."], ["“지금 몇 시인지 알아?”", "질문 안에 들어간 질문", ["Do you know what time it is?"], "Do you know what time is it?", "간접의문문은 의문사 + 주어 + 동사 순서예요."], ["“그가 어디 사는지 알아?”", "질문 안에 들어간 질문", ["Do you know where he lives?"], "Do you know where does he live?", "간접의문문에서는 does를 빼고 주어 + 동사 순서로 써요."]].map(a=>({s:a[0],h:a[1],a:a[2],x:a[3],n:a[4]})));
+function genMissions(){
+ const P=[];
+ P.push([["drink coffee","drinking coffee","커피 마셔"],["exercise","exercising","운동해"],["read books","reading books","책 읽어"],["cook","cooking","요리해"],["play games","playing games","게임해"],["watch movies","watching movies","영화 봐"],["eat breakfast","eating breakfast","아침 먹어"],["study English","studying English","영어 공부해"]].map(([v,g,k])=>({s:`친구에게 “너 ${k}?”라고 묻기`,h:"평소 습관을 물어요",a:[`Do you ${v}?`],x:`Are you ${g}? (지금 하는 중이냐는 뜻이 돼요)`,n:"평소 습관은 현재형(Do you...?), 지금 이 순간은 현재진행(Are you ...ing?)이에요."})));
+ P.push([["taking a shower","샤워하고"],["doing the dishes","설거지하고"],["cleaning my room","방 청소하고"],["cooking dinner","저녁 만들고"],["sleeping","자고"],["studying","공부하고"],["driving","운전하고"],["talking to my mom","엄마랑 통화하고"]].map(([g,k])=>({s:`전화를 못 받았어요. “미안, 나 ${k} 있었어”`,h:"그때 하던 중이었던 일",a:[`Sorry, I was ${g}.`],x:"과거형(I did...)만 쓰면 ‘하던 중’ 느낌이 사라져요",n:"그 시점에 한창 하던 중이면 과거진행(was + ~ing)이에요."})));
+ P.push([["living here","여기 산 지","two years","2년"],["working here","이 회사에서 일한 지","three years","3년"],["learning English","영어를 배운 지","six months","6개월"],["waiting for you","너를 기다린 지","an hour","한 시간"],["playing the guitar","기타를 친 지","a year","1년"],["studying Korean","한국어를 공부한 지","a month","한 달"]].map(([g,k,d,kd])=>({s:`“${k} ${kd} 됐어”`,h:"과거부터 지금까지 계속",a:[`I’ve been ${g} for ${d}.`],x:`I’m ${g} for ${d}. (현재진행만 쓰면 ‘지금까지 쭉’이 안 살아요)`,n:"과거에 시작해 지금까지 이어지면 have been + ~ing + for예요."})));
+ P.push([["Japan","일본"],["Jeju","제주도"],["New York","뉴욕"],["Paris","파리"],["that restaurant","그 식당"],["Busan","부산"]].map(([p,k],i)=>i%2?{s:`“나 ${k} 가 본 적 없어”`,h:"경험이 없어요",a:[`I’ve never been to ${p}.`],x:`I’ve never gone to ${p}. (gone은 ‘가고 없다’는 뜻)`,n:"가 본 경험은 have been이에요."}:{s:`친구에게 “너 ${k} 가 본 적 있어?”`,h:"경험을 물어요",a:[`Have you ever been to ${p}?`],x:`Have you ever gone to ${p}? (gone은 ‘가고 없다’는 뜻)`,n:"가 본 경험은 have been이에요."}));
+ P.push([["The door","문이 잠겨 있어","locked"],["The window","창문이 깨져 있어","broken"],["The shop","가게가 닫혀 있어","closed"],["The room","방이 청소돼 있어","cleaned"],["The phone","폰이 충전돼 있어","charged"],["The report","보고서가 끝나 있어","finished"],["The elevator","엘리베이터가 고쳐져 있어","fixed"],["The table","테이블이 예약돼 있어","reserved"]].map(([n,k,pp])=>({s:`“${k}”`,h:"~된 상태",a:[`${n} is ${pp}.`],x:`${n} ${pp}. (be동사가 빠졌어요)`,n:"상태는 be + p.p.로 말해요."})));
+ P.push(["call him","join you","buy that bag","try it","help you","take the job"].map(v=>({s:`세 문장의 뜻: I would ${v} / I might ${v} / I could ${v}`,h:"would, might, could",a:["would: ~할 것 같아","might: ~할 수도 있어, ~할지도 몰라","could: ~할 수 있어, ~할 수 있었어"],x:"",n:"would는 확신에 가까운 추측, might는 약한 가능성, could는 가능이에요."})));
+ P.push([["“차가 있었으면 태워 줬을 텐데” (차가 없어요)","If I had a car, I would give you a ride."],["“키가 더 컸다면 농구했을 텐데”","If I were taller, I would play basketball."],["“시간이 더 있으면 도와줄 텐데”","If I had more time, I would help you."],["“내가 너라면 그 일 맡을 거야”","If I were you, I would take the job."],["“복권에 당첨되면 회사를 그만둘 텐데”","If I won the lottery, I would quit my job."],["“영어를 더 잘하면 외국에서 살 텐데”","If I spoke English better, I would live abroad."],["“날씨가 좋으면 소풍 갈 텐데” (지금 날씨가 나빠요)","If the weather were nice, we would go on a picnic."],["“그가 안 바쁘면 올 텐데”","If he weren’t busy, he would come."]].map(([k,e])=>({s:k,h:"현재 사실과 반대로 가정",a:[e],x:"If절에 현재형을 쓰면 ‘실제로 있을 일’이 돼요",n:"if + 과거형, would + 동사원형이에요. be동사는 were를 써요."})));
+ P.push([["“이게 내가 원하던 거야”","This is what I wanted."],["“그게 내가 말하려던 거야”","That’s what I was trying to say."],["“이게 네가 필요한 거야”","This is what you need."],["“그게 내가 들은 거야”","That’s what I heard."],["“이게 내가 어제 산 거야”","This is what I bought yesterday."],["“내가 말한 게 그거야”","That’s what I said."],["“그게 내가 걱정하는 거야”","That’s what I’m worried about."],["“이게 내가 좋아하는 거야”","This is what I like."]].map(([k,e])=>({s:k,h:"절(what ~)을 써요",a:[e],x:e.replace("what ","")+" (what이 빠졌어요)",n:"what 뒤에는 ‘주어 + 동사’를 이어 써요."})));
+ P.push([["“그는 늦게 왔어. 그건 흔한 일이야”를 한 문장으로","He came late, which is common."],["“우린 기차를 놓쳤어. 그게 문제였어”를 한 문장으로","We missed the train, which was a problem."],["“그녀가 시험에 붙었어. 정말 좋은 소식이야”를 한 문장으로","She passed the exam, which is great news."],["“가게가 문을 닫았어. 너무 아쉬워”를 한 문장으로","The shop was closed, which is too bad."],["“그가 혼자 이사했어. 대단하지”를 한 문장으로","He moved alone, which is impressive."],["“경기가 취소됐어. 슬퍼”를 한 문장으로","The game was canceled, which is sad."]].map(([k,e])=>({s:k,h:"앞 문장 전체를 받는 which",a:[e],x:e.replace(", which",". It")+" (두 문장으로 끊겨요)",n:", which는 앞 내용 전체를 받아요."})));
+ P.push([["what time it is","지금 몇 시인지","what time is it"],["where he lives","그가 어디 사는지","where does he live"],["how old she is","그녀가 몇 살인지","how old is she"],["why he left","그가 왜 떠났는지","why did he leave"],["when the store opens","그 가게가 언제 여는지","when does the store open"],["how much it costs","그게 얼마인지","how much does it cost"],["who she is","그녀가 누군지","who is she"],["where the station is","역이 어디인지","where is the station"]].map(([e,k,w])=>({s:`“너 ${k} 알아?”`,h:"질문 안에 들어간 질문",a:[`Do you know ${e}?`],x:`Do you know ${w}?`,n:"간접의문문은 의문사 + 주어 + 동사 순서예요."})));
+ const L=Math.max(...P.map(p=>p.length)),o=[];
+ for(let i=0;i<L;i++)for(const p of P)if(p[i])o.push(p[i]);
+ return o}
+MS.push(...genMissions());
+const PK=[
+["카페·식당",[["Can I get a latte, please?","라떼 한 잔 주시겠어요?","Sure. Hot or iced?"],["Could we get the check, please?","계산서 주시겠어요?","Of course. One moment."],["What do you recommend?","추천하는 게 뭐예요?","The pasta is really good."],["Can I get this to go?","포장해 주세요.","Sure, no problem."],["Is there a wait?","기다려야 하나요?","About ten minutes."]]],
+["약속·일정",[["Are you free this weekend?","이번 주말에 시간 돼?","Yeah, what’s up?"],["Let’s grab lunch sometime.","언제 점심 같이 먹자.","Sounds good!"],["Can we reschedule?","일정 다시 잡을 수 있을까?","Sure. How about Friday?"],["I’m running late.","나 좀 늦을 것 같아.","No worries. Take your time."],["I can’t make it tomorrow.","내일은 못 가.","That’s okay. Maybe next time."]]],
+["사과·부탁",[["I’m so sorry about that.","정말 미안해.","It’s okay. Don’t worry about it."],["Could you do me a favor?","부탁 하나 해도 될까?","Sure, what is it?"],["Would you mind helping me?","도와주실 수 있을까요?","Not at all."],["My bad.","내 잘못이야.","It happens."],["Thanks for waiting.","기다려 줘서 고마워.","No problem at all."]]],
+["공항·여행",[["Where’s the boarding gate?","탑승구가 어디예요?","Go straight and turn left."],["I’d like a window seat.","창가 자리로 주세요.","Sure. Let me check."],["How do I get to the station?","역까지 어떻게 가요?","Take bus number five."],["Is this seat taken?","이 자리 주인 있어요?","No, go ahead."],["I’m just looking around.","그냥 둘러보는 중이에요.","Sure. Let me know if you need help."]]],
+["직장·회의",[["Let me get back to you on that.","그 건은 확인하고 다시 말씀드릴게요.","Sounds good."],["Can you walk me through it?","처음부터 설명해 주실래요?","Sure. Let’s start here."],["I’ll send it over by Friday.","금요일까지 보낼게요.","Great, thanks."],["Sorry, could you say that again?","죄송한데 다시 말씀해 주실래요?","Of course."],["Let’s touch base next week.","다음 주에 다시 얘기해요.","Sure. Monday works."]]],
+["친구와 수다",[["What have you been up to?","요즘 뭐하고 지냈어?","Not much. You?"],["No way! Really?","말도 안 돼! 진짜?","Yeah, I’m serious."],["I’m so into this show right now.","요즘 이 드라마에 푹 빠졌어.","Oh, what’s it called?"],["That’s hilarious.","진짜 웃기다.","Right? I couldn’t stop laughing."],["I couldn’t agree more.","완전 동감이야.","Same here."]]]
+];
+EX.push(...PK.flatMap(([g,L])=>L.map(([e,k,x])=>({e,k,x,y:"s",g}))));
+const CW={
+"a, an":["하나의, 어떤","/ə/ · /ən/","I have a dog and an apple.","an은 one에서 갈라져 나왔고, 모음 소리 앞에서 써요","apple"],
+"about":["~에 대해; 약, 대략","/əˈbaʊt/","We talked about movies for about an hour.","","friends talking"],
+"above":["~보다 위에; 위로","/əˈbʌv/","The clock is above the door.","above(위) ↔ below(아래)","clock above door"],
+"across":["~을 가로질러; 건너편에","/əˈkrɔs/","She walked across the street.","a-(on) + cross(가로지르다)","crosswalk"],
+"action":["행동, 조치","/ˈækʃən/","We need to take action now.","라틴어 agere(행하다)에서 왔어요","action running"],
+"activity":["활동","/ækˈtɪvəti/","Swimming is my favorite activity.","active(활동적인) + -ity(명사를 만드는 꼬리)","kids activities"],
+"actor":["배우","/ˈæktər/","The actor won an award.","act(연기하다) + -or(~하는 사람)","actor on stage"],
+"actress":["여배우","/ˈæktrəs/","She is a famous actress.","actor + -ess(여성을 나타내는 꼬리)","actress red carpet"],
+"add":["더하다, 추가하다","/æd/","Add some salt to the soup.","라틴어 ad-(~쪽으로) + -dere(두다)","adding salt"],
+"address":["주소; (문제를) 다루다","/əˈdrɛs/","What’s your email address?","ad-(~쪽으로) + direct(곧게 향하다)","mailbox house number"],
+"adult":["성인, 어른; 성인의","/əˈdʌlt/","Children must come with an adult.","라틴어 adultus(다 자란)에서 왔어요","adult and child walking"],
+"advice":["조언, 충고","/ədˈvaɪs/","Thanks for your advice.","명사 advice[-s]와 동사 advise[-z]는 발음이 달라요","friend giving advice"],
+"afraid":["두려워하는, 겁내는","/əˈfreɪd/","I’m afraid of spiders.","","scared person"],
+"after":["~후에, ~뒤에","/ˈæftər/","Let’s eat after the movie.","","coffee after dinner"],
+"afternoon":["오후","/ˌæftərˈnun/","I have a meeting this afternoon.","after(뒤) + noon(정오)","afternoon cafe"],
+"again":["다시, 또","/əˈɡɛn/","Please say that again.","","try again"],
+"age":["나이; 시대","/eɪdʒ/","She started school at the age of six.","","birthday candles"],
+"ago":["~전에","/əˈɡoʊ/","I met him two years ago.","agone(지나가 버린)에서 왔고 go와 같은 뿌리예요","old clock"],
+"agree":["동의하다","/əˈɡri/","I agree with you.","a-(~에) + gree(기쁨, 라틴어 gratus): 마음에 들다 → 동의하다","thumbs up meeting"],
+"air":["공기; 하늘","/ɛr/","I need some fresh air.","","fresh air mountain"],
+"airport":["공항","/ˈɛrˌpɔrt/","We arrived at the airport early.","air(하늘) + port(항구)","airport terminal"],
+"all":["모든; 모두","/ɔl/","All the students are here.","","group of students"],
+"also":["또한, ~도","/ˈɔlsoʊ/","She also speaks French.","all + so","plus sign"],
+"always":["항상, 언제나","/ˈɔlweɪz/","He always wakes up early.","all + ways(길): 모든 길에서 → 언제나","alarm clock morning"],
+"amazing":["놀라운, 굉장한","/əˈmeɪzɪŋ/","The view is amazing.","","amazing mountain view"],
+"and":["그리고, ~와","/ænd/","I like tea and coffee.","","tea and coffee"],
+"angry":["화난","/ˈæŋɡri/","He was angry about the mistake.","","angry man"],
+"animal":["동물","/ˈænəməl/","A dog is a friendly animal.","라틴어 anima(숨, 생명): 숨 쉬는 존재","zoo animals"],
+"another":["또 하나(의); 다른 것","/əˈnʌðər/","Can I have another cup?","an + other","extra coffee cup"],
+"answer":["대답(하다); 정답","/ˈænsər/","Please answer my question.","and-(맞서) + swear(말하다): 마주 보고 대답하다","raising hand classroom"],
+"any":["어떤, 조금이라도 (의문·부정문)","/ˈɛni/","Do you have any questions?","","question marks"],
+"anyone":["누구든; 아무도 (의문·부정문)","/ˈɛniˌwʌn/","Does anyone know the answer?","any + one","crowd of people"],
+"anything":["무엇이든; 아무것도 (의문·부정문)","/ˈɛniˌθɪŋ/","I can’t see anything.","any + thing","dark room"],
+"apartment":["아파트, 집","/əˈpɑrtmənt/","I live in a small apartment.","라틴어 a parte(따로): 따로 나눈 방","apartment building"],
+"apple":["사과","/ˈæpəl/","I eat an apple every day.","","red apple"],
+"April":["4월","/ˈeɪprəl/","My birthday is in April.","","spring flowers rain"],
+"area":["지역; 면적","/ˈɛriə/","This is a quiet area.","","neighborhood map"],
+"arm":["팔","/ɑrm/","He broke his arm.","","arm muscle"],
+"around":["~주위에; 대략","/əˈraʊnd/","We walked around the park.","a-(on) + round(둥근)","walking in park"],
+"arrive":["도착하다","/əˈraɪv/","The train arrives at noon.","ad-(~로) + ripa(강가): 물가에 닿다","train arriving"],
+"art":["미술, 예술","/ɑrt/","She loves modern art.","라틴어 ars(기술, 솜씨)","art museum"],
+"article":["기사, 글; 물품","/ˈɑrtɪkəl/","I read an interesting article.","라틴어 articulus(작은 마디, 부분)","reading newspaper"],
+"artist":["예술가, 화가","/ˈɑrtɪst/","The artist painted a portrait.","art + -ist(~하는 사람)","painter canvas"],
+"as":["~로서; ~처럼; ~할 때","/æz/","He works as a teacher.","","teacher classroom"],
+"ask":["묻다; 부탁하다","/æsk/","Can I ask you a question?","","asking a question"],
+"at":["~에 (장소·시각)","/æt/","Meet me at the station at six.","","station clock"],
+"August":["8월","/ˈɔɡəst/","It’s hot in August.","로마 황제 아우구스투스의 이름에서 왔어요","summer beach"],
+"aunt":["이모, 고모","/ænt/","My aunt lives in Busan.","","aunt and niece"],
+"autumn":["가을","/ˈɔtəm/","Leaves turn red in autumn.","","autumn leaves"],
+"away":["떨어져, 멀리; 사라져","/əˈweɪ/","Please put your phone away.","a-(on) + way(길): 길을 떠나서","walking away road"],
+"baby":["아기","/ˈbeɪbi/","The baby is sleeping.","","sleeping baby"],
+"back":["등; 뒤; 되돌아","/bæk/","I’ll be back soon.","","person back view"],
+"bad":["나쁜","/bæd/","That was a bad idea.","","thumbs down"],
+"bag":["가방, 봉지","/bæɡ/","She put the book in her bag.","","backpack"],
+"ball":["공","/bɔl/","Kick the ball!","","soccer ball"],
+"banana":["바나나","/bəˈnænə/","I had a banana for breakfast.","","bananas"],
+"band":["밴드, 악단; 띠","/bænd/","He plays guitar in a band.","","rock band stage"],
+"bank|money":["은행","/bæŋk/","I went to the bank.","이탈리아어 banca(긴 의자): 환전상이 앉던 벤치","bank building"],
+"bath":["목욕","/bæθ/","I take a bath every night.","","bathtub"],
+"bathroom":["욕실; 화장실","/ˈbæθˌrum/","Where is the bathroom?","bath + room","bathroom"],
+"be":["~이다; ~있다","/bi/","I want to be a doctor.","","doctor"],
+"beach":["해변","/bitʃ/","We walked on the beach.","","beach"],
+"beautiful":["아름다운","/ˈbjutəfəl/","What a beautiful day!","beauty(아름다움) + -ful(~이 가득한)","beautiful sunset"],
+"because":["왜냐하면, ~때문에","/bɪˈkɔz/","I’m late because of traffic.","by + cause","traffic jam"],
+"become":["~이 되다","/bɪˈkʌm/","She became a nurse.","be- + come: 어떤 상태가 되어 오다","caterpillar butterfly"],
+"bed":["침대","/bɛd/","I go to bed at eleven.","","bed"],
+"bedroom":["침실","/ˈbɛdˌrum/","My bedroom is small.","bed + room","bedroom"],
+"beer":["맥주","/bɪr/","He ordered a cold beer.","","beer glass"],
+"before":["~전에, ~앞에","/bɪˈfɔr/","Wash your hands before dinner.","be-(by) + fore(앞): 앞에","washing hands"],
+"begin":["시작하다","/bɪˈɡɪn/","The movie begins at eight.","","starting line"],
+"beginning":["처음, 시작","/bɪˈɡɪnɪŋ/","I loved the beginning of the book.","begin + -ing","sunrise"],
+"behind":["~뒤에","/bɪˈhaɪnd/","The cat is behind the sofa.","be- + hind(뒤)","cat behind sofa"],
+"believe":["믿다","/bɪˈliv/","I believe you.","","handshake trust"],
+"below":["~아래에; 아래로","/bɪˈloʊ/","The temperature is below zero.","be-(by) + low(낮은)","thermometer below zero"],
+"best":["최고의, 가장 좋은","/bɛst/","She is my best friend.","good → better → best (불규칙 변화)","best friends"],
+"better":["더 좋은; 더 나은","/ˈbɛtər/","This one is better.","good → better → best (불규칙 변화)","thumbs up"],
+"between":["~사이에","/bɪˈtwin/","The bank is between the cafe and the park.","be- + twain(둘): 둘 사이에","person between two buildings"],
+"bicycle":["자전거","/ˈbaɪsɪkəl/","I ride a bicycle to work.","bi-(둘) + cycle(바퀴)","bicycle"],
+"big":["큰","/bɪɡ/","That’s a big house.","","big elephant"],
+"bike":["자전거(줄임말)","/baɪk/","Let’s go for a bike ride.","bicycle의 줄임말","bike ride"],
+"bill":["계산서; 지폐; 청구서","/bɪl/","Can we have the bill, please?","","restaurant bill"],
+"bird":["새","/bɜrd/","A bird is singing.","","bird on branch"],
+"birthday":["생일","/ˈbɜrθˌdeɪ/","Happy birthday!","birth(탄생) + day","birthday cake"],
+"black":["검은, 검은색","/blæk/","He wore a black coat.","","black cat"],
+"blog":["블로그","/blɔɡ/","She writes a travel blog.","web + log(기록) → weblog → blog","laptop blogging"],
+"blonde":["금발의","/blɑnd/","She has blonde hair.","","blonde hair"],
+"blue":["파란, 파란색","/blu/","The sky is blue.","","blue sky"],
+"boat":["배, 보트","/boʊt/","We went fishing on a boat.","","boat on sea"],
+"body":["몸, 신체","/ˈbɑdi/","Exercise is good for your body.","","stretching yoga"],
+"book":["책","/bʊk/","I’m reading a good book.","","open book"],
+"boot":["부츠, 장화","/but/","He wore heavy boots.","","boots"],
+"bored":["지루해하는","/bɔrd/","I’m bored.","내가 느끼는 감정은 bored, 지루하게 만드는 쪽은 boring","bored student"],
+"boring":["지루한, 따분한","/ˈbɔrɪŋ/","The movie was boring.","대상의 성질은 boring, 느끼는 사람은 bored","boring lecture"],
+"born":["태어난","/bɔrn/","I was born in 1990.","bear(낳다)의 과거분사와 같은 뿌리 → be born(태어나다)","newborn baby"],
+"both":["둘 다(의)","/boʊθ/","Both of them are teachers.","","two friends"],
+"bottle":["병","/ˈbɑtəl/","Bring a bottle of water.","","water bottle"],
+"box":["상자","/bɑks/","Open the box.","","cardboard box"],
+"boy":["소년","/bɔɪ/","The boy is playing.","","boy playing"],
+"boyfriend":["남자친구","/ˈbɔɪˌfrɛnd/","She has a new boyfriend.","boy + friend","couple walking"],
+"bread":["빵","/brɛd/","I eat bread for breakfast.","","bread loaf"],
+"break":["깨다, 부수다; 휴식","/breɪk/","Be careful not to break the glass.","break–broke–broken으로 변해요","broken glass"],
+"breakfast":["아침 식사","/ˈbrɛkfəst/","I have eggs for breakfast.","break(깨다) + fast(단식): 밤사이의 단식을 깨는 식사","breakfast table"],
+"bring":["가져오다, 데려오다","/brɪŋ/","Please bring your ID.","bring–brought–brought로 변해요","carrying bag"],
+"brother":["형, 오빠, 남동생","/ˈbrʌðər/","My brother is taller than me.","","brothers"],
+"brown":["갈색(의)","/braʊn/","She has brown eyes.","","brown eyes"],
+"build":["짓다, 만들다","/bɪld/","They build houses.","build–built–built로 변해요","construction site"],
+"building":["건물","/ˈbɪldɪŋ/","That building is very tall.","build + -ing","tall building"],
+"bus":["버스","/bʌs/","I take the bus to work.","","city bus"],
+"business":["사업; 업무","/ˈbɪznəs/","He runs a small business.","busy(바쁜) + -ness(상태): 바쁜 일","shop owner"],
+"busy":["바쁜","/ˈbɪzi/","I’m busy today.","","busy office"],
+"but":["하지만","/bʌt/","I like it, but it’s expensive.","","crossroad two paths"],
+"butter":["버터","/ˈbʌtər/","Spread butter on the bread.","","butter toast"],
+"buy":["사다","/baɪ/","I want to buy a new phone.","buy–bought–bought로 변해요","shopping"],
+"by":["~옆에; ~에 의해; ~까지","/baɪ/","The book was written by her.","","sitting by window"],
+"bye":["안녕 (헤어질 때)","/baɪ/","Bye! See you tomorrow.","goodbye의 줄임말이고, goodbye는 God be with ye(신이 함께하길)에서 왔어요","waving goodbye"],
+"cafe":["카페","/kæˈfeɪ/","Let’s meet at the cafe.","프랑스어로 ‘커피’라는 뜻이에요","cafe"],
+"cake":["케이크","/keɪk/","She baked a chocolate cake.","","cake"],
+"call":["전화하다; 부르다; 전화","/kɔl/","I’ll call you tonight.","","phone call"],
+"camera":["카메라","/ˈkæmərə/","He bought a new camera.","라틴어 camera(방)에서: 초기 카메라는 어두운 방(camera obscura)이었어요","camera"],
+"can":["~할 수 있다","/kæn/","I can swim.","","swimmer"],
+"cannot":["~할 수 없다","/ˈkænɑt/","I cannot come tonight.","can + not (붙여 써요)","stop sign"],
+"capital":["수도; 대문자; 자본","/ˈkæpətəl/","Seoul is the capital of Korea.","라틴어 caput(머리): 머리 → 으뜸이 되는 것","capital city skyline"],
+"car":["자동차","/kɑr/","He drives a red car.","","red car"],
+"card":["카드","/kɑrd/","Do you take credit cards?","","credit card"],
+"career":["직업, 경력","/kəˈrɪr/","She has a successful career.","라틴어 carrus(마차): 마차가 달리던 길 → 인생의 길","career ladder office"],
+"carrot":["당근","/ˈkɛrət/","Rabbits love carrots.","","carrots"],
+"carry":["나르다, 들고 다니다","/ˈkæri/","Can you carry this bag?","","carrying box"],
+"cat":["고양이","/kæt/","The cat is on the sofa.","","cat"],
+"CD":["CD","/ˌsiˈdi/","I bought a CD.","compact disc의 줄임말","CD disc"],
+"cent":["센트 (1달러의 100분의 1)","/sɛnt/","It costs fifty cents.","라틴어 centum(백): 1달러의 100분의 1","coins"],
+"centre":["중심 (영국식 철자)","/ˈsɛntər/","The shop is in the city centre.","미국식 철자는 center예요","city center"],
+"century":["세기, 100년","/ˈsɛntʃəri/","It was built in the 18th century.","라틴어 centum(백)","old building"],
+"chair":["의자","/tʃɛr/","Please sit on the chair.","","chair"],
+"change":["바꾸다; 변화; 거스름돈","/tʃeɪndʒ/","I need to change my plan.","","coins change"],
+"chart":["도표, 차트","/tʃɑrt/","Look at the chart.","","bar chart"],
+"cheap":["싼","/tʃip/","This shirt is cheap.","","sale tag"],
+"check":["확인하다; 점검","/tʃɛk/","Please check your email.","","checklist"],
+"cheese":["치즈","/tʃiz/","I love cheese pizza.","","cheese"],
+"chicken":["닭, 닭고기","/ˈtʃɪkən/","We had fried chicken.","","fried chicken"],
+"child":["아이","/tʃaɪld/","The child is playing.","복수형은 children(불규칙)이에요","child playing"],
+"chocolate":["초콜릿","/ˈtʃɔklət/","I like dark chocolate.","","chocolate"],
+"choose":["고르다, 선택하다","/tʃuz/","Choose one color.","choose–chose–chosen으로 변해요","choosing"],
+"cinema":["영화관","/ˈsɪnəmə/","Let’s go to the cinema.","cinematograph(영화 촬영기)의 줄임말이에요","cinema"],
+"city":["도시","/ˈsɪti/","I live in a big city.","","city skyline"],
+"class":["수업, 반","/klæs/","My class starts at nine.","","classroom"],
+"classroom":["교실","/ˈklæsˌrum/","The classroom is quiet.","class + room","empty classroom"],
+"clean":["깨끗한; 청소하다","/klin/","Please clean your room.","","cleaning"],
+"climb":["오르다","/klaɪm/","We climbed the mountain.","끝의 b는 소리 나지 않아요","climbing mountain"],
+"clock":["시계 (벽시계, 탁상시계)","/klɑk/","The clock says three.","","wall clock"],
+"close":["닫다","/kloʊz/","Please close the door.","형용사 close(가까운)는 /kloʊs/로 발음이 달라요","closed door"],
+"clothes":["옷","/kloʊz/","I need new clothes.","항상 복수형이에요","clothes shop"],
+"club":["동아리, 클럽","/klʌb/","I joined the chess club.","","club members"],
+"coat":["코트, 외투","/koʊt/","Wear a warm coat.","","winter coat"],
+"coffee":["커피","/ˈkɔfi/","I drink coffee every morning.","","coffee cup"],
+"cold":["추운, 차가운; 감기","/koʊld/","It’s cold today.","","snow cold"],
+"college":["대학","/ˈkɑlɪdʒ/","She goes to college.","","college campus"],
+"colour":["색 (영국식 철자)","/ˈkʌlər/","What’s your favourite colour?","미국식 철자는 color예요","colorful paint"],
+"come":["오다","/kʌm/","Come here, please.","come–came–come으로 변해요","come here gesture"],
+"common":["흔한; 공통의","/ˈkɑmən/","This name is very common.","라틴어 communis(함께 쓰는)","crowd"],
+"company":["회사; 함께 있음","/ˈkʌmpəni/","He works for a big company.","com-(함께) + panis(빵): 함께 빵을 나누는 사람들","office building"],
+"compare":["비교하다","/kəmˈpɛr/","Compare the two prices.","com-(함께) + par(같은): 나란히 놓고 보다","comparing two apples"],
+"complete":["완전한; 끝내다","/kəmˈplit/","Please complete the form.","","completed puzzle"],
+"computer":["컴퓨터","/kəmˈpjutər/","I use a computer every day.","compute(계산하다) + -er(~하는 것)","computer"],
+"concert":["콘서트","/ˈkɑnsərt/","We went to a concert.","","concert crowd"],
+"conversation":["대화","/ˌkɑnvərˈseɪʃən/","We had a long conversation.","con-(함께) + versari(머물다): 함께 지내며 나누는 말","friends talking cafe"],
+"cook":["요리하다; 요리사","/kʊk/","I cook dinner every day.","","cooking"],
+"cooking":["요리","/ˈkʊkɪŋ/","Cooking is my hobby.","cook + -ing","cooking kitchen"],
+"cool":["시원한; 멋진","/kul/","That’s a cool jacket!","","cool breeze"],
+"correct":["맞는, 정확한; 고치다","/kəˈrɛkt/","Is this answer correct?","cor-(com: 완전히) + rect(곧은): 바로잡다","teacher checking test"],
+"cost":["비용; (값이) 들다","/kɔst/","How much does it cost?","","price tag"],
+"could":["~할 수 있었다; ~해도 될까요","/kʊd/","Could you help me?","can의 과거형이지만 공손한 부탁에도 써요","asking politely"],
+"country":["나라; 시골","/ˈkʌntri/","Korea is a small country.","","countryside"],
+"course":["강좌; 코스","/kɔrs/","I’m taking an English course.","of course(물론)에도 쓰여요","online course"],
+"cousin":["사촌","/ˈkʌzən/","My cousin lives in Seoul.","","family cousins"],
+"cow":["소, 젖소","/kaʊ/","The cow gives milk.","","cow"],
+"cream":["크림","/krim/","I’d like cream in my coffee.","","whipped cream"],
+"create":["만들다, 창조하다","/kriˈeɪt/","She created a new design.","라틴어 creare(만들어 내다)","painting creative"],
+"culture":["문화","/ˈkʌltʃər/","I’m interested in Korean culture.","라틴어 colere(경작하다): 마음과 삶을 가꾸는 것","festival culture"],
+"cup":["컵, 잔","/kʌp/","A cup of tea, please.","","tea cup"],
+"customer":["손님, 고객","/ˈkʌstəmər/","The customer is waiting.","custom(습관) + -er: 습관처럼 오는 사람","customer shop"],
+"cut":["자르다","/kʌt/","Cut the cake in half.","cut–cut–cut(모양이 안 변해요)","cutting cake"],
+"dad":["아빠","/dæd/","My dad cooks well.","","father and child"],
+"dance":["춤추다; 춤","/dæns/","Let’s dance!","","dancing"],
+"dancer":["무용수, 춤추는 사람","/ˈdænsər/","She is a good dancer.","dance + -er(~하는 사람)","ballet dancer"],
+"dancing":["춤추기","/ˈdænsɪŋ/","I love dancing.","dance + -ing","people dancing"],
+"dangerous":["위험한","/ˈdeɪndʒərəs/","It’s dangerous to swim here.","danger(위험) + -ous(~한 성질의)","warning sign"],
+"dark":["어두운","/dɑrk/","It gets dark at six.","","dark night"],
+"date":["날짜; 데이트","/deɪt/","What’s today’s date?","","calendar date"],
+"daughter":["딸","/ˈdɔtər/","Her daughter is five.","","mother and daughter"],
+"day":["날, 하루","/deɪ/","Have a nice day!","","sunny day"],
+"dear":["소중한; (편지) ~에게","/dɪr/","Dear Anna, thank you.","","love letter"],
+"December":["12월","/dɪˈsɛmbər/","It snows in December.","라틴어 decem(10): 옛 로마력에서 10번째 달이었어요","winter christmas"],
+"decide":["결정하다","/dɪˈsaɪd/","I can’t decide.","de-(잘라) + -cidere(자르다): 잘라서 정하다","choice crossroads"],
+"delicious":["맛있는","/dɪˈlɪʃəs/","This soup is delicious!","라틴어 delicia(기쁨)에서 왔어요","delicious food"],
+"describe":["묘사하다, 설명하다","/dɪˈskraɪb/","Describe your house.","de-(아래로) + scribere(쓰다): 자세히 써 내려가다","describing painting"],
+"description":["묘사, 설명","/dɪˈskrɪpʃən/","Read the description.","describe의 명사형","product description"],
+"design":["디자인; 설계하다","/dɪˈzaɪn/","She designs clothes.","de-(밖으로) + signum(표시): 표시를 해서 나타내다","design sketch"],
+"desk":["책상","/dɛsk/","He sits at his desk.","","desk"],
+"detail":["세부 사항","/ˈditeɪl/","Tell me the details.","de-(떼어) + tail(자르다): 잘게 자른 조각","magnifying glass"],
+"dialogue":["대화","/ˈdaɪəˌlɔɡ/","Read the dialogue aloud.","dia-(사이) + logos(말): 둘 사이에 오가는 말","two people talking"]
+};
+W.forEach((it,i)=>{it.i=i});
+const CWN=200;
+const cw=it=>it.i<CWN?CW[it.w+(it.s?"|"+it.s:"")]:undefined;
+const E=(c,x,y,s=30)=>`<text x="${x}" y="${y}" font-size="${s}" text-anchor="middle">${c}</text>`;
+const P=(x,y,l=[-14,16],r=[14,16])=>`<g stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"><circle cx="${x}" cy="${y}" r="9"/><path d="M${x} ${y+9}v26M${x} ${y+16}l${l[0]} ${l[1]}M${x} ${y+16}l${r[0]} ${r[1]}M${x} ${y+35}l-9 20M${x} ${y+35}l9 20"/></g>`;
+const SV=[
+P(70,50,[-14,-6],[16,10])+E("🧩",108,78,34)+E("💡",70,36,32),
+P(100,55)+E("💡",100,36,34)+E("✨",134,44,24),
+P(100,50,[-18,-14],[18,-14])+E("🏳️",150,70,34),
+P(80,50,[-12,14],[16,-6])+E("📅",146,70,38)+E("🎉",122,36,24),
+E("📄",70,92,48)+E("🔍",114,98,48)+E("❗",156,62,34),
+P(66,50)+P(134,50)+E("☕",100,108,28)+E("🎵",100,40,24),
+P(60,50)+P(140,50)+E("💬",100,46,34)+E("☕",100,108,26),
+P(55,50,[-14,-6],[20,-14])+P(145,50,[-20,-14],[14,-6])+E("💥",100,64,34),
+P(90,55,[-24,-14],[24,-14])+E("🏋️",150,98,40)+E("💦",54,72,24),
+P(55,50,[-14,-6],[22,-12])+E("🚗",140,104,52),
+E("🎁",62,98,44)+E("🙅",134,96,56),
+E("📅",64,92,46)+E("➡️",102,86,26)+E("📅",144,92,46)+E("⏳",144,48,26),
+E("⛺",88,104,64)+E("🔧",148,100,34),
+E("🚪",68,104,64)+P(134,50)+E("👋",164,58,26),
+E("🛣️",68,104,56)+E("➡️",110,88,26)+E("🏁",152,98,44),
+P(70,50,[-14,16],[22,8])+E("📚",138,104,60)+E("😓",70,34,24),
+P(66,50)+P(134,50)+E("❤️",100,46,30)+E("🤝",100,112,34),
+E("🔍",84,98,56)+E("📦",134,102,56),
+E("✈️",100,88,72)+E("☁️",48,48,32)+E("☁️",160,42,28),
+E("📱",82,98,50)+E("👀",138,88,48)
+].map(b=>`<svg viewBox="0 0 200 140" role="img" aria-label="구동사 그림">${b}</svg>`);
+const ETY=[
+["ex- / e-","밖으로","export(수출: 밖으로 + 운반), exit(출구), express(밖으로 짜내다 → 표현하다)"],
+["pre-","앞서, 미리","predict(예측: 앞서 + 말하다), prepare(준비), preview(미리보기)"],
+["re-","다시, 뒤로","return(되돌아오다), repeat(되풀이), review(다시 보다), reduce(뒤로 이끌다 → 줄이다)"],
+["un-","아닌, 반대","unhappy(불행한), undo(되돌리다), unlock(열다)"],
+["in- / im-","아닌 / 안으로","impossible(불가능한: 아닌), import(수입: 안으로 + 운반)"],
+["dis-","떨어져, 반대","disagree(동의하지 않다), disappear(사라지다), discover(덮개를 벗기다 → 발견하다)"],
+["sub-","아래","subway(지하철), submarine(잠수함: 바다 아래)"],
+["inter-","사이","international(국가 사이의), internet(그물망 사이를 잇는), interview(서로 보는 것)"],
+["trans-","가로질러, 넘어","transport(운반: 가로질러 + 나르다), translate(번역: 건너 옮기다), transfer(옮기다)"],
+["pro-","앞으로","progress(진전: 앞으로 + 걸음), produce(앞으로 이끌어 내다 → 생산하다), project(앞으로 던지다)"],
+["con- / com-","함께","connect(함께 묶다), combine(결합하다), company(함께 빵을 나누는 사람들)"],
+["de-","아래로, 제거","decrease(줄다), destroy(파괴하다), describe(아래로 쓰다 → 묘사하다)"],
+["mis-","잘못","mistake(잘못 잡다 → 실수), misunderstand(오해하다)"],
+["ad- / a-","~쪽으로","add(더하다), arrive(도착하다: ~로 + 강가), address(주소), advice(조언)"],
+["bi-","둘","bicycle(자전거: 둘 + 바퀴), bilingual(두 언어를 하는)"],
+["auto-","스스로","automatic(자동의), autograph(자필 서명)"],
+["tele-","멀리","telephone(전화: 멀리 + 소리), television(텔레비전: 멀리 + 보기)"],
+["anti-","반대","antibiotic(항생제: 생명에 맞서는), antivirus(바이러스 방지)"],
+["-er / -or","~하는 사람","teacher(가르치는 사람), actor(연기하는 사람)"],
+["-ist","~하는 사람, 전문가","artist(예술가), scientist(과학자)"],
+["-ess","여성","actress(여배우), princess(공주)"],
+["-tion / -ment","행위, 결과","action(행동), movement(움직임), agreement(동의)"],
+["-ity / -ness","성질, 상태","activity(활동), kindness(친절함)"],
+["-ful","~이 가득한","beautiful(아름다운), helpful(도움이 되는)"],
+["-less","~이 없는","homeless(집이 없는), careless(조심성 없는)"],
+["-able","~할 수 있는","acceptable(받아들일 수 있는), comfortable(편안한)"],
+["-ly","부사를 만드는 꼬리","quickly(빠르게), slowly(느리게)"],
+["-ous","~한 성질의","dangerous(위험한), famous(유명한)"],
+["-ize","~하게 만들다","organize(조직하다), recognize(알아보다)"]
+];
+const EO=[...Array(40).keys(),...Array.from({length:EX.length-240},(_,i)=>240+i),...Array.from({length:200},(_,i)=>40+i)];
+const ARR={w:W,e:EX,m:MS};
+const $=q=>document.querySelector(q);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const LS=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
+const put=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}};
+let S=Object.assign({key:"",per:50,pe:5,pm:3,srs:{},notes:{},sel:{},nd:{d:0,w:0,e:0,m:0},sh:0,st:{last:0,n:0},dn:{d:0,n:0},xp:0,days:[],rw:"",th:0,lap:{},rp:{},dp:0},LS("ox2",{}));
+let DC=LS("ox3d",{}),KC=LS("ox2k",{});
+const app=$("#app"),busy=new Set(),RR={},PERR={};
+let Q=[],TOT=1,flip=false,tm;
+const toast=t=>{const m=$("#msg");if(m)m.textContent=t||""};
+const save=()=>{if(!put("ox2",S))toast("저장 공간이 부족해요. 내 사진을 줄여 주세요.")};
+const today=()=>Math.floor((Date.now()-new Date().getTimezoneOffset()*6e4)/864e5);
+const get=id=>ARR[id[0]][+id.slice(1)];
+const wk=it=>it.w.split(",")[0].trim();
+const kk=it=>it.w+"|"+it.pos.slice(0,6);
+const qo=it=>wk(it)+(it.s&&it.s.length<14?" "+it.s:"");
+const once=(k,f)=>{if(busy.has(k))return;busy.add(k);return f().finally(()=>busy.delete(k))};
+const sayBtn=(t,u)=>`<button class="ic" data-a="say" data-t="${esc(t)}" data-u="${esc(u||"")}" aria-label="듣기">🔊</button>`;
+function resetDay(){const T=today();if(S.nd.d!==T)S.nd={d:T,w:0,e:0,m:0}}
+function lists(t){resetDay();const T=today(),lim={w:S.per,e:S.pe,m:S.pm}[t];
+ const due=Object.keys(S.srs).filter(i=>i[0]===t&&S.srs[i].due<=T).sort((a,b)=>S.srs[a].due-S.srs[b].due);
+ const fresh=[],n=Math.max(0,lim-S.nd[t]);
+ for(let k=0;k<ARR[t].length&&fresh.length<n;k++){const i=t==="e"?EO[k]:k;if(!S.srs[t+i])fresh.push(t+i)}
+ return{due,fresh}}
+function say(t,u){try{if(u){new Audio(u).play().catch(()=>tts(t));return}}catch(e){}tts(t)}
+function tts(t,r){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=r||.9;speechSynthesis.speak(u)}catch(e){}}
+
+async function dict(w){const k=w.toLowerCase();
+ try{const r=await fetch("https://api.dictionaryapi.dev/v2/entries/en/"+encodeURIComponent(k));
+  if(r.status===404){DC[k]={i:"",a:"",d:[],x:""}}
+  else if(!r.ok)throw 0;
+  else{const e=(await r.json())[0];let i="",a="";
+   const ps=(e.phonetics||[]).slice().sort((x,y)=>(/-us\b/.test(y.audio||"")?1:0)-(/-us\b/.test(x.audio||"")?1:0));for(const p of ps){if(!i&&p.text)i=p.text;if(!a&&p.audio)a=p.audio}
+   if(!i&&e.phonetic)i=e.phonetic;
+   const d=[],x=[];
+   for(const m of e.meanings||[])for(const f of(m.definitions||[]).slice(0,1)){d.push((m.partOfSpeech?m.partOfSpeech+": ":"")+f.definition);if(f.example)x.push(f.example)}
+   DC[k]={i,a,d:d.slice(0,2),x:x[0]||""}}
+  put("ox3d",DC)}catch(e){}}
+async function ko(it){try{const q=(/^v\./.test(it.pos)?"to ":"")+wk(it);
+ const j=await(await fetch("https://api.mymemory.translated.net/get?q="+encodeURIComponent(q)+"&langpair=en|ko")).json();
+ const t=j.responseData&&j.responseData.translatedText||"";
+ if(!t||/MYMEMORY|QUERY LENGTH/i.test(t))throw 0;KC[kk(it)]=t;put("ox2k",KC)}catch(e){}}
+async function ap(path,full){const r=await fetch(full||"https://api.unsplash.com"+path,{headers:{Authorization:"Client-ID "+S.key}});if(!r.ok)throw new Error(r.status);return r.json()}
+const perr=e=>{const c=e.message;return c==="401"?"Unsplash 키가 올바르지 않아요. 설정에서 Access Key를 확인해 주세요.":(c==="403"||c==="429")?"사진 요청 한도를 넘었어요. 1시간 뒤에 다시 시도해 주세요.":"사진 서버에 연결하지 못했어요. 인터넷 연결을 확인해 주세요."};
+async function photo(id,q){if(!S.key)return;const r=RR[id]||(RR[id]={res:[],i:-1,p:0});
+ try{if(r.i+1>=r.res.length){r.p++;r.res=r.res.concat((await ap("/search/photos?query="+encodeURIComponent(q)+"&per_page=10&page="+r.p+"&orientation=squarish&content_filter=high")).results)}
+  const p=r.res[++r.i];if(!p){PERR[id]="더 이상 사진이 없어요. 📷로 내 사진을 넣어 보세요.";return}
+  delete PERR[id];S.sel[id]={u:p.urls.small,n:p.user.name,l:p.links.html};save();ap("",p.links.download_location).catch(()=>{})}
+ catch(e){PERR[id]=perr(e)}}
+function addImg(f){const id=Q[0];if(!id||id[0]!=="w")return;const rd=new FileReader();
+ rd.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,360/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*k;c.height=im.height*k;c.getContext("2d").drawImage(im,0,0,c.width,c.height);S.sel[id]={c:c.toDataURL("image/jpeg",.75)};delete PERR[id];save();patch(id);toast("내 사진을 넣었어요")};im.src=rd.result};rd.readAsDataURL(f)}
+
+const norm=s=>s.toLowerCase().replace(/[’‘]/g,"'").replace(/won't/g,"will not").replace(/can't/g,"cannot").replace(/n't/g," not").replace(/'ve/g," have").replace(/'m/g," am").replace(/'re/g," are").replace(/'ll/g," will").replace(/'d/g," would").replace(/'s\b/g," is").replace(/[^a-z0-9 ]/g," ").split(/\s+/).filter(Boolean);
+function lcs(a,b){const n=a.length,m=b.length,D=Array.from({length:n+1},()=>Array(m+1).fill(0));
+ for(let i=n-1;i>=0;i--)for(let j=m-1;j>=0;j--)D[i][j]=a[i]===b[j]?D[i+1][j+1]+1:Math.max(D[i+1][j],D[i][j+1]);
+ const ia=new Set,ib=new Set;let i=0,j=0;
+ while(i<n&&j<m){if(a[i]===b[j]){ia.add(i);ib.add(j);i++;j++}else if(D[i+1][j]>=D[i][j+1])i++;else j++}
+ return{len:D[0][0],ia,ib}}
+function grade(id){const it=get(id),ans=(S.notes[id]||"").trim();if(!ans)return null;
+ const u=norm(ans);if(!u.length)return null;
+ const ms=it.a.filter(a=>!/[가-힣]/.test(a)).map(a=>a.split(" (")[0]);
+ if(!ms.length)return{lv:"n",t:"내 답과 정답을 직접 비교해 보세요",b:""};
+ let best=null;
+ for(const m of ms){const t=norm(m),r=lcs(u,t),sc=r.len/Math.max(u.length,t.length);if(!best||sc>best.sc)best={m,t,r,sc}}
+ const same=(a,b)=>a.length===b.length&&a.every((w,i)=>w===b[i]);
+ const wrong=(it.x||"").split(" / ").map(x=>norm(x.split(" (")[0])).some(w=>w.length&&same(u,w));
+ const mine=u.map((w,i)=>best.r.ia.has(i)?esc(w):`<s>${esc(w)}</s>`).join(" "),right=best.t.map((w,i)=>best.r.ib.has(i)?esc(w):`<b class="mi">${esc(w)}</b>`).join(" ");
+ const b=`<div>내 답: ${mine}</div><div>정답: ${right}</div><small>자동 비교예요(축약형은 풀어서 비교해요). 자세한 첨삭이 필요하면 채팅에서 받아 보세요.</small>`;
+ if(best.sc===1)return{lv:"ok",t:"✅ 정확해요!",b,sug:3};
+ if(wrong)return{lv:"warn",t:"⚠ 흔한 실수와 같아요",b,sug:0};
+ if(best.sc>=.75)return{lv:"near",t:"👍 거의 맞아요",b,sug:1};
+ return{lv:"bad2",t:"✍️ 다시 살펴볼 부분이 있어요",b,sug:0}}
+
+function phHtml(id,it){const s=S.sel[id];
+ if(s)return`<img src="${s.c||esc(s.u)}" alt="">`+(s.c?"":`<a class="cr" href="${esc(s.l)}?utm_source=oxford_cards&utm_medium=referral" target="_blank" rel="noopener">Photo by ${esc(s.n)} / Unsplash</a>`);
+ if(PERR[id])return`<div class="q err">${esc(PERR[id])}</div>`;
+ return`<div class="q">${S.key?"…":"?"}<small>${esc(it.pos)}</small></div>`}
+function wordBack(id,it){const d=DC[wk(it).toLowerCase()]||{},k=KC[kk(it)];
+ return`<div class="w">${esc(it.w)}${sayBtn(wk(it),d.a)}</div><div class="ipa" id="ipa">${esc(d.i||"")}</div><div class="pos">${esc(it.pos)}${it.s?" · "+esc(it.s):""}</div><div class="ko" id="ko">${k?esc(k):""}</div><div class="def" id="def">${(d.d||[]).map(esc).join("<br>")}</div><div class="ex" id="exs">${d.x?esc(d.x)+sayBtn(d.x):""}</div>`}
+function patch(id){if(Q[0]!==id||id[0]!=="w")return;const it=get(id),w=wInfo(id,it),set=(i,h)=>{const e=document.getElementById(i);if(e)e.innerHTML=h};
+ set("ipa",esc(w.ipa));set("exs",w.ex?esc(w.ex)+sayBtn(w.ex):"");set("ph",phHtml(id,it));set("ko",capHtml(w));set("def",w.def)}
+function load1(id){const it=get(id),w=wk(it);
+ if(!DC[w.toLowerCase()])once("d"+w,()=>dict(w))?.then(()=>patch(id));
+ if(!KC[kk(it)])once("k"+kk(it),()=>ko(it))?.then(()=>patch(id));
+ if(S.key&&!S.sel[id]&&!PERR[id])once("p"+id,()=>photo(id,qq(it)))?.then(()=>patch(id))}
+const lab=(id,r)=>{if(r===0)return"곧";if(r===1)return"1일";const o=S.srs[id]||{s:0};return ST[Math.min(7,o.s+(r===3?2:1))]+"일"};
+
+const TT=["영어 새싹","말문 트인 새싹","수다 시작","카페 단골","동네 회화러","여행 가능자","원어민 친구","회화 고수"];
+const lvOf=x=>Math.min(TT.length,1+Math.floor(Math.sqrt(x/120)));
+const cnt=t=>Object.keys(S.srs).filter(i=>i[0]===t).length;
+const BD=[["🌱","첫 카드",()=>Object.keys(S.srs).length>=1],["📚","단어 50",()=>cnt("w")>=50],["🏅","단어 300",()=>cnt("w")>=300],["💬","표현 20",()=>cnt("e")>=20],["🗣️","미션 10",()=>cnt("m")>=10],["🔥","3일 연속",()=>S.st.n>=3],["⚡","7일 연속",()=>S.st.n>=7],["🎭","롤플레이 3개",()=>Object.keys(S.rp).length>=3],["📖","단어 1000",()=>cnt("w")>=1000],["🎤","XP 500",()=>S.xp>=500],["🌟","레벨 5",()=>lvOf(S.xp)>=5],["👑","30일 연속",()=>S.st.n>=30]];
+const TH=[["#0f766e","#14b8a6","#2dd4bf","#0f766e"],["#6d28d9","#a78bfa","#c4b5fd","#6d28d9"],["#be185d","#f472b6","#f9a8d4","#be185d"],["#c2410c","#fb923c","#fdba74","#c2410c"],["#1d4ed8","#60a5fa","#93c5fd","#1d4ed8"]];
+function theme(){try{const d=matchMedia("(prefers-color-scheme:dark)").matches,t=TH[S.th||0],s=document.documentElement.style;s.setProperty("--ac",d?t[2]:t[0]);s.setProperty("--ac2",d?t[3]:t[1])}catch(e){}}
+function pop(x,up){const d=document.createElement("div");d.className="popx";d.textContent="+"+x+" XP"+(up?" · 레벨 업! 🎉":"");document.body.appendChild(d);setTimeout(()=>d.remove(),1000);try{navigator.vibrate&&navigator.vibrate(x>3?15:0)}catch(e){}}
+function confetti(){for(let i=0;i<22;i++){const s=document.createElement("span");s.className="cf";s.textContent=["🎉","✨","🎊","⭐","🔥"][i%5];s.style.left=Math.random()*95+"%";s.style.animationDelay=Math.random()*.8+"s";document.body.appendChild(s);setTimeout(()=>s.remove(),3500)}}
+function lvlBar(){const L=lvOf(S.xp),cur=120*(L-1)**2,nx=120*L**2,pc=L>=TT.length?100:Math.round((S.xp-cur)/(nx-cur)*100);
+ return`<div class="lvl"><b>Lv.${L} ${TT[L-1]}</b><span class="mut">${S.xp} XP${L<TT.length?" · 다음 레벨까지 "+(nx-S.xp):""}</span></div><div class="pbar"><i style="width:${pc}%"></i></div>`}
+function weekBox(){const T=today(),n=cnt("w"),nx=Math.ceil((n+1)/100)*100;
+ let h=`<div class="sec">이번 주</div><div class="week">${[6,5,4,3,2,1,0].map(k=>{const d=T-k,on=S.days.includes(d);return`<div class="${on?"on":""}"><small>${["일","월","화","수","목","금","토"][new Date(d*864e5).getUTCDay()]}</small><span>${on?"✓":""}</span></div>`}).join("")}</div>`;
+ if(S.rw)h+=`<div class="note" style="margin-top:12px">🎁 ${nx}단어를 채우면 나에게 주는 보상: <b>${esc(S.rw)}</b> (${nx-n}개 남음)</div>`;
+ return h+`<div class="sec">배지</div><div class="bdg">${BD.map(b=>`<span class="${b[2]()?"on":""}">${b[0]}<small>${b[1]}</small></span>`).join("")}</div>`}
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const micBtn=t=>`<button class="ic" data-a="spk" data-t="${esc(t)}" aria-label="따라 말하기">🎤</button>`;
+function listen(cb){if(!SR){toast("이 브라우저는 음성 인식을 지원하지 않아요. 아이폰은 Safari, 안드로이드는 Chrome에서 열어 보세요.");return}
+ try{const r=new SR();r.lang="en-US";r.interimResults=false;r.maxAlternatives=1;r.onresult=e=>cb(e.results[0][0].transcript);r.onerror=e=>toast("마이크를 쓸 수 없어요 ("+e.error+"). 마이크 권한을 허용해 주세요.");toast("🎤 듣고 있어요. 말해 보세요");r.start()}catch(e){toast("음성 인식을 시작하지 못했어요")}}
+function shadow(t){listen(x=>{const a=norm(t),b=norm(x),r=lcs(a,b),sc=Math.round(r.len/Math.max(a.length,b.length,1)*100),el=document.getElementById("sp");
+ if(el)el.innerHTML=`<div class="fb ${sc>=90?"ok":sc>=60?"near":"bad2"}"><b>${sc>=90?"✅ 잘 들렸어요!":sc>=60?"👍 거의 들렸어요":"🎤 다시 해 볼까요?"} (${sc}%)</b><div>인식된 말: ${esc(x)}</div><div>목표 문장: ${esc(t)}</div><small>음성 인식이 알아들은 정도예요. 발음 자체를 정확히 평가하는 건 아니에요.</small></div>`;toast("")})}
+function dictate(){listen(x=>{const id=Q[0];S.notes[id]=x;save();const n=document.getElementById("note");if(n)n.value=x;toast("")})}
+function copyReq(){const id=Q[0],it=get(id),n=(S.notes[id]||"").trim(),t=id[0];let p;
+ if(t==="m")p=`영어 회화 연습 첨삭을 부탁해요.\n문제: ${it.s} (${it.h})\n내 답: ${n||"(아직 안 썼어요)"}\n정답 예시: ${it.a.join(" / ")}\n틀린 부분과 이유를 한국어로 짧게 알려 주고, 원어민이 실제로 쓰는 더 자연스러운 표현도 알려 주세요.`;
+ else p=`영어 문장 첨삭을 부탁해요.\n표현: ${t==="w"?it.w:it.e}\n내가 쓴 문장: ${n||"(아직 안 썼어요)"}\n문법 오류와 어색한 부분을 한국어로 짧게 설명하고, 더 자연스러운 문장도 알려 주세요.`;
+ (navigator.clipboard?navigator.clipboard.writeText(p):Promise.reject()).then(()=>toast("복사했어요! Claude 채팅에 붙여넣으면 첨삭해 줘요")).catch(()=>{try{prompt("아래 글을 복사해서 채팅에 붙여넣어 주세요",p)}catch(e){toast("복사하지 못했어요")}})}
+const weak=()=>Object.keys(S.lap).filter(i=>S.lap[i]>0&&S.srs[i]).sort((a,b)=>S.lap[b]-S.lap[a]);
+function gain(x){const T=today(),L0=lvOf(S.xp);S.xp+=x;if(!S.days.includes(T)){S.days.push(T);S.days=S.days.slice(-90)}if(S.st.last!==T){S.st.n=S.st.last===T-1?S.st.n+1:1;S.st.last=T}if(S.dn.d!==T)S.dn={d:T,n:0};S.dn.n++;save();pop(x,lvOf(S.xp)>L0)}
+function cmp(ans,ms){const u=norm(ans);if(!u.length)return null;let best=null;
+ for(const m of ms){const t=norm(m),r=lcs(u,t),sc=r.len/Math.max(u.length,t.length);if(!best||sc>best.sc)best={m,t,r,sc}}
+ const mine=u.map((w,i)=>best.r.ia.has(i)?esc(w):`<s>${esc(w)}</s>`).join(" "),right=best.t.map((w,i)=>best.r.ib.has(i)?esc(w):`<b class="mi">${esc(w)}</b>`).join(" ");
+ const lv=best.sc>=.9?"ok":best.sc>=.6?"near":"bad2";
+ return{sc:best.sc,lv,t:lv==="ok"?"✅ 정확해요!":lv==="near"?"👍 거의 맞아요":"✍️ 다시 살펴봐요",html:`<div>내 답: ${mine}</div><div>가까운 정답: ${right}</div>`}}
+const RPS=[
+{n:"☕ 카페에서 주문하기",t:[["Hi! What can I get for you?","어서 오세요. 뭐 드릴까요?",["I’d like a latte, please.","Can I get a latte, please?"],"라떼 주문"],["Sure. Hot or iced?","뜨거운 걸로 드릴까요, 아이스로 드릴까요?",["Iced, please.","I’ll have it iced."],"아이스로"],["Anything else?","더 필요한 건 없으세요?",["No, that’s all. Thank you.","That’s it, thanks."],"그게 다예요"],["For here or to go?","드시고 가세요, 포장이세요?",["To go, please.","Can I get it to go?"],"포장"]]},
+{n:"📅 친구와 약속 잡기",t:[["Hey! Are you free this weekend?","이번 주말에 시간 돼?",["Yeah, I think so. What’s up?","Maybe. What’s the plan?"],"시간 되는지 대답"],["Let’s grab lunch on Saturday.","토요일에 점심 먹자.",["Sounds good! What time?","That works for me. What time?"],"좋다고 하고 시간 묻기"],["How about noon?","정오 어때?",["Noon works for me.","Sure, see you at noon."],"좋다고 대답"],["Great. Don’t be late!","좋아. 늦지 마!",["I won’t. See you then!","No worries. See you!"],"걱정 말라고 하기"]]},
+{n:"🏃 늦어서 사과하기",t:[["Where are you? We’ve been waiting.","어디야? 우리 기다리고 있어.",["I’m so sorry. I’m running late.","Sorry, I’m on my way."],"사과하고 늦는다고 말하기"],["How long will it take?","얼마나 걸려?",["I’ll be there in ten minutes.","About ten minutes."],"10분 걸린다고 말하기"],["Okay. Hurry up!","알았어. 서둘러!",["I will. Thanks for waiting.","On my way. Thanks for waiting."],"기다려 줘서 고맙다고 말하기"]]},
+{n:"✈️ 공항 체크인",t:[["Next, please. Where are you flying today?","다음 분. 오늘 어디로 가세요?",["I’m flying to Tokyo.","I’m going to Tokyo."],"도쿄로 간다고 말하기"],["Would you like a window or an aisle seat?","창가 자리와 복도 자리 중 어느 쪽이 좋으세요?",["A window seat, please.","I’d like a window seat."],"창가 선택"],["Any bags to check?","부칠 짐 있으세요?",["Just this one.","Yes, one bag."],"가방 하나"]]},
+{n:"💼 직장에서 업무 요청",t:[["Can you send me the report by Friday?","금요일까지 보고서 보내 줄 수 있어요?",["Sure. I’ll send it over by Friday.","Of course. I’ll get it to you by Friday."],"가능하다고 답하기"],["Do you need any help with it?","그것 관련해서 도움이 필요해요?",["Actually, could you walk me through the data?","Yes, could you give me a hand?"],"도움 요청하기"],["Sure. Let’s talk tomorrow morning.","좋아요. 내일 아침에 얘기해요.",["Sounds good. Thank you!","Great, see you tomorrow."],"좋다고 하고 감사하기"]]},
+{n:"😄 오랜만에 친구 만나기",t:[["Hey, long time no see! What have you been up to?","오랜만이야! 요즘 뭐하고 지냈어?",["Not much. I’ve been studying English. How about you?","I’ve been pretty busy. You?"],"근황 말하고 되묻기"],["Same here. By the way, did you watch that new show?","나도 비슷해. 그런데 그 새 드라마 봤어?",["Not yet. Is it good?","No, I haven’t. What’s it about?"],"아직 안 봤다고 하고 묻기"],["It’s hilarious. You have to watch it.","엄청 웃겨. 꼭 봐야 해.",["I’ll check it out tonight.","Okay, I’ll check it out."],"볼게 라고 대답"]]}
+];
+let RP=null,DK=null;
+function moreCards(){const w=weak().length;return`<div class="tcard"><div class="ico">🧩</div><div><b>취약 카드</b><div class="mut">자주 틀린 카드 ${w}개</div></div><button class="p" data-a="go" data-t="x" ${w?"":"disabled"}>시작</button></div><div class="tcard"><div class="ico">🎭</div><div><b>상황 롤플레이</b><div class="mut">카페, 공항, 회의 등 ${RPS.length}가지</div></div><button class="p" data-a="rpl">시작</button></div><div class="tcard"><div class="ico">👂</div><div><b>듣고 받아쓰기</b><div class="mut">10문장 · 천천히 듣기 가능</div></div><button class="p" data-a="dks">시작</button></div><div class="tcard"><div class="ico">🎯</div><div><b>퀴즈</b><div class="mut">객관식 · 빈칸 · 쓰기</div></div><button class="p" data-a="qm">시작</button></div><div class="tcard"><div class="ico">🌱</div><div><b>어원 도감</b><div class="mut">접두사·접미사로 뜻 짐작하기</div></div><button class="p" data-a="ety">보기</button></div><div class="tcard"><div class="ico">🎬</div><div><b>Vloglish</b><div class="mut">실제 vlog 장면으로 숙어 듣기</div></div><a class="btn p" href="https://vloglish.homes" target="_blank" rel="noopener">열기</a></div>`}
+function rpList(){RP=null;app.innerHTML=`<div class="top"><button class="lk" data-a="home">← 홈</button><b>상황 롤플레이</b><span></span></div><p class="mut">상대가 말하면 내가 영어로 대답해요. 소리 내어 말하거나 써 보세요.</p>`+RPS.map((s,i)=>`<div class="tcard"><div><b>${s.n}</b><div class="mut">${s.t.length}번 주고받기${S.rp[i]!=null?" · 최고 "+S.rp[i]+"/"+s.t.length:""}</div></div><button class="p" data-a="rps" data-i="${i}">시작</button></div>`).join("")+`<div id="msg"></div>`}
+function rpStart(i){RP={i,n:0,hist:[],ok:0,val:"",fb:null};rpShow()}
+function rpShow(){const s=RPS[RP.i],tn=s.t[RP.n];
+ let h=`<div class="top"><button class="lk" data-a="rpl">← 목록</button><span>${s.n} · ${RP.n+1}/${s.t.length}</span></div><div class="pbar"><i style="width:${RP.n/s.t.length*100}%"></i></div>`;
+ h+=RP.hist.map(([w,x])=>`<div class="bub ${w==="me"?"me":""}">${esc(x)}</div>`).join("");
+ h+=`<div class="bub">${esc(tn[0])}${sayBtn(tn[0])}</div><div class="mut" style="margin:-2px 0 12px 6px">${esc(tn[1])}</div>`;
+ if(RP.fb)h+=`<div class="bub me">${esc(RP.val)}</div><div class="fb ${RP.fb.lv}"><b>${RP.fb.t}</b>${RP.fb.html}<small>정답 예시: ${tn[2].map(esc).join(" / ")} ${sayBtn(tn[2][0])}${micBtn(tn[2][0])}</small><small>정답 예시와 비교한 자동 채점이에요. 다른 표현도 맞을 수 있어요.</small></div><div id="sp"></div>`;
+ else h+=`<button class="wide2" data-a="rpd">🎤 말로 답하기</button><textarea id="rpa" placeholder="영어로 대답해 보세요 (힌트: ${esc(tn[3])})">${esc(RP.val)}</textarea>`;
+ h+=`<div id="msg"></div><div class="bar2"><div class="in">`+(RP.fb?`<button class="p big" data-a="rpn">${RP.n+1<s.t.length?"다음":"결과 보기"}</button>`:`<button class="p big" data-a="rpc">확인하기</button>`)+`</div></div>`;
+ app.innerHTML=h}
+function rpCheck(){const tn=RPS[RP.i].t[RP.n],c=cmp(RP.val,tn[2]);if(!c)return toast("먼저 영어로 대답해 보세요");RP.fb=c;if(c.sc>=.6){RP.ok++;gain(3)}rpShow();scrollTo(0,0)}
+function rpNext(){const s=RPS[RP.i],tn=s.t[RP.n];RP.hist.push(["p",tn[0]],["me",RP.val]);RP.n++;RP.val="";RP.fb=null;
+ if(RP.n<s.t.length){rpShow();scrollTo(0,0);return}
+ S.rp[RP.i]=Math.max(S.rp[RP.i]||0,RP.ok);gain(5);
+ app.innerHTML=`<div class="done"><div class="em">🎭</div><div class="big2">대화 완료!</div><p class="mut">${s.t.length}번 중 ${RP.ok}번이 자연스러웠어요. (+5 XP)</p></div>`+RP.hist.map(([w,x])=>`<div class="bub ${w==="me"?"me":""}">${esc(x)}</div>`).join("")+`<div class="row" style="margin-top:14px"><button data-a="rps" data-i="${RP.i}">다시 하기</button><button class="p" data-a="rpl">다른 상황</button></div>`;confetti()}
+function dkPool(){const a=[];EX.forEach(e=>{if(e.x)a.push(e.x)});MS.forEach(m=>{const s=m.a[0];if(s&&!/[가-힣]/.test(s))a.push(s.split(" (")[0])});return a}
+function dkStart(){const P=dkPool(),st=(S.dp||0)%P.length;DK={l:Array.from({length:10},(_,i)=>P[(st+i)%P.length]),n:0,val:"",fb:null,ok:0};S.dp=st+10;save();dkShow()}
+function dkShow(){const t=DK.l[DK.n];
+ let h=`<div class="top"><button class="lk" data-a="home">← 홈</button><span>받아쓰기 ${DK.n+1}/${DK.l.length}</span></div><div class="pbar"><i style="width:${DK.n/DK.l.length*100}%"></i></div>
+ <div class="card" style="cursor:default"><span class="lv">듣고 받아쓰기</span><div class="sit">문장을 듣고 그대로 써 보세요</div><div class="row"><button class="p" data-a="dkp" data-r="0.9">▶ 듣기</button><button data-a="dkp" data-r="0.6">🐢 천천히</button></div></div>`;
+ if(DK.fb)h+=`<div class="bub me">${esc(DK.val)}</div><div class="fb ${DK.fb.lv}"><b>${DK.fb.t}</b>${DK.fb.html}<small>정답 문장: ${esc(t)} ${sayBtn(t)}${micBtn(t)}</small></div><div id="sp"></div>`;
+ else h+=`<textarea id="dka" placeholder="들은 문장을 영어로 써 보세요">${esc(DK.val)}</textarea>`;
+ h+=`<div id="msg"></div><div class="bar2"><div class="in">`+(DK.fb?`<button class="p big" data-a="dkn">${DK.n+1<DK.l.length?"다음":"결과 보기"}</button>`:`<button class="p big" data-a="dkc">확인하기</button>`)+`</div></div>`;
+ app.innerHTML=h}
+function dkCheck(){const c=cmp(DK.val,[DK.l[DK.n]]);if(!c)return toast("들은 문장을 먼저 써 보세요");DK.fb=c;if(c.sc>=.9)DK.ok++;gain(c.sc>=.9?4:c.sc>=.6?2:1);dkShow();scrollTo(0,0)}
+function dkNext(){DK.n++;DK.val="";DK.fb=null;if(DK.n<DK.l.length){dkShow();scrollTo(0,0);return}
+ app.innerHTML=`<div class="done"><div class="em">👂</div><div class="big2">받아쓰기 끝!</div><p class="mut">${DK.l.length}문장 중 ${DK.ok}문장을 정확히 썼어요.</p><button class="p big" data-a="home">홈으로</button></div>`;confetti()}
+const PKO=[["modal v.","조동사"],["auxiliary v.","조동사"],["definite article","관사"],["indefinite article","관사"],["infinitive marker","to부정사 표지"],["exclam.","감탄사"],["number","수사"],["adj.","형용사"],["adv.","부사"],["prep.","전치사"],["conj.","접속사"],["pron.","대명사"],["det.","한정사"],["n.","명사"],["v.","동사"]];
+const posKo=p=>{let s=p;for(const[a,b]of PKO)s=s.split(a).join(b);return s.replace(/,\s*/g," · ")};
+const qq=it=>{const c=cw(it);return c&&c[4]?c[4]:qo(it)};
+function wInfo(id,it){const c=cw(it),d=DC[wk(it).toLowerCase()]||{};return{c,ipa:c?c[1]:(d.i||""),ex:c?c[2]:(d.x||""),ko:c?c[0]:(KC[kk(it)]||""),n:c&&c[3]||"",def:(d.d||[]).map(esc).join("<br>"),a:d.a}}
+const capHtml=w=>w.ko?esc(w.ko)+`<small>${w.c?"✓ 검수 완료":"자동 번역(미검수)"}</small>`:"";
+function wordCard(id,it){const w=wInfo(id,it);
+ let h=`<div class="card" data-a="flip"><span class="lv">${LV[it.l]}</span><div class="w">${esc(it.w)}${sayBtn(wk(it),w.a)}</div><div class="pos">${esc(posKo(it.pos))}${it.s?" · "+esc(it.s):""}</div><div class="ipa" id="ipa">${esc(w.ipa)}</div><div class="ex" id="exs">${w.ex?esc(w.ex)+sayBtn(w.ex):""}</div>`;
+ if(flip)h+=`<div class="phw" style="margin-top:14px"><div class="ph" id="ph">${phHtml(id,it)}</div><div class="cap" id="ko">${capHtml(w)}</div><div class="tools"><button data-a="other" aria-label="다른 사진">🔄</button><button data-a="mine" aria-label="내 사진">📷</button></div></div>${w.n?`<div class="ety">🌱 ${esc(w.n)}</div>`:""}<div class="def" id="def">${w.def}</div>`;
+ else h+=`<div class="hint">뜻이 떠오르면 탭하세요</div>`;
+ return h+`</div>`}
+const ETSV=[
+E("🚪",60,100,60)+E("➡️",106,86,28)+E("📦",152,100,48),
+E("1️⃣",62,96,44)+E("➡️",102,88,26)+E("2️⃣",142,96,44)+E("⭐",62,40,24),
+E("🔄",100,100,70),
+E("🔒",64,100,56)+E("➡️",104,88,26)+E("🔓",146,100,56),
+E("➡️",64,92,32)+E("📦",122,100,60)+E("🚫",164,56,30),
+E("🧩",58,100,50)+E("↔️",100,90,30)+E("🧩",142,100,50),
+E("🏙️",100,50,50)+E("⬇️",100,80,24)+E("🚇",100,124,44),
+E("🏠",46,100,46)+E("🧍",100,100,46)+E("🏢",154,100,46)+E("↔️",100,48,26),
+E("🌉",100,102,74)+E("🚶",54,100,34)+E("➡️",148,66,26),
+E("🚶",64,100,46)+E("➡️",112,92,34)+E("➡️",150,92,34),
+E("🤝",100,96,70)+E("👥",100,44,28),
+E("📉",100,102,70)+E("⬇️",152,58,28),
+E("❌",100,100,70)+E("✏️",50,50,28),
+E("➡️",64,92,34)+E("🎯",132,100,60),
+E("🚲",100,102,70)+E("2️⃣",100,40,30),
+E("⚙️",100,102,68)+E("🤖",156,56,30),
+E("🔭",66,102,58)+E("🌙",150,66,40),
+E("🛡️",90,102,68)+E("🦠",156,60,32),
+E("🧑‍🏫",88,104,64)+E("📚",152,100,44),
+E("🎨",64,100,52)+E("🧑‍🎨",132,100,60),
+E("👩",66,100,58)+E("🎬",132,100,56),
+E("🏃",64,100,52)+E("➡️",104,88,26)+E("🏆",146,100,52),
+E("😊",100,100,70)+E("✨",152,48,28),
+E("🥛",100,106,72)+E("✨",152,54,26),
+E("🏠",84,102,64)+E("🚫",124,88,56),
+E("👍",66,100,56)+E("✅",138,98,56),
+E("🏃",62,100,52)+E("💨",114,94,32)+E("⚡",160,60,28),
+E("⚠️",100,102,72),
+E("🧱",64,100,52)+E("➡️",104,88,26)+E("🏠",148,100,56)
+].map(b=>`<svg viewBox="0 0 200 140" role="img" aria-label="어원 그림">${b}</svg>`);
+function etyPage(){app.innerHTML=`<div class="top"><button class="lk" data-a="home">← 홈</button><b>어원 도감</b><span></span></div><p class="mut">단어를 쪼개 보면 뜻이 보여요. 아래는 자주 쓰이는 접두사·접미사예요.</p>`+ETY.map((r,i)=>`<div class="etl"><div class="etsv">${ETSV[i]}</div><div><b>${esc(r[0])}</b> · ${esc(r[1])}<div class="mut">${esc(r[2])}</div></div></div>`).join("")}
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+let QZ=null;
+function qPool(){const p=[];W.forEach((it,i)=>{const c=cw(it);if(c)p.push({id:"w"+i,en:wk(it),ko:c[0],ex:c[2]})});EX.forEach((e,i)=>p.push({id:"e"+i,en:e.e,ko:e.k,ex:e.x}));return p}
+function qMake(p,mode,pool){let t=mode==="mx"?["mc","mk","cz","ty"][Math.floor(Math.random()*4)]:mode;
+ const opts=k=>{const s=new Set([p[k]]);let g=0;while(s.size<4&&g++<60)s.add(pool[Math.floor(Math.random()*pool.length)][k]);return shuf([...s])};
+ if(t==="cz"){const base=p.en.replace(/\.\.\.|\?/g,"").trim(),re=new RegExp(base.replace(/[.*+?^${}()|[\]\\]/g,"\\$&").replace(/[’']/g,"[’']"),"i");
+  if(p.ex&&base&&re.test(p.ex))return{id:p.id,t,q:p.ex.replace(re,"_____"),h:p.ko,o:opts("en"),a:p.en};t="mc"}
+ if(t==="mk")return{id:p.id,t,q:p.ko,h:"영어로는?",o:opts("en"),a:p.en};
+ if(t==="ty")return{id:p.id,t,q:p.ko,h:"영어로 써 보세요",a:p.en};
+ return{id:p.id,t:"mc",q:p.en,h:"뜻은?",o:opts("ko"),a:p.ko}}
+function qMenu(){app.innerHTML=`<div class="top"><button class="lk" data-a="home">← 홈</button><b>퀴즈</b><span></span></div><p class="mut">검수된 단어와 표현(구동사·숙어·상황 표현)에서 10문제를 내요. 틀린 카드는 취약 카드에 모여요.</p>`+[["mx","🎲 섞어서 풀기"],["mc","📝 객관식: 영어 → 뜻"],["mk","🔁 객관식: 뜻 → 영어"],["cz","🧩 빈칸 채우기 (객관식)"],["ty","⌨️ 뜻 보고 영어 쓰기"]].map(([m,n])=>`<button class="wide2 ${m==="mx"?"p":""}" data-a="qs" data-m="${m}">${n}</button>`).join("")}
+function qStart(m){const pool=qPool(),L=shuf(pool).slice(0,10).map(p=>qMake(p,m,pool));QZ={l:L,n:0,ok:0,sel:null,val:"",fb:null};qShow()}
+function qShow(){const q=QZ.l[QZ.n],lab={mc:"객관식",mk:"객관식",cz:"빈칸 채우기",ty:"쓰기"}[q.t];
+ let h=`<div class="top"><button class="lk" data-a="home">← 홈</button><span>퀴즈 ${QZ.n+1}/${QZ.l.length} · 정답 ${QZ.ok}</span></div><div class="pbar"><i style="width:${QZ.n/QZ.l.length*100}%"></i></div><div class="card" style="cursor:default"><span class="lv">${lab}</span><div class="sit">${esc(q.q)}${q.t==="mc"?sayBtn(q.q):""}</div><div class="hint">${esc(q.h)}</div></div>`;
+ if(q.t==="ty")h+=QZ.fb?`<div class="bub me">${esc(QZ.val)}</div>`:`<textarea id="qza" placeholder="영어로 써 보세요">${esc(QZ.val)}</textarea>`;
+ else h+=`<div class="opts">${q.o.map((o,i)=>`<button class="${QZ.sel!=null?(o===q.a?"ok":i===QZ.sel?"no":""):""}" data-a="qo" data-i="${i}" ${QZ.sel!=null?"disabled":""}>${esc(o)}</button>`).join("")}</div>`;
+ if(QZ.fb)h+=`<div class="fb ${QZ.fb.lv}"><b>${QZ.fb.t}</b><div>정답: ${esc(q.a)} ${sayBtn(q.a)}</div>${QZ.fb.html||""}</div>`;
+ h+=`<div id="msg"></div><div class="bar2"><div class="in">`+(QZ.fb?`<button class="p big" data-a="qn">${QZ.n+1<QZ.l.length?"다음":"결과 보기"}</button>`:q.t==="ty"?`<button class="p big" data-a="qc">확인하기</button>`:"")+`</div></div>`;
+ app.innerHTML=h}
+function qDone(ok,q){if(ok)QZ.ok++;else if(S.srs[q.id])S.lap[q.id]=(S.lap[q.id]||0)+1;gain(ok?4:1)}
+function qPick(i){const q=QZ.l[QZ.n];if(QZ.sel!=null)return;QZ.sel=i;const ok=q.o[i]===q.a;QZ.fb={lv:ok?"ok":"bad2",t:ok?"✅ 정답!":"❌ 아쉬워요"};qDone(ok,q);qShow()}
+function qCheck(){const q=QZ.l[QZ.n],c=cmp(QZ.val,[q.a]);if(!c)return toast("먼저 영어로 써 보세요");const ok=c.sc>=.99;QZ.fb={lv:ok?"ok":c.lv,t:ok?"✅ 정답!":c.sc>=.6?"👍 거의 맞아요":"❌ 아쉬워요",html:ok?"":c.html};qDone(ok,q);qShow()}
+function qNext(){QZ.n++;QZ.sel=null;QZ.val="";QZ.fb=null;if(QZ.n<QZ.l.length){qShow();scrollTo(0,0);return}
+ app.innerHTML=`<div class="done"><div class="em">🎯</div><div class="big2">퀴즈 끝!</div><p class="mut">${QZ.l.length}문제 중 ${QZ.ok}문제 정답</p><div class="row"><button data-a="qm">다른 퀴즈</button><button class="p" data-a="home">홈으로</button></div></div>`;confetti()}
+function nextType(){for(const t of["w","e","m"]){const l=lists(t);if(l.due.length+l.fresh.length)return t}return""}
+function home(){resetDay();const T=today(),names={w:"단어",e:"구동사 · 숙어 · 표현",m:"회화 미션"},ic={w:"📚",e:"💬",m:"🗣️"};
+ const L={};let rem=0;for(const t of["w","e","m"]){L[t]=lists(t);rem+=L[t].due.length+L[t].fresh.length}
+ const dn=S.dn.d===T?S.dn.n:0,pc=dn+rem?Math.round(dn/(dn+rem)*100):100,nt=nextType(),sk=S.st.last===T||S.st.last===T-1?S.st.n:0;
+ let h=`<div class="top"><b>Oxford 3000 회화 카드</b><button class="lk" data-a="set">설정</button></div>
+ <div class="hero"><div class="ring" style="--p:${pc}"><span>${pc}%</span></div><div><div class="big2">${rem?"오늘의 학습":"오늘 목표 달성! 🎉"}</div><div class="mut">완료 ${dn}개 · 남은 ${rem}개</div><div class="streak">🔥 ${sk}일 연속</div></div></div>`;
+ h+=lvlBar();if(nt)h+=`<button class="p big" data-a="go" data-t="${nt}">${names[nt]}부터 시작하기</button>`;
+ h+=`<div class="row" style="margin-top:10px"><button data-a="go" data-t="q10">⏱ 5분만 하기</button><button data-a="go" data-t="q3">🌧 힘든 날 (3개)</button></div>`;if(!S.key)h+=`<div class="note" style="margin-top:10px">단어 사진을 보려면 설정에서 Unsplash 키를 넣어 주세요. 키가 없어도 학습은 할 수 있어요.</div>`;
+ for(const t of["w","e","m"]){const n=Object.keys(S.srs).filter(i=>i[0]===t).length,tot=ARR[t].length,l=L[t];
+  h+=`<div class="tcard"><div class="ico">${ic[t]}</div><div><b>${names[t]}</b><div class="mut">복습 ${l.due.length} · 새로 ${l.fresh.length} · 누적 ${n}/${tot}</div><div class="mini"><i style="width:${n/tot*100}%"></i></div></div><button class="p" data-a="go" data-t="${t}" ${l.due.length+l.fresh.length?"":"disabled"}>시작</button></div>`}
+ h+=moreCards();h+=weekBox();h+=`<div class="tcard"><div class="ico">🎧</div><div><b>섀도잉 5분</b><div class="mut">오늘 본 예문을 소리 내어 따라 말하기</div></div><button data-a="sh">${S.sh===T?"완료 ✓":"체크"}</button></div><div id="msg"></div>`;
+ app.innerHTML=h}
+function start(t){if(t[0]==="q"){const n=+t.slice(1),a=["w","e","m"].map(lists),due=[].concat(...a.map(x=>x.due)).slice(0,n),fr=[];
+  for(let i=0;fr.length<n-due.length&&i<20;i++)for(const x of a)if(x.fresh[i]&&fr.length<n-due.length)fr.push(x.fresh[i]);Q=due.concat(fr)}
+ else if(t==="x")Q=weak().slice(0,15);else{const l=lists(t);Q=l.due.concat(l.fresh)}
+ TOT=Q.length||1;flip=false;if(!Q.length)return home();show()}
+function show(){const id=Q[0];if(!id)return fin();const t=id[0],it=get(id);
+ const g=t==="m"&&flip?grade(id):null;
+ let h=`<div class="top"><button class="lk" data-a="home">← 홈</button><span>${Q.length}개 남음</span></div><div class="pbar"><i style="width:${Math.max(0,(TOT-Q.length)/TOT*100)}%"></i></div>`;
+ if(t==="w"){h+=wordCard(id,it)}
+ else if(t==="e"){h+=`<div class="card" data-a="flip"><span class="lv">${it.y==="s"?"상황 · "+it.g:{p:"구동사",c:"원어민 블록",i1:"숙어 · 기초",i2:"숙어 · 중급"}[it.y]}</span>${it.y==="p"?`<div class="svgw">${SV[+id.slice(1)]}</div>`:""}<div class="sit">${esc(it.k)}</div>`+(flip?`<div class="w">${esc(it.e)}${sayBtn(it.e)}${micBtn(it.e)}</div><div id="sp"></div>${it.x?`<div class="ex">${esc(it.x)}${sayBtn(it.x)}${micBtn(it.x)}</div>`:`<a class="btn wide2" href="https://vloglish.homes" target="_blank" rel="noopener">🎬 vloglish.homes에서 실제 장면 보기</a>`}`:`<div class="hint">영어로 어떻게 말할지 떠올려 보세요</div>`)+`</div>`}
+ else{h+=`<div class="card"><span class="lv">회화 미션</span><div class="sit">${esc(it.s)}</div><div class="hint">${esc(it.h)}</div></div>${flip?"":`<button class="wide2" data-a="dict">🎤 말로 답하기</button>`}<textarea id="note" placeholder="영어로 먼저 써 보세요" ${flip?"readonly":""}>${esc(S.notes[id]||"")}</textarea>`;
+  if(flip)h+=(g?`<div class="fb ${g.lv}"><b>${g.t}</b>${g.b}</div>`:`<div class="fb n"><small>먼저 영어로 써 보면 기억에 훨씬 오래 남아요.</small></div>`)+`<div class="card" style="cursor:default">${it.a.map(a=>`<div class="w2">${esc(a)}${/^[A-Za-z]/.test(a)&&!/[가-힣]/.test(a.split(" (")[0])?sayBtn(a.split(" (")[0])+micBtn(a.split(" (")[0]):""}</div>`).join("")}${it.x?`<div class="bad">흔한 실수: ${esc(it.x)}</div>`:""}<div class="def">${esc(it.n)}</div></div><div id="sp"></div><button class="wide2" data-a="req">📋 AI 첨삭 요청 복사</button>`}
+ if(flip&&t!=="m")h+=`<label for="note">내 경험, 내 문장 (영어로 한 문장 써 보기)</label><textarea id="note">${esc(S.notes[id]||"")}</textarea><button class="wide2" data-a="req">📋 내 문장 AI 첨삭 요청 복사</button>`;
+ h+=`<div id="msg"></div><div class="bar2"><div class="in">`+(flip?`<div class="rate">${[["몰라요",0],["헷갈려요",1],["알아요",2],["쉬워요",3]].map(([n,r])=>`<button class="r${r}${g&&g.sug===r?" sug":""}" data-a="rate" data-r="${r}"><b>${n}</b><small>${lab(id,r)}</small></button>`).join("")}</div>`:`<button class="p big" data-a="${t==="m"?"grade":"flip"}">${t==="m"?"채점하고 정답 보기":"정답 보기"}</button>`)+`</div></div>`;
+ app.innerHTML=h;
+ if(t==="w"){load1(id);if(Q[1]&&Q[1][0]==="w")load1(Q[1])}}
+function rate(r){const id=Q.shift(),t=id[0],fresh=!S.srs[id],o=S.srs[id]||{s:0,due:0},T=today();
+ if(r===0){o.s=0;o.due=T}else if(r===1)o.due=T+1;else{o.s=Math.min(7,o.s+(r===3?2:1));o.due=T+ST[o.s]}
+ S.srs[id]=o;S.lap[id]=r<=1?(S.lap[id]||0)+1:Math.max(0,(S.lap[id]||0)-1);if(fresh)S.nd[t]++;if(r===0)Q.push(id);
+ if(S.st.last!==T){S.st.n=S.st.last===T-1?S.st.n+1:1;S.st.last=T}
+ if(S.dn.d!==T)S.dn={d:T,n:0};if(r>0)S.dn.n++;
+ const g=t==="m"?grade(id):null,xp=[1,3,5,6][r]+(g&&g.lv==="ok"?5:0),L0=lvOf(S.xp);S.xp+=xp;if(!S.days.includes(T)){S.days.push(T);S.days=S.days.slice(-90)}
+ save();flip=false;show();scrollTo(0,0);pop(xp,lvOf(S.xp)>L0)}
+function fin(){const T=today(),sk=S.st.last===T?S.st.n:0;
+ app.innerHTML=`<div class="done"><div class="em">🎉</div><div class="big2">오늘 세션 끝!</div><p class="mut">오늘 ${S.dn.d===T?S.dn.n:0}개 완료 · 🔥 ${sk}일 연속<br>배운 예문 3개를 소리 내어 따라 말해 보면 기억이 훨씬 오래가요.</p><button class="p big" data-a="home">홈으로</button></div>`;confetti()}
+function settings(){app.innerHTML=`<div class="top"><button class="lk" data-a="home">← 홈</button><b>설정</b><span></span></div>
+ <label for="k">Unsplash Access Key (사진용, unsplash.com/developers에서 무료 발급. Secret key가 아니라 Access Key예요)</label><input type="password" id="k" autocomplete="off" value="${esc(S.key)}">
+ <div class="row" style="margin-top:8px"><button data-a="tk">연결 테스트</button></div>
+ <label for="pw">하루 새 단어 수</label><input type="number" id="pw" min="5" max="200" value="${S.per}">
+ <label for="pe">하루 새 표현 수 (구동사·숙어·블록)</label><input type="number" id="pe" min="1" max="40" value="${S.pe}">
+ <label for="pm">하루 새 회화 미션 수</label><input type="number" id="pm" min="1" max="20" value="${S.pm}">
+ <label for="rw">100단어마다 나에게 줄 보상</label><input type="text" id="rw" value="${esc(S.rw)}" placeholder="예: 치킨 먹기">
+ <label>색상 테마</label><div class="th">${TH.map((t,i)=>`<button data-a="th" data-i="${i}" style="background:${t[0]}" aria-label="테마 ${i+1}"></button>`).join("")}</div>
+ <button class="p big" style="margin-top:14px" data-a="sv">저장</button>
+ <div class="sec">백업</div><div class="row"><button data-a="bk">백업 저장</button><button data-a="rs">백업 복원</button></div>
+ <div class="note">학습 기록과 메모는 이 기기의 브라우저에 저장돼요. 가끔 백업 파일을 저장해 두세요. 발음기호·뜻·예문은 온라인 사전에서 불러오고, 한국어 뜻은 자동 번역이라 틀릴 수 있어요.</div><div id="msg"></div>`}
+async function testKey(){S.key=$("#k").value.trim();if(!S.key)return toast("키를 먼저 입력해 주세요");toast("확인하는 중…");
+ try{await ap("/search/photos?query=cat&per_page=1");save();toast("✅ 연결 성공! 단어 카드에 사진이 나올 거예요")}catch(e){toast("❌ "+perr(e)+" ("+e.message+")")}}
+const cl=(v,a,b,d)=>Math.min(b,Math.max(a,Math.round(+v)||d));
+app.addEventListener("click",e=>{if(e.target.closest("a"))return;const b=e.target.closest("[data-a]");if(!b||b.disabled)return;const a=b.dataset.a;
+ if(a==="go")start(b.dataset.t);else if(a==="home")home();else if(a==="set")settings();
+ else if(a==="flip"){flip=!flip;show()}else if(a==="grade"){flip=true;show()}else if(a==="rate")rate(+b.dataset.r);
+ else if(a==="say")say(b.dataset.t,b.dataset.u);
+ else if(a==="other"){const id=Q[0];delete PERR[id];once("p"+id,()=>photo(id,qq(get(id))))?.then(()=>patch(id))}
+ else if(a==="mine")$("#file").click();
+ else if(a==="tk")testKey();else if(a==="qm")qMenu();else if(a==="qs")qStart(b.dataset.m);else if(a==="qo")qPick(+b.dataset.i);else if(a==="qc")qCheck();else if(a==="qn")qNext();else if(a==="ety")etyPage();else if(a==="rpl")rpList();else if(a==="rps")rpStart(+b.dataset.i);else if(a==="rpc")rpCheck();else if(a==="rpn")rpNext();else if(a==="rpd")listen(x=>{RP.val=x;const n=$("#rpa");if(n)n.value=x;toast("")});else if(a==="dks")dkStart();else if(a==="dkc")dkCheck();else if(a==="dkn")dkNext();else if(a==="dkp")tts(DK.l[DK.n],+b.dataset.r);else if(a==="req")copyReq();else if(a==="spk")shadow(b.dataset.t);else if(a==="dict")dictate();else if(a==="th"){S.th=+b.dataset.i;save();theme()}
+ else if(a==="sh"){S.sh=S.sh===today()?0:today();save();home()}
+ else if(a==="sv"){S.key=$("#k").value.trim();S.per=cl($("#pw").value,5,200,50);S.pe=cl($("#pe").value,1,40,5);S.pm=cl($("#pm").value,1,20,3);S.rw=$("#rw").value.trim();save();toast("저장했어요")}
+ else if(a==="bk"){const l=document.createElement("a");l.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:"application/json"}));l.download="oxford-backup.json";l.click()}
+ else if(a==="rs")$("#rf").click()});
+app.addEventListener("input",e=>{if(e.target.id==="rpa"&&RP){RP.val=e.target.value;return}if(e.target.id==="dka"&&DK){DK.val=e.target.value;return}if(e.target.id==="qza"&&QZ){QZ.val=e.target.value;return}if(e.target.id==="note"&&Q[0]){S.notes[Q[0]]=e.target.value;clearTimeout(tm);tm=setTimeout(save,400)}});
+$("#file").onchange=e=>{const f=e.target.files[0];if(f)addImg(f);e.target.value=""};
+$("#rf").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{S=Object.assign(S,JSON.parse(r.result));save();home();toast("복원했어요")}catch(x){toast("파일을 읽지 못했어요")}};r.readAsText(f);e.target.value=""};
+document.addEventListener("paste",e=>{const it=[...(e.clipboardData?.items||[])].find(t=>t.type.startsWith("image/"));if(it){e.preventDefault();addImg(it.getAsFile())}});
+theme();home();
+</script></body></html>
