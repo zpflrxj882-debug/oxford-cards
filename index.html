@@ -3965,10 +3965,12 @@ function qDone(ok,q){
  const T=today(),prev=S.srs[q.id],o=prev?{...prev}:{s:0,due:T};
  if(ok){
   QZ.ok++;
-  delete S.review10[q.id];
-  // A correct quiz answer advances an overdue card once; do not shorten future reviews.
-  if(!prev||o.due<=T){o.s=Math.min(7,(o.s||0)+1);o.due=T+ST[o.s]}
-  S.lap[q.id]=Math.max(0,(S.lap[q.id]||0)-1);
+  // Quiz recognition is weaker evidence than self-rated card recall.
+  // Never promote an existing card's interval from a quiz answer alone.
+  if(!prev){o.s=0;o.due=T+1}
+  // A correct answer during the 10-minute relearning window must not
+  // silently cancel the scheduled active-recall check.
+  if(!S.review10[q.id])S.lap[q.id]=Math.max(0,(S.lap[q.id]||0)-1);
  }else{
   // Every wrong answer, including a never-studied card, enters today's review queue.
   o.s=0;o.due=T;
