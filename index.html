@@ -3763,7 +3763,7 @@ const once=(k,f)=>{if(busy.has(k))return;busy.add(k);return f().finally(()=>busy
 const sayBtn=(t,u)=>`<button class="ic" data-a="say" data-t="${esc(t)}" data-u="${esc(u||"")}" aria-label="듣기">🔊</button>`;
 function resetDay(){const T=today();if(S.nd.d!==T)S.nd={d:T,w:0,e:0,m:0}}
 function lists(t){resetDay();const T=today(),lim={w:S.per,e:S.pe,m:S.pm}[t];
- const due=Object.keys(S.srs).filter(i=>i[0]===t&&S.srs[i].due<=T).sort((a,b)=>S.srs[a].due-S.srs[b].due);
+ const due=Object.keys(S.srs).filter(i=>i[0]===t&&S.srs[i].due<=T&&!(S.review10&&S.review10[i]>Date.now())).sort((a,b)=>S.srs[a].due-S.srs[b].due);
  const fresh=[],n=Math.max(0,lim-S.nd[t]);
  for(let k=0;k<ARR[t].length&&fresh.length<n;k++){const i=t==="e"?EO[k]:k;if(!S.srs[t+i])fresh.push(t+i)}
  return{due,fresh}}
@@ -3961,15 +3961,18 @@ function qShow(){const q=QZ.l[QZ.n],lab={mc:"객관식",mk:"객관식",cz:"빈�
  h+=`<div id="msg"></div><div class="bar2"><div class="in">`+(QZ.fb?`<button class="p big" data-a="qn">${QZ.n+1<QZ.l.length?"다음":"결과 보기"}</button>`:q.t==="ty"?`<button class="p big" data-a="qc">확인하기</button>`:"")+`</div></div>`;
  app.innerHTML=h}
 function qDone(ok,q){
+ if(!S.review10||typeof S.review10!=="object")S.review10={};
  const T=today(),prev=S.srs[q.id],o=prev?{...prev}:{s:0,due:T};
  if(ok){
   QZ.ok++;
+  delete S.review10[q.id];
   // A correct quiz answer advances an overdue card once; do not shorten future reviews.
   if(!prev||o.due<=T){o.s=Math.min(7,(o.s||0)+1);o.due=T+ST[o.s]}
   S.lap[q.id]=Math.max(0,(S.lap[q.id]||0)-1);
  }else{
   // Every wrong answer, including a never-studied card, enters today's review queue.
   o.s=0;o.due=T;
+  S.review10[q.id]=Date.now()+10*60*1000;
   S.lap[q.id]=(S.lap[q.id]||0)+1;
  }
  S.srs[q.id]=o;
@@ -3986,6 +3989,8 @@ function home(){resetDay();const T=today(),names={w:"단어",e:"구동사 · 숙
  const dn=S.dn.d===T?S.dn.n:0,pc=dn+rem?Math.round(dn/(dn+rem)*100):100,nt=nextType(),sk=S.st.last===T||S.st.last===T-1?S.st.n:0;
  let h=`<div class="top"><b>Oxford 3000 회화 카드</b><button class="lk" data-a="set">설정</button></div>
  <div class="hero"><div class="ring" style="--p:${pc}"><span>${pc}%</span></div><div><div class="big2">${rem?"오늘의 학습":"오늘 목표 달성! 🎉"}</div><div class="mut">완료 ${dn}개 · 남은 ${rem}개</div><div class="streak">🔥 ${sk}일 연속</div></div></div>`;
+ const waiting=Object.entries(S.review10||{}).filter(([id,at])=>S.srs[id]&&at>Date.now());
+ if(waiting.length){const soon=Math.max(1,Math.ceil((Math.min(...waiting.map(x=>x[1]))-Date.now())/60000));h+=`<div class="note">🧠 10분 뒤 다시 떠올리기: ${waiting.length}개 대기 중 · 가장 빠른 복습 약 ${soon}분 뒤. 앱을 다시 열면 복습 목록에 나타나요.</div>`}
  h+=lvlBar();if(nt)h+=`<button class="p big" data-a="go" data-t="${nt}">${names[nt]}부터 시작하기</button>`;
  h+=`<div class="row" style="margin-top:10px"><button data-a="go" data-t="q10">⏱ 5분만 하기</button><button data-a="go" data-t="q3">🌧 힘든 날 (3개)</button></div>`;if(!S.key)h+=`<div class="note" style="margin-top:10px">단어 사진을 보려면 설정에서 Unsplash 키를 넣어 주세요. 키가 없어도 학습은 할 수 있어요.</div>`;
  for(const t of["w","e","m"]){const n=Object.keys(S.srs).filter(i=>i[0]===t).length,tot=ARR[t].length,l=L[t];
@@ -4009,6 +4014,7 @@ function show(){const id=Q[0];if(!id)return fin();const t=id[0],it=get(id);
  if(t==="w"){load1(id);if(Q[1]&&Q[1][0]==="w")load1(Q[1])}}
 function rate(r){const id=Q.shift(),t=id[0],fresh=!S.srs[id],o=S.srs[id]||{s:0,due:0},T=today();
  if(r===0){o.s=0;o.due=T}else if(r===1)o.due=T+1;else{o.s=Math.min(7,o.s+(r===3?2:1));o.due=T+ST[o.s]}
+ if(S.review10&&S.review10[id])delete S.review10[id];
  S.srs[id]=o;S.lap[id]=r<=1?(S.lap[id]||0)+1:Math.max(0,(S.lap[id]||0)-1);if(fresh)S.nd[t]++;if(r===0)Q.push(id);
  if(S.st.last!==T){S.st.n=S.st.last===T-1?S.st.n+1:1;S.st.last=T}
  if(S.dn.d!==T)S.dn={d:T,n:0};if(r>0)S.dn.n++;
