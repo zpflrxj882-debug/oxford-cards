@@ -4011,7 +4011,7 @@ function settings(){app.innerHTML=`<div class="top"><button class="lk" data-a="h
  <label>색상 테마</label><div class="th">${TH.map((t,i)=>`<button data-a="th" data-i="${i}" style="background:${t[0]}" aria-label="테마 ${i+1}"></button>`).join("")}</div>
  <button class="p big" style="margin-top:14px" data-a="sv">저장</button>
  <div class="sec">백업</div><div class="row"><button data-a="bk">백업 저장</button><button data-a="rs">백업 복원</button></div>
- <div class="note">학습 기록과 메모는 이 기기의 브라우저에 저장돼요. 가끔 백업 파일을 저장해 두세요. 발음기호·뜻·예문은 온라인 사전에서 불러오고, 한국어 뜻은 자동 번역이라 틀릴 수 있어요.</div><div id="msg"></div>`}
+ <div class="note">학습 기록·메모·발음 및 사전 캐시를 이 기기의 브라우저에 저장해요. 새 백업은 모두 포함하며, 예전 백업 파일도 복원할 수 있어요. 복원하면 현재 기록을 덮어쓰니 먼저 백업하세요. 발음기호·뜻·예문은 온라인 사전에서 불러오고, 한국어 뜻은 자동 번역이라 틀릴 수 있어요.</div><div id="msg"></div>`}
 async function testKey(){S.key=$("#k").value.trim();if(!S.key)return toast("키를 먼저 입력해 주세요");toast("확인하는 중…");
  try{await ap("/search/photos?query=cat&per_page=1");save();toast("✅ 연결 성공! 단어 카드에 사진이 나올 거예요")}catch(e){toast("❌ "+perr(e)+" ("+e.message+")")}}
 const cl=(v,a,b,d)=>Math.min(b,Math.max(a,Math.round(+v)||d));
@@ -4024,11 +4024,40 @@ app.addEventListener("click",e=>{if(e.target.closest("a"))return;const b=e.targe
  else if(a==="tk")testKey();else if(a==="qm")qMenu();else if(a==="qs")qStart(b.dataset.m);else if(a==="qo")qPick(+b.dataset.i);else if(a==="qc")qCheck();else if(a==="qn")qNext();else if(a==="ety")etyPage();else if(a==="rpl")rpList();else if(a==="rps")rpStart(+b.dataset.i);else if(a==="rpc")rpCheck();else if(a==="rpn")rpNext();else if(a==="rpd")listen(x=>{RP.val=x;const n=$("#rpa");if(n)n.value=x;toast("")});else if(a==="dks")dkStart();else if(a==="dkc")dkCheck();else if(a==="dkn")dkNext();else if(a==="dkp")tts(DK.l[DK.n],+b.dataset.r);else if(a==="req")copyReq();else if(a==="spk")shadow(b.dataset.t);else if(a==="dict")dictate();else if(a==="th"){S.th=+b.dataset.i;save();theme()}
  else if(a==="sh"){S.sh=S.sh===today()?0:today();save();home()}
  else if(a==="sv"){S.key=$("#k").value.trim();S.per=cl($("#pw").value,5,200,50);S.pe=cl($("#pe").value,1,40,5);S.pm=cl($("#pm").value,1,20,3);S.rw=$("#rw").value.trim();save();toast("저장했어요")}
- else if(a==="bk"){const l=document.createElement("a");l.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:"application/json"}));l.download="oxford-backup.json";l.click()}
+ else if(a==="bk"){
+  save();
+  const backup={format:"oxford-cards-backup",version:2,createdAt:new Date().toISOString(),data:{ox2:S,ox3d:DC,ox2k:KC}};
+  const url=URL.createObjectURL(new Blob([JSON.stringify(backup)],{type:"application/json"}));
+  const l=document.createElement("a");l.href=url;l.download="oxford-backup-"+new Date().toISOString().slice(0,10)+".json";
+  document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);
+  toast("전체 학습 데이터 백업 파일을 저장했어요")
+ }
  else if(a==="rs")$("#rf").click()});
 app.addEventListener("input",e=>{if(e.target.id==="rpa"&&RP){RP.val=e.target.value;return}if(e.target.id==="dka"&&DK){DK.val=e.target.value;return}if(e.target.id==="qza"&&QZ){QZ.val=e.target.value;return}if(e.target.id==="note"&&Q[0]){S.notes[Q[0]]=e.target.value;clearTimeout(tm);tm=setTimeout(save,400)}});
 $("#file").onchange=e=>{const f=e.target.files[0];if(f)addImg(f);e.target.value=""};
-$("#rf").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{S=Object.assign(S,JSON.parse(r.result));save();home();toast("복원했어요")}catch(x){toast("파일을 읽지 못했어요")}};r.readAsText(f);e.target.value=""};
+$("#rf").onchange=e=>{
+ const f=e.target.files[0];if(!f)return;
+ const r=new FileReader();r.onload=()=>{
+  try{
+   const raw=JSON.parse(r.result);
+   const obj=v=>v!==null&&typeof v==="object"&&!Array.isArray(v);
+   const modern=obj(raw)&&raw.format==="oxford-cards-backup"&&raw.version===2&&obj(raw.data);
+   if(obj(raw)&&raw.format==="oxford-cards-backup"&&!modern)throw Error("지원하지 않는 백업 버전이에요");
+   const data=modern?raw.data:{ox2:raw};
+   if(!obj(data.ox2)||!obj(data.ox2.srs)||!obj(data.ox2.notes)||!obj(data.ox2.nd))throw Error("올바른 Oxford 백업 파일이 아니에요");
+   if(modern&&(!obj(data.ox3d)||!obj(data.ox2k)))throw Error("백업 데이터가 불완전해요");
+   if(!confirm("현재 학습 기록을 백업 파일의 기록으로 바꿀까요? 복원 전 현재 기록도 백업해 두는 것을 권장해요."))return;
+   const keys=modern?["ox2","ox3d","ox2k"]:["ox2"];
+   const before=Object.fromEntries(keys.map(k=>[k,localStorage.getItem(k)]));
+   try{
+    for(const k of keys)localStorage.setItem(k,JSON.stringify(data[k]));
+   }catch(err){for(const k of keys){try{if(before[k]===null)localStorage.removeItem(k);else localStorage.setItem(k,before[k])}catch(_){}}throw Error("저장 공간이 부족하거나 저장할 수 없어요. 기존 데이터를 유지했어요")}
+   S=Object.assign(S,data.ox2);
+   if(modern){DC=data.ox3d;KC=data.ox2k}
+   home();toast(modern?"전체 학습 데이터를 복원했어요":"기존 백업의 학습 기록을 복원했어요")
+  }catch(err){alert("복원 실패: "+err.message)}
+ };r.onerror=()=>alert("파일을 읽지 못했어요");r.readAsText(f);e.target.value="";
+};
 document.addEventListener("paste",e=>{const it=[...(e.clipboardData?.items||[])].find(t=>t.type.startsWith("image/"));if(it){e.preventDefault();addImg(it.getAsFile())}});
 theme();home();
 </script></body></html>
