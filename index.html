@@ -3986,18 +3986,6 @@ function qCheck(){const q=QZ.l[QZ.n],c=cmp(QZ.val,[q.a]);if(!c)return toast("먼
 function qNext(){QZ.n++;QZ.sel=null;QZ.val="";QZ.fb=null;if(QZ.n<QZ.l.length){qShow();scrollTo(0,0);return}
  app.innerHTML=`<div class="done"><div class="em">🎯</div><div class="big2">퀴즈 끝!</div><p class="mut">${QZ.l.length}문제 중 ${QZ.ok}문제 정답</p><div class="row"><button data-a="qm">다른 퀴즈</button><button class="p" data-a="home">홈으로</button></div></div>`;confetti()}
 function nextType(){for(const t of["w","e","m"]){const l=lists(t);if(l.due.length+l.fresh.length)return t}return""}
-function reviewSchedule(){
- const T=today(),items=Object.entries(S.srs).filter(([id,o])=>o&&Number.isFinite(o.due)&&ARR[id[0]]&&get(id));
- const future=items.filter(([id,o])=>o.due>T),tomorrow=future.filter(([id,o])=>o.due===T+1).length,week=future.filter(([id,o])=>o.due<=T+7).length;
- const due=items.filter(([id,o])=>o.due<=T&&!(S.review10&&S.review10[id]>Date.now())).length;
- let h=`<div class="sec">📅 복습 예정표</div><div class="tcard"><div><b>오늘 ${due}개 · 내일 ${tomorrow}개 · 7일 이내 ${week}개</b><div class="mut">이미 학습한 카드의 다음 복습 일정 · 새 카드 제외</div></div></div>`;
- for(let d=1;d<=7;d++){
-  const cards=future.filter(([id,o])=>o.due===T+d);
-  const names=cards.slice(0,5).map(([id])=>{const it=get(id);return esc(id[0]==="w"?wk(it):id[0]==="e"?it.e:it.s)}).join(" · ");
-  h+=`<div class="tcard"><div><b>${d===1?"내일":d+"일 뒤"} · ${cards.length}개</b><div class="mut">${names||"예정 없음"}${cards.length>5?" 외 "+(cards.length-5)+"개":""}</div></div></div>`;
- }
- return h
-}
 function home(){resetDay();const T=today(),names={w:"단어",e:"구동사 · 숙어 · 표현",m:"회화 미션"},ic={w:"📚",e:"💬",m:"🗣️"};
  const L={};let rem=0;for(const t of["w","e","m"]){L[t]=lists(t);rem+=L[t].due.length+L[t].fresh.length}
  const dn=S.dn.d===T?S.dn.n:0,pc=dn+rem?Math.round(dn/(dn+rem)*100):100,nt=nextType(),sk=S.st.last===T||S.st.last===T-1?S.st.n:0;
@@ -4009,7 +3997,7 @@ function home(){resetDay();const T=today(),names={w:"단어",e:"구동사 · 숙
  h+=`<div class="row" style="margin-top:10px"><button data-a="go" data-t="q10">⏱ 5분만 하기</button><button data-a="go" data-t="q3">🌧 힘든 날 (3개)</button></div>`;if(!S.key)h+=`<div class="note" style="margin-top:10px">단어 사진을 보려면 설정에서 Unsplash 키를 넣어 주세요. 키가 없어도 학습은 할 수 있어요.</div>`;
  for(const t of["w","e","m"]){const n=Object.keys(S.srs).filter(i=>i[0]===t).length,tot=ARR[t].length,l=L[t];
   h+=`<div class="tcard"><div class="ico">${ic[t]}</div><div><b>${names[t]}</b><div class="mut">복습 ${l.due.length} · 새로 ${l.fresh.length} · 누적 ${n}/${tot}</div><div class="mini"><i style="width:${n/tot*100}%"></i></div></div><button class="p" data-a="go" data-t="${t}" ${l.due.length+l.fresh.length?"":"disabled"}>시작</button></div>`}
- h+=reviewSchedule();h+=moreCards();h+=weekBox();h+=`<div class="tcard"><div class="ico">🎧</div><div><b>섀도잉 5분</b><div class="mut">오늘 본 예문을 소리 내어 따라 말하기</div></div><button data-a="sh">${S.sh===T?"완료 ✓":"체크"}</button></div><div id="msg"></div>`;
+ h+=moreCards();h+=weekBox();h+=`<div class="tcard"><div class="ico">🎧</div><div><b>섀도잉 5분</b><div class="mut">오늘 본 예문을 소리 내어 따라 말하기</div></div><button data-a="sh">${S.sh===T?"완료 ✓":"체크"}</button></div><div id="msg"></div>`;
  app.innerHTML=h}
 function start(t){if(t[0]==="q"){const n=+t.slice(1),a=["w","e","m"].map(lists),due=[].concat(...a.map(x=>x.due)).slice(0,n),fr=[];
   for(let i=0;fr.length<n-due.length&&i<20;i++)for(const x of a)if(x.fresh[i]&&fr.length<n-due.length)fr.push(x.fresh[i]);Q=due.concat(fr)}
