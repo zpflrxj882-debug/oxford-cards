@@ -93,6 +93,58 @@ label{display:block;font-size:15px;color:var(--mut);margin:14px 0 6px}
 .btn.p{background:var(--ac);border-color:var(--ac);color:#fff}.btn.wide2{display:block;margin-top:10px}
 @media (prefers-color-scheme:dark){.btn.p{color:#06201c}}
 .etl{display:flex;gap:12px;align-items:center}.etsv{flex:0 0 104px;background:var(--r2);border-radius:12px;padding:4px}.etsv svg{width:100%;display:block;color:var(--tx)}
+
+/* Oxford Focus redesign: quiet editorial hierarchy, tactile cards, one clear next action */
+:root{--bg:#f5f4ef;--sf:#fffefa;--tx:#1d2926;--mut:#73807b;--bd:#e7e9e2;--ac:#176f62;--ac2:#268c7a;--sh:0 8px 30px rgba(35,54,46,.055)}
+@media(prefers-color-scheme:dark){:root{--bg:#101916;--sf:#1a2621;--tx:#eef4ed;--mut:#a1b1a7;--bd:#314139;--ac:#47c8a5;--ac2:#258b74;--sh:0 8px 30px rgba(0,0,0,.13)}}
+body{font-size:16px;line-height:1.55;letter-spacing:-.012em;background:var(--bg)}
+main{max-width:520px;padding:22px 19px 150px}
+.top{margin:0 0 19px;font-size:14px;min-height:34px}
+.top b{color:var(--tx);font-size:17px;letter-spacing:-.035em;font-weight:850}
+.top .lk{background:var(--sf);border:1px solid var(--bd);border-radius:99px;padding:8px 15px;color:var(--tx);font-size:13px}
+.hero{position:relative;overflow:hidden;align-items:flex-start;justify-content:space-between;gap:12px;background:#173d36;border:1px solid rgba(255,255,255,.1);border-radius:29px;padding:25px 23px 24px;min-height:188px;box-shadow:0 15px 35px rgba(20,58,49,.14)}
+.hero:after{content:"";position:absolute;width:240px;height:240px;right:-110px;top:-120px;border-radius:50%;border:1px solid rgba(255,255,255,.11);box-shadow:0 0 0 38px rgba(255,255,255,.025),0 0 0 78px rgba(255,255,255,.02);pointer-events:none}
+.hero .big2{font-size:27px;line-height:1.25;letter-spacing:-.045em;margin:11px 0 10px;max-width:220px}
+.hero .mut{font-size:13px;color:#d5e6df}
+.hero .streak{font-size:12px;display:inline-block;margin-top:13px;padding:7px 11px;border-radius:99px;background:rgba(255,255,255,.13);font-weight:700}
+.hero .ring{width:76px;height:76px;flex:0 0 76px;background:conic-gradient(#a9f0cf calc(var(--p)*1%),rgba(255,255,255,.14) 0);z-index:1;margin-top:9px}
+.hero .ring span{width:61px;height:61px;background:#173d36;font-size:17px}
+.hero .eyebrow{font-size:10px;letter-spacing:.19em;font-weight:800;color:#a5dfca}
+.big2{letter-spacing:-.04em}
+button{transition:transform .12s ease,box-shadow .2s ease,background .2s ease}
+button:active{transform:scale(.98)}
+button.p{background:#176f62;border-color:#176f62;color:white}
+button.big{border-radius:18px;min-height:60px;box-shadow:0 8px 20px rgba(21,99,84,.14)}
+.sec{font-size:13px;text-transform:none;letter-spacing:.015em;color:var(--mut);margin:27px 3px 11px}
+.tcard{margin-top:9px;border:1px solid var(--bd);border-radius:21px;padding:17px 15px;box-shadow:none;gap:13px}
+.tcard .ico{display:grid;place-items:center;width:48px;height:48px;flex:0 0 48px;background:var(--bg);border-radius:15px;font-size:24px}
+.tcard b{font-size:16px;letter-spacing:-.025em}
+.tcard .mut{font-size:12px;margin-top:4px}
+.tcard button{border-radius:12px;font-size:13px;min-width:67px;padding:11px}
+.mini{margin-top:9px;height:4px}
+.mini i{border-radius:8px}
+.card{border:1px solid var(--bd);border-radius:28px;padding:22px 19px 25px;box-shadow:var(--sh)}
+.card .w{font-size:clamp(35px,10vw,46px);letter-spacing:-.045em;margin:20px 0 9px}
+.card .sit{font-size:clamp(21px,6vw,27px);letter-spacing:-.035em;margin:14px 0}
+.card .ipa{font-size:16px}
+.card .hint{padding:17px 10px;background:var(--bg);border-radius:15px;margin-top:22px}
+.card .ph{border-radius:20px}
+.lv{border-radius:99px;padding:5px 12px;font-size:11px;letter-spacing:.04em}
+.pbar{height:5px;margin-bottom:20px}
+.bar2{padding:22px 18px calc(16px + env(safe-area-inset-bottom));background:linear-gradient(transparent,var(--bg) 26%)}
+.rate{gap:7px}.rate button{border-radius:15px;padding:13px 1px}.rate small{font-size:11px}
+.opts{gap:10px}.opts button{border-radius:17px;border:1px solid var(--bd);background:var(--sf);padding:17px 16px}
+.note{border:1px solid var(--bd);border-radius:17px;line-height:1.6}
+.wide2{border-radius:16px;padding:15px}
+.focus-actions{margin:13px 0 19px}
+.focus-actions .quick{display:flex;gap:9px;margin-top:9px}
+.focus-actions .quick button{flex:1;font-size:13px;background:var(--sf);border-radius:14px;padding:13px 8px;color:var(--mut)}
+.focus-label{font-size:12px;color:var(--mut);font-weight:700;margin:0 2px 9px}
+.focus-actions .big{display:flex;justify-content:center;align-items:center;gap:9px}
+.home-kicker{margin:27px 3px 9px;font-size:13px;font-weight:800;color:var(--mut)}
+@media(max-width:360px){main{padding-left:13px;padding-right:13px}.hero{padding:21px 17px}.hero .big2{font-size:24px}.tcard{gap:9px;padding:13px 10px}.tcard .ico{width:41px;height:41px;flex-basis:41px}}
+@media(prefers-reduced-motion:reduce){button{transition:none}}
+
 </style></head><body><main id="app"></main>
 <input type="file" id="file" accept="image/*" hidden><input type="file" id="rf" accept="application/json" hidden>
 <script>
@@ -4039,12 +4091,15 @@ function nextType(){for(const t of["w","e","m"]){const l=lists(t);if(l.due.lengt
 function home(){resetDay();const T=today(),names={w:"단어",e:"구동사 · 숙어 · 표현",m:"회화 미션"},ic={w:"📚",e:"💬",m:"🗣️"};
  const L={};let rem=0;for(const t of["w","e","m"]){L[t]=lists(t);rem+=L[t].due.length+L[t].fresh.length}
  const dn=S.dn.d===T?S.dn.n:0,pc=dn+rem?Math.round(dn/(dn+rem)*100):100,nt=nextType(),sk=S.st.last===T||S.st.last===T-1?S.st.n:0;
- let h=`<div class="top"><b>Oxford 3000 회화 카드</b><button class="lk" data-a="set">설정</button></div>
- <div class="hero"><div class="ring" style="--p:${pc}"><span>${pc}%</span></div><div><div class="big2">${rem?"오늘의 학습":"오늘 목표 달성! 🎉"}</div><div class="mut">완료 ${dn}개 · 남은 ${rem}개</div><div class="streak">🔥 ${sk}일 연속</div></div></div>`;
+ let h=`<div class="top"><b>OXFORD <span style="color:var(--ac)">/</span> STUDIO</b><button class="lk" data-a="set">⚙ 설정</button></div>
+ <div class="hero"><div><div class="eyebrow">YOUR DAILY ENGLISH</div><div class="big2">${rem?"오늘도 한 걸음,\n영어가 익숙해지도록":"오늘의 목표를\n완료했어요 ✨"}</div><div class="mut">오늘 ${dn}개 완료 <span style="opacity:.5">/</span> ${rem}개 남음</div><div class="streak">🔥 ${sk}일 연속 학습</div></div><div class="ring" style="--p:${pc}"><span>${pc}%</span></div></div>`;
  const waiting=Object.entries(S.review10||{}).filter(([id,at])=>S.srs[id]&&at>Date.now());
  if(waiting.length){const soon=Math.max(1,Math.ceil((Math.min(...waiting.map(x=>x[1]))-Date.now())/60000));h+=`<div class="note">🧠 10분 뒤 다시 떠올리기: ${waiting.length}개 대기 중 · 가장 빠른 복습 약 ${soon}분 뒤. 앱을 다시 열면 복습 목록에 나타나요.</div>`}
- h+=lvlBar();if(nt)h+=`<button class="p big" data-a="go" data-t="${nt}">${names[nt]}부터 시작하기</button>`;
- h+=`<div class="row" style="margin-top:10px"><button data-a="go" data-t="q10">⏱ 5분만 하기</button><button data-a="go" data-t="q3">🌧 힘든 날 (3개)</button></div>`;if(!S.key)h+=`<div class="note" style="margin-top:10px">단어 사진을 보려면 설정에서 Unsplash 키를 넣어 주세요. 키가 없어도 학습은 할 수 있어요.</div>`;
+ h+=lvlBar();h+=`<div class="focus-actions"><div class="focus-label">✦ 오늘의 추천 학습</div>`;
+ if(nt)h+=`<button class="p big" data-a="go" data-t="${nt}">지금 공부 시작하기 <span aria-hidden="true">→</span></button>`;
+ else h+=`<button class="p big" data-a="qm">퀴즈로 기억 확인하기 <span aria-hidden="true">→</span></button>`;
+ h+=`<div class="quick"><button data-a="go" data-t="q10">⏱ 5분 집중</button><button data-a="go" data-t="q3">🌿 가볍게 3개</button></div></div>`;if(!S.key)h+=`<div class="note" style="margin-top:10px">단어 사진을 보려면 설정에서 Unsplash 키를 넣어 주세요. 키가 없어도 학습은 할 수 있어요.</div>`;
+ h+=`<div class="home-kicker">내 학습 코스</div>`;
  for(const t of["w","e","m"]){const n=Object.keys(S.srs).filter(i=>i[0]===t).length,tot=ARR[t].length,l=L[t];
   h+=`<div class="tcard"><div class="ico">${ic[t]}</div><div><b>${names[t]}</b><div class="mut">복습 ${l.due.length} · 새로 ${l.fresh.length} · 누적 ${n}/${tot}</div><div class="mini"><i style="width:${n/tot*100}%"></i></div></div><button class="p" data-a="go" data-t="${t}" ${l.due.length+l.fresh.length?"":"disabled"}>시작</button></div>`}
  h+=moreCards();h+=weekBox();h+=`<div class="tcard"><div class="ico">🎧</div><div><b>섀도잉 5분</b><div class="mut">오늘 본 예문을 소리 내어 따라 말하기</div></div><button data-a="sh">${S.sh===T?"완료 ✓":"체크"}</button></div><div id="msg"></div>`;
