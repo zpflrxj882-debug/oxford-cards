@@ -102,18 +102,18 @@ main{max-width:520px;padding:22px 19px 150px}
 .top{margin:0 0 19px;font-size:14px;min-height:34px}
 .top b{color:var(--tx);font-size:17px;letter-spacing:-.035em;font-weight:850}
 .top .lk{background:var(--sf);border:1px solid var(--bd);border-radius:99px;padding:8px 15px;color:var(--tx);font-size:13px}
-.hero{position:relative;overflow:hidden;align-items:flex-start;justify-content:space-between;gap:12px;background:#173d36;border:1px solid rgba(255,255,255,.1);border-radius:29px;padding:25px 23px 24px;min-height:188px;box-shadow:0 15px 35px rgba(20,58,49,.14)}
+.hero{position:relative;overflow:hidden;align-items:flex-start;justify-content:space-between;gap:12px;background:var(--ac);border:1px solid rgba(255,255,255,.1);border-radius:29px;padding:25px 23px 24px;min-height:188px;box-shadow:0 15px 35px rgba(20,58,49,.14)}
 .hero:after{content:"";position:absolute;width:240px;height:240px;right:-110px;top:-120px;border-radius:50%;border:1px solid rgba(255,255,255,.11);box-shadow:0 0 0 38px rgba(255,255,255,.025),0 0 0 78px rgba(255,255,255,.02);pointer-events:none}
 .hero .big2{font-size:27px;line-height:1.25;letter-spacing:-.045em;margin:11px 0 10px;max-width:220px}
 .hero .mut{font-size:13px;color:#d5e6df}
 .hero .streak{font-size:12px;display:inline-block;margin-top:13px;padding:7px 11px;border-radius:99px;background:rgba(255,255,255,.13);font-weight:700}
 .hero .ring{width:76px;height:76px;flex:0 0 76px;background:conic-gradient(#a9f0cf calc(var(--p)*1%),rgba(255,255,255,.14) 0);z-index:1;margin-top:9px}
-.hero .ring span{width:61px;height:61px;background:#173d36;font-size:17px}
+.hero .ring span{width:61px;height:61px;background:var(--ac);font-size:17px}
 .hero .eyebrow{font-size:10px;letter-spacing:.19em;font-weight:800;color:#a5dfca}
 .big2{letter-spacing:-.04em}
 button{transition:transform .12s ease,box-shadow .2s ease,background .2s ease}
 button:active{transform:scale(.98)}
-button.p{background:#176f62;border-color:#176f62;color:white}
+button.p{background:var(--ac);border-color:var(--ac);color:#fff}
 button.big{border-radius:18px;min-height:60px;box-shadow:0 8px 20px rgba(21,99,84,.14)}
 .sec{font-size:13px;text-transform:none;letter-spacing:.015em;color:var(--mut);margin:27px 3px 11px}
 .tcard{margin-top:9px;border:1px solid var(--bd);border-radius:21px;padding:17px 15px;box-shadow:none;gap:13px}
@@ -3911,8 +3911,9 @@ async function ko(it){try{const q=(/^v\./.test(it.pos)?"to ":"")+wk(it);
  if(!t||/MYMEMORY|QUERY LENGTH/i.test(t))throw 0;KC[kk(it)]=t;put("ox2k",KC)}catch(e){}}
 async function ap(path,full){const r=await fetch(full||"https://api.unsplash.com"+path,{headers:{Authorization:"Client-ID "+S.key}});if(!r.ok)throw new Error(r.status);return r.json()}
 const perr=e=>{const c=e.message;return c==="401"?"Unsplash 키가 올바르지 않아요. 설정에서 Access Key를 확인해 주세요.":(c==="403"||c==="429")?"사진 요청 한도를 넘었어요. 1시간 뒤에 다시 시도해 주세요.":"사진 서버에 연결하지 못했어요. 인터넷 연결을 확인해 주세요."};
+function setKey(key){key=key.trim();if(key!==S.key){S.key=key;for(const id of Object.keys(PERR))delete PERR[id];for(const id of Object.keys(RR))delete RR[id]}}
 async function photo(id,q){if(!S.key)return;const r=RR[id]||(RR[id]={res:[],i:-1,p:0});
- try{if(r.i+1>=r.res.length){r.p++;r.res=r.res.concat((await ap("/search/photos?query="+encodeURIComponent(q)+"&per_page=10&page="+r.p+"&orientation=squarish&content_filter=high")).results)}
+ try{if(r.i+1>=r.res.length){const page=r.p+1;const result=await ap("/search/photos?query="+encodeURIComponent(q)+"&per_page=10&page="+page+"&orientation=squarish&content_filter=high");r.p=page;r.res=r.res.concat(result.results)}
   const p=r.res[++r.i];if(!p){PERR[id]="더 이상 사진이 없어요. 📷로 내 사진을 넣어 보세요.";return}
   delete PERR[id];S.sel[id]={u:p.urls.small,n:p.user.name,l:p.links.html};save();ap("",p.links.download_location).catch(()=>{})}
  catch(e){PERR[id]=perr(e)}}
@@ -4279,8 +4280,8 @@ function settings(){app.innerHTML=`<div class="top"><button class="lk" data-a="h
  <button class="p big" style="margin-top:14px" data-a="sv">저장</button>
  <div class="sec">학습 효과</div><div class="note">${retentionSummary()}<div class="mut">실제 카드 복습 기록 기준 · 과거 데이터는 추정하지 않아요. 취약 카드는 서로 다른 3일에 기억해야 졸업해요.</div></div>
  <div class="sec">백업</div><div class="row"><button data-a="bk">백업 저장</button><button data-a="rs">백업 복원</button></div>
- <div class="note">학습 기록·메모·발음 및 사전 캐시를 이 기기의 브라우저에 저장해요. 새 백업은 모두 포함하며, 예전 백업 파일도 복원할 수 있어요. 복원하면 현재 기록을 덮어쓰니 먼저 백업하세요. 발음기호·뜻·예문은 온라인 사전에서 불러오고, 한국어 뜻은 자동 번역이라 틀릴 수 있어요.</div><div id="msg"></div>`}
-async function testKey(){S.key=$("#k").value.trim();if(!S.key)return toast("키를 먼저 입력해 주세요");toast("확인하는 중…");
+ <div class="note">학습 기록·메모·발음 및 사전 캐시를 이 기기의 브라우저에 저장해요. API 키는 이 브라우저에 저장되며 백업 파일에는 포함되지 않아요. 새 백업은 모두 포함하며, 예전 백업 파일도 복원할 수 있어요. 복원하면 현재 기록을 덮어쓰니 먼저 백업하세요. 발음기호·뜻·예문은 온라인 사전에서 불러오고, 한국어 뜻은 자동 번역이라 틀릴 수 있어요.</div><div id="msg"></div>`}
+async function testKey(){setKey($("#k").value);if(!S.key){save();return toast("키를 먼저 입력해 주세요")}save();toast("확인하는 중…");
  try{await ap("/search/photos?query=cat&per_page=1");save();toast("✅ 연결 성공! 단어 카드에 사진이 나올 거예요")}catch(e){toast("❌ "+perr(e)+" ("+e.message+")")}}
 const cl=(v,a,b,d)=>Math.min(b,Math.max(a,Math.round(+v)||d));
 app.addEventListener("click",e=>{if(e.target.closest("a"))return;const b=e.target.closest("[data-a]");if(!b||b.disabled)return;const a=b.dataset.a;
@@ -4298,10 +4299,10 @@ app.addEventListener("click",e=>{if(e.target.closest("a"))return;const b=e.targe
  else if(a==="mine")$("#file").click();
  else if(a==="tk")testKey();else if(a==="qm")qMenu();else if(a==="qs")qStart(b.dataset.m);else if(a==="qo")qPick(+b.dataset.i);else if(a==="qc")qCheck();else if(a==="qn")qNext();else if(a==="ety")etyPage();else if(a==="rpl")rpList();else if(a==="rps")rpStart(+b.dataset.i);else if(a==="rpc")rpCheck();else if(a==="rpn")rpNext();else if(a==="rpd")listen(x=>{RP.val=x;const n=$("#rpa");if(n)n.value=x;toast("")});else if(a==="dks")dkStart();else if(a==="dkc")dkCheck();else if(a==="dkn")dkNext();else if(a==="dkp")tts(DK.l[DK.n],+b.dataset.r);else if(a==="req")copyReq();else if(a==="spk")shadow(b.dataset.t);else if(a==="dict")dictate();else if(a==="th"){S.th=+b.dataset.i;save();theme()}
  else if(a==="sh"){S.sh=S.sh===today()?0:today();save();home()}
- else if(a==="sv"){S.key=$("#k").value.trim();S.per=cl($("#pw").value,5,200,50);S.pe=cl($("#pe").value,1,40,5);S.pm=cl($("#pm").value,1,20,3);S.rw=$("#rw").value.trim();save();toast("저장했어요")}
+ else if(a==="sv"){setKey($("#k").value);S.per=cl($("#pw").value,5,200,50);S.pe=cl($("#pe").value,1,40,5);S.pm=cl($("#pm").value,1,20,3);S.rw=$("#rw").value.trim();save();toast("저장했어요")}
  else if(a==="bk"){
   save();
-  const backup={format:"oxford-cards-backup",version:2,createdAt:new Date().toISOString(),data:{ox2:S,ox3d:DC,ox2k:KC}};
+  const backup={format:"oxford-cards-backup",version:2,createdAt:new Date().toISOString(),data:{ox2:{...S,key:""},ox3d:DC,ox2k:KC}};
   const url=URL.createObjectURL(new Blob([JSON.stringify(backup)],{type:"application/json"}));
   const l=document.createElement("a");l.href=url;l.download="oxford-backup-"+new Date().toISOString().slice(0,10)+".json";
   document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);
@@ -4323,12 +4324,13 @@ $("#rf").onchange=e=>{
    if(modern&&(!obj(data.ox3d)||!obj(data.ox2k)))throw Error("백업 데이터가 불완전해요");
    showModal("백업 데이터 복원 확인","현재 학습 기록을 선택한 백업 파일의 기록으로 덮어쓸까요? 복원 전 현재 기록을 먼저 백업해 두는 것을 권장합니다.","",()=>{
     try{
+     data.ox2={...data.ox2,key:data.ox2.key||S.key};
      const keys=modern?["ox2","ox3d","ox2k"]:["ox2"];
      const before=Object.fromEntries(keys.map(k=>[k,localStorage.getItem(k)]));
      try{
       for(const k of keys)localStorage.setItem(k,JSON.stringify(data[k]));
      }catch(err){for(const k of keys){try{if(before[k]===null)localStorage.removeItem(k);else localStorage.setItem(k,before[k])}catch(_){}}throw Error("저장 공간이 부족하거나 저장할 수 없어요. 기존 데이터를 유지했어요")}
-     S=Object.assign(S,data.ox2);ensureLearningData();
+     S=Object.assign(S,data.ox2,{key:data.ox2.key||S.key});ensureLearningData();for(const id of Object.keys(PERR))delete PERR[id];for(const id of Object.keys(RR))delete RR[id];theme();
      if(modern){DC=data.ox3d;KC=data.ox2k}
      home();toast(modern?"전체 학습 데이터를 복원했어요":"기존 백업의 학습 기록을 복원했어요");
     }catch(err2){showModal("복원 실패",err2.message)}
