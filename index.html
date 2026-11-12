@@ -3789,17 +3789,10 @@ function wordChunk(it,w){
  const base=wk(it);
  if(w.ex){
   const words=w.ex.replace(/[.?!,"]/g,"").split(/\s+/);
-  const idx=words.findIndex(x=>x.toLowerCase().startsWith(base.toLowerCase().slice(0,Math.max(3,base.length-1))));
-  if(idx>=0){
-   const st=Math.max(0,idx-1),en=Math.min(words.length,idx+3);
-   return words.slice(st,en).join(" ");
-  }
+  const idx=words.findIndex(x=>x.toLowerCase()===base.toLowerCase());
+  if(idx>=0)return words.slice(Math.max(0,idx-2),Math.min(words.length,idx+3)).join(" ");
  }
- if(/^v\./.test(it.pos))return"Can I "+base+"...? / I’ll "+base;
- if(/^adj\./.test(it.pos))return"It’s really "+base+" / feel "+base;
- if(/^adv\./.test(it.pos))return base+" good / do it "+base;
- if(/^n\./.test(it.pos))return"a new "+base+" / the "+base;
- return base+" in real life";
+ return base;
 }
 const POS_EMOJI={"v.":"🏃","n.":"📦","adj.":"✨","adv.":"⚡","prep.":"🧭","conj.":"🔗","pron.":"🙋","modal v.":"💡","exclam.":"💬","number":"🔢"};
 function posEm(pos){for(const k in POS_EMOJI)if(pos.includes(k))return POS_EMOJI[k];return"🎯"}
@@ -3958,7 +3951,7 @@ function phHtml(id,it){const s=S.sel[id];
  if(PERR[id])return`<div class="q err">${esc(PERR[id])}</div>`;
  if(S.key)return`<div class="q">…<small>${esc(it.pos)}</small></div>`;
  const w=wInfo(id,it),ck=wordChunk(it,w);
- return`<div class="scene-box"><div class="s-em">${posEm(it.pos)}</div><div><b>원어민 핵심 청크로 통째로 각인하기</b></div><div class="s-chunk">💬 “${esc(ck)}”</div><div class="s-tip">단어 하나만 외우지 말고 짝꿍 표현(Chunk)으로 소리 내어 보세요 · 📷 내 사진 추가 가능</div></div>`}
+ return`<div class="scene-box"><div class="s-em">${posEm(it.pos)}</div><div><b>검수된 예문과 함께 기억하기</b></div><div class="s-chunk">💬 “${esc(ck)}”</div><div class="s-tip">실제 예문이 있으면 함께 확인하세요 · 📷 내 사진 추가 가능</div></div>`}
 function wordBack(id,it){const d=DC[wk(it).toLowerCase()]||{},k=KC[kk(it)];
  return`<div class="w">${esc(it.w)}${sayBtn(wk(it),d.a)}</div><div class="ipa" id="ipa">${esc(d.i||"")}</div><div class="pos">${esc(it.pos)}${it.s?" · "+esc(it.s):""}</div><div class="ko" id="ko">${k?esc(k):""}</div><div class="def" id="def">${(d.d||[]).map(esc).join("<br>")}</div><div class="ex" id="exs">${d.x?esc(d.x)+sayBtn(d.x):""}</div>`}
 function patch(id){if(Q[0]!==id||id[0]!=="w")return;const it=get(id),w=wInfo(id,it),set=(i,h)=>{const e=document.getElementById(i);if(e)e.innerHTML=h};
@@ -4088,13 +4081,13 @@ function dkNext(){DK.n++;DK.val="";DK.fb=null;if(DK.n<DK.l.length){dkShow();scro
 const PKO=[["modal v.","조동사"],["auxiliary v.","조동사"],["definite article","관사"],["indefinite article","관사"],["infinitive marker","to부정사 표지"],["exclam.","감탄사"],["number","수사"],["adj.","형용사"],["adv.","부사"],["prep.","전치사"],["conj.","접속사"],["pron.","대명사"],["det.","한정사"],["n.","명사"],["v.","동사"]];
 const posKo=p=>{let s=p;for(const[a,b]of PKO)s=s.split(a).join(b);return s.replace(/,\s*/g," · ")};
 const qq=it=>{const c=cw(it);return c&&c[4]?c[4]:qo(it)};
-function wInfo(id,it){const c=cw(it),d=DC[wk(it).toLowerCase()]||{},et=(c&&c[3])||autoEty(wk(it));return{c,ipa:c?c[1]:(d.i||""),ex:c?c[2]:(d.x||""),ko:c?c[0]:(KC[kk(it)]||""),n:et,def:(d.d||[]).map(esc).join("<br>"),a:d.a}}
+function wInfo(id,it){const c=cw(it),d=DC[wk(it).toLowerCase()]||{},et=(c&&c[3])||"";return{c,ipa:c?c[1]:(d.i||""),ex:c?c[2]:(d.x||""),ko:c?c[0]:(KC[kk(it)]||""),n:et,def:(d.d||[]).map(esc).join("<br>"),a:d.a}}
 const capHtml=w=>w.ko?esc(w.ko)+`<small>${w.c?"✓ 검수 완료":"자동 번역(미검수)"}</small>`:"";
 function clozeEx(ex,word){
  if(!ex||!word)return"";
  const base=word.split(",")[0].trim();
  const re=new RegExp(base.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),"i");
- return re.test(ex)?ex.replace(re,"[ _____ ]"):ex;
+ return re.test(ex)?ex.replace(re,"[ _____ ]"):"";
 }
 function mlockBar(id,hasEty){
  const e=(S.enc&&S.enc[id])||{};
@@ -4103,10 +4096,10 @@ function mlockBar(id,hasEty){
 function wordCard(id,it){const w=wInfo(id,it),prod=S.prodMode&&w.ko;
  if(!flip&&prod){
   const cz=clozeEx(w.ex,it.w);
-  return`<div class="card" data-a="flip"><span class="lv">${LV[it.l]} · 🗣️ 회화 인출 모드</span><div class="sit" style="margin-top:16px">${esc(w.ko)}</div><div class="pos">${esc(posKo(it.pos))}${it.s?" · "+esc(it.s):""} · 첫 글자 힌트: <b>${esc(wk(it).slice(0,2))}…</b></div>${cz?`<div class="ex" style="margin-top:12px;color:var(--mut)">“${esc(cz)}”</div>`:""}<div class="hint">영어로 어떻게 말할지 입으로 중얼거린 뒤 탭하세요</div></div>`;
+  return`<div class="card" data-a="flip"><span class="lv">${LV[it.l]} · 🗣️ 회화 인출 모드</span><div class="sit" style="margin-top:16px">${esc(w.ko)}</div><div class="pos">${esc(posKo(it.pos))}${it.s?" · "+esc(it.s):""}</div>${cz?`<div class="ex" style="margin-top:12px;color:var(--mut)">“${esc(cz)}”</div>`:""}<div class="hint">힌트 없이 영어를 떠올려 말한 다음 탭하세요</div></div>`;
  }
  let h=`<div class="card" data-a="flip"><span class="lv">${LV[it.l]}</span><div class="w">${esc(it.w)}${sayBtn(wk(it),w.a)}${flip?micBtn(wk(it)):""}</div><div class="pos">${esc(posKo(it.pos))}${it.s?" · "+esc(it.s):""}</div><div class="ipa" id="ipa">${esc(w.ipa)}</div><div class="ex" id="exs">${w.ex?esc(w.ex)+sayBtn(w.ex)+(flip?micBtn(w.ex):""):""}</div>`;
- if(flip)h+=`<div id="sp"></div>${mlockBar(id,!!w.n)}<div class="phw" style="margin-top:10px"><div class="ph" id="ph">${phHtml(id,it)}</div><div class="cap" id="ko">${capHtml(w)}</div><div class="tools"><button data-a="other" aria-label="다른 사진">🔄</button><button data-a="mine" aria-label="내 사진">📷</button></div></div>${w.n?`<div class="ety">🌱 <b>기억 고리(어원·원리):</b> ${esc(w.n)}</div>`:""}<div class="def" id="def">${w.def}</div>`;
+ if(flip)h+=`<div id="sp"></div>${mlockBar(id,!!w.n)}<div class="phw" style="margin-top:10px"><div class="ph" id="ph">${phHtml(id,it)}</div><div class="cap" id="ko">${capHtml(w)}</div><div class="tools"><button data-a="other" aria-label="다른 사진">🔄</button><button data-a="mine" aria-label="내 사진">📷</button></div></div>${w.n?`<div class="ety">🌱 <b>기억 고리(검수된 설명):</b> ${esc(w.n)}</div>`:""}<div class="def" id="def">${w.def}</div>`;
  else h+=`<div class="hint">뜻과 쓰임새가 떠오르면 탭하세요</div>`;
  return h+`</div>`}
 const ETSV=[
@@ -4203,7 +4196,7 @@ function qNext(){
  if(sentence){ensureLearningData();S.practice.push({id:QZ.l[QZ.n].id,d:today(),text:sentence.slice(0,500)});S.practice=S.practice.slice(-300);save()}
  QZ.n++;QZ.sel=null;QZ.val="";QZ.fb=null;if(QZ.n<QZ.l.length){qShow();scrollTo(0,0);return}
  app.innerHTML=`<div class="done"><div class="em">🎯</div><div class="big2">퀴즈 끝!</div><p class="mut">${QZ.l.length}문제 중 ${QZ.ok}문제 정답</p><div class="row"><button data-a="qm">다른 퀴즈</button><button class="p" data-a="home">홈으로</button></div></div>`;confetti()}
-function nextType(){for(const t of["w","e","m"]){const l=lists(t);if(l.due.length+l.fresh.length)return t}return""}
+function nextType(){for(const t of["m","e","w"]){if(lists(t).due.length)return t}for(const t of["m","e","w"]){if(lists(t).fresh.length)return t}return""}
 function home(){resetDay();const T=today(),names={w:"단어",e:"구동사 · 숙어 · 표현",m:"회화 미션"},ic={w:"📚",e:"💬",m:"🗣️"};
  const L={};let rem=0;for(const t of["w","e","m"]){L[t]=lists(t);rem+=L[t].due.length+L[t].fresh.length}
  const dn=S.dn.d===T?S.dn.n:0,pc=dn+rem?Math.round(dn/(dn+rem)*100):100,nt=nextType(),sk=S.st.last===T||S.st.last===T-1?S.st.n:0;
@@ -4294,7 +4287,7 @@ function fin(){const T=today(),sk=S.st.last===T?S.st.n:0;
  const picks=uniq.slice(0,3);
  let wrapHtml="";
  if(picks.length){
-  wrapHtml=`<div class="sec" style="text-align:left">🔒 세션 기억 잠금 피날레 (3초 스피킹 인출)</div><p class="mut" style="text-align:left;margin-top:0">방금 본 표현을 닫기 전에 <b>입으로 한 번씩만 소리 내어 말해보세요</b>. 다음 복습에서 다시 떠올릴 수 있는지 확인해 보세요.</p>`+picks.map((id,idx)=>{
+  wrapHtml=`<div class="sec" style="text-align:left">🗣️ 오늘 표현 한 번 더 말하기</div><p class="mut" style="text-align:left;margin-top:0">방금 본 표현을 닫기 전에 <b>입으로 한 번씩만 소리 내어 말해보세요</b>. 다음 복습에서 다시 떠올릴 수 있는지 확인해 보세요.</p>`+picks.map((id,idx)=>{
    const info=finCardInfo(id);
    return`<div class="wrap-item"><div class="mut">복습 ${idx+1} · ${esc(info.ko)}</div><div style="font-weight:800;font-size:17px;margin-top:4px">${esc(info.en)} ${sayBtn(info.en)}${micBtn(info.en)}</div></div>`;
   }).join("")+`<div id="sp"></div>`;
