@@ -4226,7 +4226,7 @@ function home(){resetDay();const T=today(),names={w:"단어",e:"구동사 · 숙
  const readyR10=allR10.filter(([,at])=>at<=Date.now()),waiting=allR10.filter(([,at])=>at>Date.now());
  if(readyR10.length)h+=`<div class="note" style="background:var(--r1)"><b>🧠 다시 떠올릴 표현 ${readyR10.length}개</b><div class="mut">정답을 보지 않고 말해 보세요.</div><button class="p wide2" data-a="go" data-t="r10">10분 복습 시작하기 →</button></div>`;
  else if(waiting.length){const soonMs=Math.min(...waiting.map(x=>x[1]))-Date.now(),soon=Math.max(1,Math.ceil(soonMs/60000));
-  REV_TM=setTimeout(()=>home(),Math.min(soonMs+500,30000));
+  REV_TM=setTimeout(()=>home(),Math.min(soonMs+500,600000));
   h+=`<div class="note">🧠 다시 확인할 표현 ${waiting.length}개 · 약 ${soon}분 뒤 준비돼요.</div>`;
  }
  h+=`<section id="today"><div class="focus-actions"><div class="focus-label">✦ 오늘의 추천 학습</div>`;
