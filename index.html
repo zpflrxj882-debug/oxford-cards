@@ -3920,12 +3920,24 @@ async function photo(id,q){if(!S.key)return;const r=RR[id]||(RR[id]={res:[],i:-1
 function addImg(f){const id=Q[0];if(!id||id[0]!=="w")return;const rd=new FileReader();
  rd.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,360/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*k;c.height=im.height*k;c.getContext("2d").drawImage(im,0,0,c.width,c.height);S.sel[id]={c:c.toDataURL("image/jpeg",.75)};delete PERR[id];save();patch(id);toast("내 사진을 넣었어요")};im.src=rd.result};rd.readAsDataURL(f)}
 
-const norm=s=>s.toLowerCase().replace(/[’‘]/g,"'").replace(/won't/g,"will not").replace(/can't/g,"cannot").replace(/n't/g," not").replace(/'ve/g," have").replace(/'m/g," am").replace(/'re/g," are").replace(/'ll/g," will").replace(/'d/g," would").replace(/'s\b/g," is").replace(/[^a-z0-9 ]/g," ").split(/\s+/).filter(Boolean);
+const norm=s=>String(s).toLowerCase().replace(/[’‘]/g,"'")
+ .replace(/\b(\w+)'s(?=\s+been\b)/g,"$1 has")
+ .replace(/\b(\w+)'d(?=\s+(?:been|done|finished|gone|seen|had)\b)/g,"$1 had")
+ .replace(/\bwon't\b/g,"will not").replace(/\bcan't\b/g,"cannot")
+ .replace(/n't\b/g," not").replace(/'ve\b/g," have").replace(/'m\b/g," am")
+ .replace(/'re\b/g," are").replace(/'ll\b/g," will")
+ .replace(/'d\b/g," would").replace(/'s\b/g," is")
+ .replace(/[^a-z0-9 ]/g," ").split(/\s+/).filter(Boolean);
 function lcs(a,b){const n=a.length,m=b.length,D=Array.from({length:n+1},()=>Array(m+1).fill(0));
- for(let i=n-1;i>=0;i--)for(let j=m-1;j>=0;j--)D[i][j]=a[i]===b[j]?D[i+1][j+1]+1:Math.max(D[i+1][j],D[i+1][j+1]);
- const ia=new Set,ib=new Set;let i=0,j=0;
+ for(let i=n-1;i>=0;i--)for(let j=m-1;j>=0;j--)D[i][j]=a[i]===b[j]?1+D[i+1][j+1]:Math.max(D[i+1][j],D[i][j+1]);
+ const ia=new Set(),ib=new Set();let i=0,j=0;
  while(i<n&&j<m){if(a[i]===b[j]){ia.add(i);ib.add(j);i++;j++}else if(D[i+1][j]>=D[i][j+1])i++;else j++}
  return{len:D[0][0],ia,ib}}
+function criticalMismatch(a,b){
+ const flag=x=>x.some(w=>["not","never","no","cannot","without"].includes(w));
+ const nums=x=>x.filter(w=>/^\d+$/.test(w)).sort().join("|");
+ return flag(a)!==flag(b)||(nums(a)!==nums(b)&&(nums(a)!==""||nums(b)!==""));
+}
 function grade(id){const it=get(id),ans=(S.notes[id]||"").trim();if(!ans)return null;
  const u=norm(ans);if(!u.length)return null;
  const ms=it.a.filter(a=>!/[가-힣]/.test(a)).map(a=>a.split(" (")[0]);
@@ -3933,12 +3945,12 @@ function grade(id){const it=get(id),ans=(S.notes[id]||"").trim();if(!ans)return 
  let best=null;
  for(const m of ms){const t=norm(m),r=lcs(u,t),sc=r.len/Math.max(u.length,t.length);if(!best||sc>best.sc)best={m,t,r,sc}}
  const same=(a,b)=>a.length===b.length&&a.every((w,i)=>w===b[i]);
- const wrong=(it.x||"").split(" / ").map(x=>norm(x.split(" (")[0])).some(w=>w.length&&same(u,w));
+ const wrong=!!it.x&&it.x.split(" / ").some(x=>{const w=norm(x.split(" (")[0]);return w.length&&same(u,w)});
  const mine=u.map((w,i)=>best.r.ia.has(i)?esc(w):`<s>${esc(w)}</s>`).join(" "),right=best.t.map((w,i)=>best.r.ib.has(i)?esc(w):`<b class="mi">${esc(w)}</b>`).join(" ");
  const b=`<div>내 답: ${mine}</div><div>정답: ${right}</div><small>자동 비교예요(축약형은 풀어서 비교해요). 자세한 첨삭이 필요하면 채팅에서 받아 보세요.</small>`;
- if(best.sc===1)return{lv:"ok",t:"✅ 정확해요!",b,sug:3};
+ if(best.sc===1&&!criticalMismatch(u,best.t))return{lv:"ok",t:"✅ 예문과 일치해요!",b,sug:3};
  if(wrong)return{lv:"warn",t:"⚠ 흔한 실수와 같아요",b,sug:0};
- if(best.sc>=.75)return{lv:"near",t:"👍 거의 맞아요",b,sug:1};
+ if(best.sc>=.75&&!criticalMismatch(u,best.t))return{lv:"near",t:"👍 예문과 비슷해요",b,sug:1};
  return{lv:"bad2",t:"✍️ 다시 살펴볼 부분이 있어요",b,sug:0}}
 
 function phHtml(id,it){const s=S.sel[id];
@@ -3983,7 +3995,7 @@ function markEnc(id,step){
 }
 function shadow(t){listen(x=>{const a=norm(t),b=norm(x),r=lcs(a,b),sc=Math.round(r.len/Math.max(a.length,b.length,1)*100),el=document.getElementById("sp");
  if(sc>=60&&Q[0])markEnc(Q[0],"spk");
- if(el)el.innerHTML=`<div class="fb ${sc>=90?"ok":sc>=60?"near":"bad2"}"><b>${sc>=90?"✅ 원어민처럼 또렷해요! (+각인 보너스)":sc>=60?"👍 잘 들렸어요! 한 번 더 리듬을 살려 볼까요?":"🎤 입을 크게 열고 다시 말해 볼까요?"} (${sc}%)</b><div>내가 한 말: ${esc(x)}</div><div>원어민 목표: ${esc(t)}</div><small>소리를 내어 귀로 내 목소리를 들으면 뇌의 운동 피질과 청각 피질이 동시에 각인됩니다.</small></div>`;toast("")})}
+ if(el)el.innerHTML=`<div class="fb ${sc>=90?"ok":sc>=60?"near":"bad2"}"><b>${sc>=90?"✅ 인식된 문장이 목표와 비슷해요":sc>=60?"👍 일부 표현이 인식됐어요":"🎤 천천히 다시 말해 보세요"} (문자 일치 ${sc}%)</b><div>인식된 문장: ${esc(x)}</div><div>목표 문장: ${esc(t)}</div><small>발음·강세·억양 점수가 아니라 음성 인식된 문장의 문자 비교 결과예요.</small></div>`;toast("")})}
 function dictate(){listen(x=>{const id=Q[0];if(!id)return;S.notes[id]=x;markEnc(id,"own");save();const n=document.getElementById("note");if(n)n.value=x;toast("🎤 내 문장을 음성으로 기록했어요!")})}
 function copyTextFallback(p){
  try{const ta=document.createElement("textarea");ta.value=p;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();const ok=document.execCommand("copy");ta.remove();if(ok){toast("복사했어요! AI 채팅에 붙여넣으면 첨삭해 줘요");return}}catch(e){}
@@ -4028,10 +4040,11 @@ function updateWeak(id,success){
 ensureLearningData();
 function gain(x){const T=today(),L0=lvOf(S.xp);S.xp+=x;if(!S.days.includes(T)){S.days.push(T);S.days=S.days.slice(-90)}if(S.st.last!==T){S.st.n=S.st.last===T-1?S.st.n+1:1;S.st.last=T}if(S.dn.d!==T)S.dn={d:T,n:0};S.dn.n++;save();pop(x,lvOf(S.xp)>L0)}
 function cmp(ans,ms){const u=norm(ans);if(!u.length)return null;let best=null;
- for(const m of ms){const t=norm(m),r=lcs(u,t),sc=r.len/Math.max(u.length,t.length);if(!best||sc>best.sc)best={m,t,r,sc}}
+ for(const m of ms){const t=norm(m),r=lcs(u,t),sc=r.len/Math.max(u.length,t.length,1),conflict=criticalMismatch(u,t);if(!best||sc>best.sc)best={m,t,r,sc,conflict}}
  const mine=u.map((w,i)=>best.r.ia.has(i)?esc(w):`<s>${esc(w)}</s>`).join(" "),right=best.t.map((w,i)=>best.r.ib.has(i)?esc(w):`<b class="mi">${esc(w)}</b>`).join(" ");
- const lv=best.sc>=.9?"ok":best.sc>=.6?"near":"bad2";
- return{sc:best.sc,lv,t:lv==="ok"?"✅ 정확해요!":lv==="near"?"👍 거의 맞아요":"✍️ 다시 살펴봐요",html:`<div>내 답: ${mine}</div><div>가까운 정답: ${right}</div>`}}
+ const exact=best.sc===1&&!best.conflict,lv=exact?"ok":best.sc>=.6&&!best.conflict?"near":"bad2";
+ return{sc:best.sc,exact,conflict:best.conflict,lv,t:exact?"✅ 예문과 일치해요":best.conflict?"⚠ 뜻을 바꾸는 표현이 달라요":lv==="near"?"👍 예문과 비슷해요":"✍️ 예문과 다른 부분이 있어요",html:`<div>내 답: ${mine}</div><div>비교 예문: ${right}</div><small>문자 비교만으로 자유로운 답변의 문법·의미를 완전히 평가할 수는 없어요.</small>`}}
+
 const RPS=[
 {n:"☕ 카페에서 주문하기",t:[["Hi! What can I get for you?","어서 오세요. 뭐 드릴까요?",["I’d like a latte, please.","Can I get a latte, please?"],"라떼 주문"],["Sure. Hot or iced?","뜨거운 걸로 드릴까요, 아이스로 드릴까요?",["Iced, please.","I’ll have it iced."],"아이스로"],["Anything else?","더 필요한 건 없으세요?",["No, that’s all. Thank you.","That’s it, thanks."],"그게 다예요"],["For here or to go?","드시고 가세요, 포장이세요?",["To go, please.","Can I get it to go?"],"포장"]]},
 {n:"📅 친구와 약속 잡기",t:[["Hey! Are you free this weekend?","이번 주말에 시간 돼?",["Yeah, I think so. What’s up?","Maybe. What’s the plan?"],"시간 되는지 대답"],["Let’s grab lunch on Saturday.","토요일에 점심 먹자.",["Sounds good! What time?","That works for me. What time?"],"좋다고 하고 시간 묻기"],["How about noon?","정오 어때?",["Noon works for me.","Sure, see you at noon."],"좋다고 대답"],["Great. Don’t be late!","좋아. 늦지 마!",["I won’t. See you then!","No worries. See you!"],"걱정 말라고 하기"]]},
@@ -4055,11 +4068,11 @@ function rpShow(){const s=RPS[RP.i],tn=s.t[RP.n],blind=S.blindRp&&!RP.fb&&!RP.re
  else h+=`<button class="wide2 p" data-a="rpd">🎤 원어민에게 말하듯 음성으로 답하기</button><div class="chips">${RP_REACTIONS.map(r=>`<button type="button" data-a="rpchip" data-v="${esc(r)}">+ ${esc(r.trim())}</button>`).join("")}</div><textarea id="rpa" placeholder="영어로 대답해 보세요 (힌트: ${esc(tn[3])})">${esc(RP.val)}</textarea>`;
  h+=`<div id="msg"></div><div class="bar2"><div class="in">`+(RP.fb?`<button class="p big" data-a="rpn">${RP.n+1<s.t.length?"다음 대사로 →":"결과 보기"}</button>`:`<button class="p big" data-a="rpc">내 대답 확인하기</button>`)+`</div></div>`;
  app.innerHTML=h}
-function rpCheck(){const tn=RPS[RP.i].t[RP.n],c=cmp(RP.val,tn[2]);if(!c)return toast("먼저 영어로 대답해 보세요");RP.fb=c;if(c.sc>=.6){RP.ok++;gain(3)}rpShow();scrollTo(0,0)}
+function rpCheck(){if(!RP||RP.fb)return;const tn=RPS[RP.i].t[RP.n],c=cmp(RP.val,tn[2]);if(!c)return toast("먼저 영어로 대답해 보세요");RP.fb=c;if(c.exact){RP.ok++;gain(3)}rpShow();scrollTo(0,0)}
 function rpNext(){const s=RPS[RP.i],tn=s.t[RP.n];RP.hist.push(["p",tn[0]],["me",RP.val]);RP.n++;RP.val="";RP.fb=null;RP.rev=false;
  if(RP.n<s.t.length){rpShow();if(S.autoAudio!==false)tts(s.t[RP.n][0],0.92);scrollTo(0,0);return}
  S.rp[RP.i]=Math.max(S.rp[RP.i]||0,RP.ok);gain(5);
- app.innerHTML=`<div class="done"><div class="em">🎭</div><div class="big2">대화 완료!</div><p class="mut">${s.t.length}번 중 ${RP.ok}번이 자연스러웠어요. (+5 XP)</p></div>`+RP.hist.map(([w,x])=>`<div class="bub ${w==="me"?"me":""}">${esc(x)}</div>`).join("")+`<div class="row" style="margin-top:14px"><button data-a="rps" data-i="${RP.i}">다시 하기</button><button class="p" data-a="rpl">다른 상황</button></div>`;confetti()}
+ app.innerHTML=`<div class="done"><div class="em">🎭</div><div class="big2">대화 완료!</div><p class="mut">${s.t.length}번 중 ${RP.ok}번이 비교 예문과 일치했어요. (+5 XP)</p></div>`+RP.hist.map(([w,x])=>`<div class="bub ${w==="me"?"me":""}">${esc(x)}</div>`).join("")+`<div class="row" style="margin-top:14px"><button data-a="rps" data-i="${RP.i}">다시 하기</button><button class="p" data-a="rpl">다른 상황</button></div>`;confetti()}
 function dkPool(){const a=[];EX.forEach(e=>{if(e.x)a.push(e.x)});MS.forEach(m=>{const s=m.a[0];if(s&&!/[가-힣]/.test(s))a.push(s.split(" (")[0])});return a}
 function dkStart(){const P=dkPool(),st=(S.dp||0)%P.length;DK={l:Array.from({length:10},(_,i)=>P[(st+i)%P.length]),n:0,val:"",fb:null,ok:0};S.dp=st+10;save();dkShow()}
 function dkShow(){const t=DK.l[DK.n];
@@ -4184,7 +4197,7 @@ function qDone(ok,q){
  gain(ok?4:1)
 }
 function qPick(i){const q=QZ.l[QZ.n];if(QZ.sel!=null)return;QZ.sel=i;const ok=q.o[i]===q.a;QZ.fb={lv:ok?"ok":"bad2",t:ok?"✅ 정답!":"❌ 아쉬워요"};qDone(ok,q);qShow()}
-function qCheck(){const q=QZ.l[QZ.n],c=cmp(QZ.val,[q.a]);if(!c)return toast("먼저 영어로 써 보세요");const ok=c.sc>=.99;QZ.fb={lv:ok?"ok":c.lv,t:ok?"✅ 정답!":c.sc>=.6?"👍 거의 맞아요":"❌ 아쉬워요",html:ok?"":c.html};qDone(ok,q);qShow()}
+function qCheck(){if(!QZ||QZ.fb)return;const q=QZ.l[QZ.n],c=cmp(QZ.val,[q.a]);if(!c)return toast("먼저 영어로 써 보세요");const ok=c.exact;QZ.fb={lv:ok?"ok":c.lv,t:ok?"✅ 정답!":c.sc>=.6?"👍 거의 맞아요":"❌ 아쉬워요",html:ok?"":c.html};qDone(ok,q);qShow()}
 function qNext(){
  const field=$("#qctx"),sentence=field&&field.value.trim();
  if(sentence){ensureLearningData();S.practice.push({id:QZ.l[QZ.n].id,d:today(),text:sentence.slice(0,500)});S.practice=S.practice.slice(-300);save()}
