@@ -164,6 +164,21 @@ button.big{border-radius:18px;min-height:60px;box-shadow:0 8px 20px rgba(21,99,8
 .modal-card h3{margin:0 0 8px;font-size:18px}
 .modal-card p{margin:0 0 14px;font-size:14px;color:var(--mut);line-height:1.5}
 .wrap-item{background:var(--sf);border:1px solid var(--bd);border-radius:18px;padding:14px;margin:10px 0;text-align:left}
+
+/* Learning-first navigation, readable labels and expandable courses */
+:root{--mut:#53645c}
+@media(prefers-color-scheme:dark){:root{--mut:#b2c4b9}}
+.study-room{border:1px solid var(--bd);border-radius:20px;background:var(--sf);margin:14px 0;overflow:hidden}
+.study-room summary{cursor:pointer;padding:18px 17px;font-weight:800;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.study-room summary::-webkit-details-marker{display:none}
+.study-room summary:after{content:"⌄";font-size:23px;font-weight:400;color:var(--mut)}
+.study-room[open] summary:after{content:"⌃"}
+.study-room .room-content{padding:0 12px 14px}
+.study-room .tcard{margin-top:8px}
+.home-nav{display:flex;gap:8px;margin:17px 0}
+.home-nav a{flex:1;text-decoration:none;text-align:center;padding:12px 4px;background:var(--sf);color:var(--tx);border:1px solid var(--bd);border-radius:14px;font-size:13px;font-weight:800}
+.home-note{font-size:13px;color:var(--mut);padding:0 4px}
+.focus-actions .big{font-size:17px}
 </style></head><body><main id="app"></main>
 <input type="file" id="file" accept="image/*" hidden><input type="file" id="rf" accept="application/json" hidden>
 <script>
@@ -4201,26 +4216,38 @@ function home(){resetDay();const T=today(),names={w:"단어",e:"구동사 · 숙
  const L={};let rem=0;for(const t of["w","e","m"]){L[t]=lists(t);rem+=L[t].due.length+L[t].fresh.length}
  const dn=S.dn.d===T?S.dn.n:0,pc=dn+rem?Math.round(dn/(dn+rem)*100):100,nt=nextType(),sk=S.st.last===T||S.st.last===T-1?S.st.n:0;
  let h=`<div class="top"><b>OXFORD <span style="color:var(--ac)">/</span> STUDIO</b><button class="lk" data-a="set">⚙ 설정</button></div>
- <div class="hero"><div><div class="eyebrow">YOUR DAILY ENGLISH</div><div class="big2">${rem?"오늘도 한 걸음,\n영어가 익숙해지도록":"오늘의 목표를\n완료했어요 ✨"}</div><div class="mut">오늘 ${dn}개 완료 <span style="opacity:.5">/</span> ${rem}개 남음</div><div class="streak">🔥 ${sk}일 연속 학습</div></div><div class="ring" style="--p:${pc}"><span>${pc}%</span></div></div>`;
- clearTimeout(REV_TM);
+ <div class="hero"><div><div class="eyebrow">YOUR DAILY ENGLISH</div><div class="big2">${rem?"오늘도 한 문장,\n직접 말해봐요":"오늘 학습 완료! ✨"}</div><div class="mut">오늘 연습한 카드 ${dn}개 · 남은 학습 ${rem}개</div><div class="streak">🔥 ${sk}일 연속 학습</div></div><div class="ring" style="--p:${pc}"><span>${pc}%</span></div></div>
+ <nav class="home-nav" aria-label="학습 메뉴"><a href="#today">오늘</a><a href="#courses">학습실</a><a href="#records">내 기록</a></nav>`;
+ clearTimeout(REV_TM);REV_TM=null;
  const allR10=Object.entries(S.review10||{}).filter(([id])=>S.srs[id]);
  const readyR10=allR10.filter(([,at])=>at<=Date.now()),waiting=allR10.filter(([,at])=>at>Date.now());
- if(readyR10.length){
-  h+=`<div class="note" style="background:var(--r1);border-color:var(--ac)"><b>🧠 다시 떠올려 볼 시간 (${readyR10.length}개 인출 준비 완료)</b><div class="mut">헷갈렸던 표현을 정답 없이 다시 떠올려 보세요.</div><button class="p wide2" style="margin-top:8px;margin-bottom:0" data-a="go" data-t="r10">10분 복습 시작하기 →</button></div>`;
- }else if(waiting.length){
-  const soonMs=Math.min(...waiting.map(x=>x[1]))-Date.now(),soon=Math.max(1,Math.ceil(soonMs/60000));
+ if(readyR10.length)h+=`<div class="note" style="background:var(--r1)"><b>🧠 다시 떠올릴 표현 ${readyR10.length}개</b><div class="mut">정답을 보지 않고 말해 보세요.</div><button class="p wide2" data-a="go" data-t="r10">10분 복습 시작하기 →</button></div>`;
+ else if(waiting.length){const soonMs=Math.min(...waiting.map(x=>x[1]))-Date.now(),soon=Math.max(1,Math.ceil(soonMs/60000));
   REV_TM=setTimeout(()=>home(),Math.min(soonMs+500,30000));
-  h+=`<div class="note">🧠 <b>10분 뒤 다시 떠올리기:</b> ${waiting.length}개 대기 중 (약 ${soon}분 뒤 오픈)</div>`;
+  h+=`<div class="note">🧠 다시 확인할 표현 ${waiting.length}개 · 약 ${soon}분 뒤 준비돼요.</div>`;
  }
- h+=lvlBar();h+=`<div class="focus-actions"><div class="focus-label">✦ 오늘의 추천 학습</div>`;
- if(nt)h+=`<button class="p big" data-a="go" data-t="${nt}">지금 공부 시작하기 <span aria-hidden="true">→</span></button>`;
- else h+=`<button class="p big" data-a="qm">퀴즈로 기억 확인하기 <span aria-hidden="true">→</span></button>`;
- h+=`<div class="quick"><button data-a="go" data-t="q10">⏱ 5분 집중</button><button data-a="go" data-t="q3">🌿 가볍게 3개</button></div></div>`;if(!S.key)h+=`<div class="note" style="margin-top:10px">단어 사진을 보려면 설정에서 Unsplash 키를 넣어 주세요. 키가 없어도 학습은 할 수 있어요.</div>`;
- h+=`<div class="home-kicker">내 학습 코스</div>`;
+ h+=`<section id="today"><div class="focus-actions"><div class="focus-label">✦ 오늘의 추천 · 10분부터 시작해요</div>`;
+ const resume=Array.isArray(S.activeSession?.q)&&S.activeSession.q.some(id=>validCardId(id));
+ if(resume)h+=`<button class="p big" data-a="resume">이어서 공부하기 →</button><div class="home-note">진행 중이던 카드 ${S.activeSession.q.length}개가 남아 있어요.</div>`;
+ else if(nt)h+=`<button class="p big" data-a="go" data-t="${nt}">오늘의 영어 시작하기 →</button>`;
+ else h+=`<button class="p big" data-a="qm">퀴즈로 기억 확인하기 →</button>`;
+ h+=`<div class="quick"><button data-a="go" data-t="q10">⏱ 5분 집중</button><button data-a="go" data-t="q3">🌿 가볍게 3개</button></div></div></section>`;
+ h+=`<details class="study-room" id="courses"><summary>📚 학습실 전체 보기</summary><div class="room-content">`;
  for(const t of["w","e","m"]){const n=Object.keys(S.srs).filter(i=>i[0]===t).length,tot=ARR[t].length,l=L[t];
   h+=`<div class="tcard"><div class="ico">${ic[t]}</div><div><b>${names[t]}</b><div class="mut">복습 ${l.due.length} · 새로 ${l.fresh.length} · 누적 ${n}/${tot}</div><div class="mini"><i style="width:${n/tot*100}%"></i></div></div><button class="p" data-a="go" data-t="${t}" ${l.due.length+l.fresh.length?"":"disabled"}>시작</button></div>`}
- h+=moreCards();h+=weekBox();h+=`<div class="tcard"><div class="ico">🎧</div><div><b>섀도잉 5분</b><div class="mut">오늘 본 예문을 소리 내어 따라 말하기</div></div><button data-a="sh">${S.sh===T?"완료 ✓":"체크"}</button></div><div id="msg"></div>`;
- app.innerHTML=h}
+ h+=moreCards();
+ h+=`<div class="tcard"><div class="ico">🎧</div><div><b>섀도잉 5분</b><div class="mut">예문을 소리 내어 따라 말하기</div></div><button data-a="sh">${S.sh===T?"완료 ✓":"체크"}</button></div></div></details>`;
+ h+=`<details class="study-room" id="records"><summary>📈 내 학습 기록</summary><div class="room-content"><div class="note">${retentionSummary()}</div>`;
+ h+=lvlBar()+weekBox()+`</div></details>`;
+ if(!S.key)h+=`<p class="home-note">사진 없이도 학습할 수 있어요. 사진은 설정에서 Unsplash Access Key를 연결할 수 있어요.</p>`;
+ h+=`<div id="msg"></div>`;app.innerHTML=h;
+}
+function validCardId(id){return typeof id==="string"&&/^[wem]\d+$/.test(id)&&!!ARR[id[0]][+id.slice(1)]}
+function resumeSession(){const a=S.activeSession;if(!a||!Array.isArray(a.q))return home();
+ const ids=a.q.filter(validCardId);
+ if(!ids.length){delete S.activeSession;save();return home()}
+ clearTimeout(REV_TM);REV_TM=null;Q=ids;TOT=Math.max(Q.length,+a.tot||Q.length);SESS=[];flip=false;show()}
+
 const SELF_STARTERS=["I usually ","Honestly, I ","Yesterday, I ","I really want to ","Whenever I "];
 function start(t){
  clearTimeout(REV_TM);REV_TM=null;SESS=[];
@@ -4309,7 +4336,8 @@ async function testKey(){setKey($("#k").value);if(!S.key){save();return toast("�
  try{await ap("/search/photos?query=cat&per_page=1");save();toast("✅ 연결 성공! 단어 카드에 사진이 나올 거예요")}catch(e){toast("❌ "+perr(e)+" ("+e.message+")")}}
 const cl=(v,a,b,d)=>Math.min(b,Math.max(a,Math.round(+v)||d));
 app.addEventListener("click",e=>{if(e.target.closest("a"))return;const b=e.target.closest("[data-a]");if(!b||b.disabled)return;const a=b.dataset.a;
- if(a==="go")start(b.dataset.t);else if(a==="home")home();else if(a==="set")settings();
+ if(a!=="home"){clearTimeout(REV_TM);REV_TM=null}
+ if(a==="resume")resumeSession();else if(a==="go")start(b.dataset.t);else if(a==="home")home();else if(a==="set")settings();
  else if(a==="flip"){flip=!flip;show();if(flip&&S.autoAudio!==false&&Q[0]){const id=Q[0],it=get(id);if(id[0]==="w")say(wk(it),(DC[wk(it).toLowerCase()]||{}).a);else if(id[0]==="e")say(it.e)}}else if(a==="grade"){flip=true;show()}else if(a==="rate")rate(+b.dataset.r);
  else if(a==="togMode"){S.prodMode=!S.prodMode;save();show();toast(S.prodMode?"🗣️ 회화 인출 모드: 뜻/상황을 보고 먼저 영어로 떠올려 보세요":"👀 이해·연상 모드: 영어 단어와 예문을 먼저 확인합니다")}
  else if(a==="togModeSet"){S.prodMode=!S.prodMode;save();settings()}
