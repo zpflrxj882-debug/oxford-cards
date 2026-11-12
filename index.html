@@ -3887,7 +3887,7 @@ const once=(k,f)=>{if(busy.has(k))return;busy.add(k);return f().finally(()=>busy
 const sayBtn=(t,u)=>`<button class="ic" data-a="say" data-t="${esc(t)}" data-u="${esc(u||"")}" aria-label="듣기">🔊</button>`;
 function resetDay(){const T=today();if(S.nd.d!==T)S.nd={d:T,w:0,e:0,m:0}}
 function lists(t){resetDay();const T=today(),lim={w:S.per,e:S.pe,m:S.pm}[t];
- const due=Object.keys(S.srs).filter(i=>i[0]===t&&S.srs[i].due<=T&&!(S.review10&&S.review10[i]>Date.now())).sort((a,b)=>S.srs[a].due-S.srs[b].due);
+ const due=Object.keys(S.srs).filter(i=>i[0]===t&&S.srs[i].due<=T&&!(S.review10&&S.review10[i])).sort((a,b)=>S.srs[a].due-S.srs[b].due);
  const fresh=[],n=Math.max(0,lim-S.nd[t]);
  for(let k=0;k<ARR[t].length&&fresh.length<n;k++){const i=t==="e"?EO[k]:k;if(!S.srs[t+i])fresh.push(t+i)}
  return{due,fresh}}
@@ -3967,7 +3967,7 @@ function load1(id){const it=get(id),w=wk(it);
  if(!DC[w.toLowerCase()])once("d"+w,()=>dict(w))?.then(()=>patch(id));
  if(!KC[kk(it)])once("k"+kk(it),()=>ko(it))?.then(()=>patch(id));
  if(S.key&&!S.sel[id]&&!PERR[id])once("p"+id,()=>photo(id,qq(it)))?.then(()=>patch(id))}
-const lab=(id,r)=>{if(r===0)return"곧";if(r===1)return"1일";const o=S.srs[id]||{s:0};return ST[Math.min(7,o.s+(r===3?2:1))]+"일"};
+const lab=(id,r)=>{if(r<=1)return"10분 후";const o=S.srs[id],T=today();if(o&&(o.lastAdvance===T||o.due>T||(S.review10&&S.review10[id]>Date.now())))return"일정 유지";return ST[Math.min(7,(o?.s||0)+(r===3?2:1))]+"일"};
 
 const TT=["영어 새싹","말문 트인 새싹","수다 시작","카페 단골","동네 회화러","여행 가능자","원어민 친구","회화 고수"];
 const lvOf=x=>Math.min(TT.length,1+Math.floor(Math.sqrt(x/120)));
@@ -4011,16 +4011,16 @@ function ensureLearningData(){
  if(!Array.isArray(S.reviewLog))S.reviewLog=[];
  if(!Array.isArray(S.practice))S.practice=[];
 }
-function recordReview(id,ok,source,previousDue){
- ensureLearningData();
- S.reviewLog.push({id,d:today(),ok:!!ok,source,delayed:Number.isFinite(previousDue)&&previousDue<today()});
+function recordReview(id,ok,source,previousReviewed,qualified=true){
+ ensureLearningData();const T=today();
+ const delayed=source==="card"&&qualified&&Number.isFinite(previousReviewed)&&previousReviewed<T;
+ S.reviewLog.push({id,d:T,ok:!!ok,source,delayed,qualified:!!qualified});
  if(S.reviewLog.length>1500)S.reviewLog=S.reviewLog.slice(-1500);
 }
 function retentionSummary(){
- ensureLearningData();
- const now=today(),log=S.reviewLog.filter(x=>x.delayed&&x.source==="card"&&x.d>=now-30);
+ ensureLearningData();const now=today(),log=S.reviewLog.filter(x=>x.delayed&&x.source==="card"&&x.d>=now-30);
  const good=log.filter(x=>x.ok).length;
- return log.length?("최근 30일 하루 이상 간격을 둔 카드 복습: "+good+"/"+log.length+"회 성공 ("+Math.round(good/log.length*100)+"%)"):"하루 이상 간격을 둔 카드 복습 결과가 쌓이면 여기에 표시돼요.";
+ return log.length?("최근 30일 날짜 간격이 확인된 카드 자기평가: "+good+"/"+log.length+"회 성공 ("+Math.round(good/log.length*100)+"%)"):"날짜 간격을 두고 복습한 기록이 쌓이면 자기평가 성공률이 표시돼요.";
 }
 function updateWeak(id,success){
  ensureLearningData();
@@ -4038,7 +4038,7 @@ function updateWeak(id,success){
  else{S.weakLock[id]=entry;S.lap[id]=Math.max(1,S.lap[id]||0)}
 }
 ensureLearningData();
-function gain(x){const T=today(),L0=lvOf(S.xp);S.xp+=x;if(!S.days.includes(T)){S.days.push(T);S.days=S.days.slice(-90)}if(S.st.last!==T){S.st.n=S.st.last===T-1?S.st.n+1:1;S.st.last=T}if(S.dn.d!==T)S.dn={d:T,n:0};S.dn.n++;save();pop(x,lvOf(S.xp)>L0)}
+function gain(x){const T=today(),L0=lvOf(S.xp);S.xp+=x;if(!S.days.includes(T)){S.days.push(T);S.days=S.days.slice(-90)}if(S.st.last!==T){S.st.n=S.st.last===T-1?S.st.n+1:1;S.st.last=T}save();pop(x,lvOf(S.xp)>L0)}
 function cmp(ans,ms){const u=norm(ans);if(!u.length)return null;let best=null;
  for(const m of ms){const t=norm(m),r=lcs(u,t),sc=r.len/Math.max(u.length,t.length,1),conflict=criticalMismatch(u,t);if(!best||sc>best.sc)best={m,t,r,sc,conflict}}
  const mine=u.map((w,i)=>best.r.ia.has(i)?esc(w):`<s>${esc(w)}</s>`).join(" "),right=best.t.map((w,i)=>best.r.ib.has(i)?esc(w):`<b class="mi">${esc(w)}</b>`).join(" ");
@@ -4192,7 +4192,7 @@ function qDone(ok,q){
   updateWeak(q.id,false);
  }
  S.srs[q.id]=o;
- recordReview(q.id,ok,q.t==="ty"?"typed":"quiz",prev&&prev.due);
+ recordReview(q.id,ok,q.t==="ty"?"typed":"quiz",prev&&prev.lastReviewed,false);
  // Do not increment S.nd here: quiz questions are not counted as daily new-card sessions.
  gain(ok?4:1)
 }
@@ -4213,11 +4213,11 @@ function home(){resetDay();const T=today(),names={w:"단어",e:"구동사 · 숙
  const allR10=Object.entries(S.review10||{}).filter(([id])=>S.srs[id]);
  const readyR10=allR10.filter(([,at])=>at<=Date.now()),waiting=allR10.filter(([,at])=>at>Date.now());
  if(readyR10.length){
-  h+=`<div class="note" style="background:var(--r1);border-color:var(--ac)"><b>🔥 망각 차단 골든타임! (${readyR10.length}개 인출 준비 완료)</b><div class="mut">방금 헷갈렸던 표현을 지금 다시 꺼내 말하면 장기 기억으로 고정됩니다.</div><button class="p wide2" style="margin-top:8px;margin-bottom:0" data-a="go" data-t="r10">지금 바로 1분 인출 복습하기 →</button></div>`;
+  h+=`<div class="note" style="background:var(--r1);border-color:var(--ac)"><b>🧠 다시 떠올려 볼 시간 (${readyR10.length}개 인출 준비 완료)</b><div class="mut">헷갈렸던 표현을 정답 없이 다시 떠올려 보세요.</div><button class="p wide2" style="margin-top:8px;margin-bottom:0" data-a="go" data-t="r10">10분 복습 시작하기 →</button></div>`;
  }else if(waiting.length){
   const soonMs=Math.min(...waiting.map(x=>x[1]))-Date.now(),soon=Math.max(1,Math.ceil(soonMs/60000));
   REV_TM=setTimeout(()=>home(),Math.min(soonMs+500,30000));
-  h+=`<div class="note">🧠 <b>10분 뒤 다시 떠올리기:</b> ${waiting.length}개 대기 중 (약 ${soon}분 뒤 오픈) <button class="lk" style="margin-left:6px;font-size:13px" data-a="go" data-t="r10">기다리지 않고 지금 복습 →</button></div>`;
+  h+=`<div class="note">🧠 <b>10분 뒤 다시 떠올리기:</b> ${waiting.length}개 대기 중 (약 ${soon}분 뒤 오픈)</div>`;
  }
  h+=lvlBar();h+=`<div class="focus-actions"><div class="focus-label">✦ 오늘의 추천 학습</div>`;
  if(nt)h+=`<button class="p big" data-a="go" data-t="${nt}">지금 공부 시작하기 <span aria-hidden="true">→</span></button>`;
@@ -4230,10 +4230,9 @@ function home(){resetDay();const T=today(),names={w:"단어",e:"구동사 · 숙
  app.innerHTML=h}
 const SELF_STARTERS=["I usually ","Honestly, I ","Yesterday, I ","I really want to ","Whenever I "];
 function start(t){
- SESS=[];
+ clearTimeout(REV_TM);REV_TM=null;SESS=[];
  if(t==="r10"){
-  Q=Object.keys(S.review10||{}).filter(id=>S.srs[id]).sort((a,b)=>(S.review10[a]||0)-(S.review10[b]||0));
-  for(const id of Q)delete S.review10[id];save();
+  Q=Object.keys(S.review10||{}).filter(id=>S.srs[id]&&S.review10[id]<=Date.now()).sort((a,b)=>(S.review10[a]||0)-(S.review10[b]||0));
  }else if(t[0]==="q"){const n=+t.slice(1),a=["w","e","m"].map(lists),due=[].concat(...a.map(x=>x.due)).slice(0,n),fr=[];
   for(let i=0;fr.length<n-due.length&&i<20;i++)for(const x of a)if(x.fresh[i]&&fr.length<n-due.length)fr.push(x.fresh[i]);Q=due.concat(fr)}
  else if(t==="x")Q=weak().slice(0,15);else{const l=lists(t);Q=l.due.concat(l.fresh)}
@@ -4247,23 +4246,42 @@ function show(){const id=Q[0];if(!id)return fin();const t=id[0],it=get(id);
   if(flip)h+=(g?`<div class="fb ${g.lv}"><b>${g.t}</b>${g.b}</div>`:`<div class="fb n"><small>먼저 영어로 써 보면 기억에 훨씬 오래 남아요.</small></div>`)+`<div class="card" style="cursor:default">${it.a.map(a=>`<div class="w2">${esc(a)}${/^[A-Za-z]/.test(a)&&!/[가-힣]/.test(a.split(" (")[0])?sayBtn(a.split(" (")[0])+micBtn(a.split(" (")[0]):""}</div>`).join("")}${it.x?`<div class="bad">⚠ 흔한 한국식 실수: ${esc(it.x)}</div>`:""}<div class="def">💡 <b>원어민 감각 포인트:</b> ${esc(it.n)}</div></div><div id="sp"></div><button class="wide2" data-a="req">📋 AI 첨삭 요청 복사</button>`}
  if(flip&&t!=="m"){
   const targetExpr=t==="w"?wk(it):it.e.replace(/\.\.\.|\?/g,"").trim();
-  h+=`<div class="note" style="margin-top:10px;margin-bottom:8px"><b>🧠 뇌과학 장기 기억 잠금 (자기 참조 효과)</b><br>남의 예문은 금방 잊혀지지만, <b>오늘 내 진짜 이야기</b>로 1문장을 만들어 말하면 해마에 영구 각인됩니다.</div><div class="chips">${SELF_STARTERS.map(s=>`<button type="button" data-a="stchip" data-v="${esc(s+targetExpr+" ")}">+ ${esc(s)}…</button>`).join("")}</div><button class="wide2" data-a="dict">🎤 내 문장 말로 남기기 (+각인 보너스)</button><textarea id="note" placeholder="위 시작 버튼을 누르거나 마이크(🎤)로 나만의 문장을 만들어 보세요">${esc(S.notes[id]||"")}</textarea><button class="wide2" data-a="req">📋 내 문장 AI 첨삭 요청 복사</button>`;
+  h+=`<div class="note" style="margin-top:10px;margin-bottom:8px"><b>🧠 뇌과학 장기 기억 잠금 (자기 참조 효과)</b><br>남의 예문은 금방 잊혀지지만, <b>오늘 내 진짜 이야기</b>로 1문장을 만들어 말하면 더 쉽게 떠올릴 수 있도록 연습해 보세요.</div><div class="chips">${SELF_STARTERS.map(s=>`<button type="button" data-a="stchip" data-v="${esc(s+targetExpr+" ")}">+ ${esc(s)}…</button>`).join("")}</div><button class="wide2" data-a="dict">🎤 내 문장 말로 남기기 (+각인 보너스)</button><textarea id="note" placeholder="위 시작 버튼을 누르거나 마이크(🎤)로 나만의 문장을 만들어 보세요">${esc(S.notes[id]||"")}</textarea><button class="wide2" data-a="req">📋 내 문장 AI 첨삭 요청 복사</button>`;
  }
  h+=`<div id="msg"></div><div class="bar2"><div class="in">`+(flip?`<div class="rate">${[["몰라요",0],["헷갈려요",1],["알아요",2],["쉬워요",3]].map(([n,r])=>`<button class="r${r}${g&&g.sug===r?" sug":""}" data-a="rate" data-r="${r}"><b>${n}</b><small>${lab(id,r)}</small></button>`).join("")}</div>`:`<button class="p big" data-a="${t==="m"?"grade":"flip"}">${t==="m"?"채점하고 정답 보기":"정답 확인 & 소리 들어보기"}</button>`)+`</div></div>`;
  app.innerHTML=h;
  if(t==="w"){load1(id);if(Q[1]&&Q[1][0]==="w")load1(Q[1])}}
-function rate(r){const id=Q.shift(),t=id[0],fresh=!S.srs[id],o=S.srs[id]||{s:0,due:0},T=today(),previousDue=fresh?null:o.due;
- if(!S.review10||typeof S.review10!=="object")S.review10={};
- if(r===0){o.s=0;o.due=T}else if(r===1){o.s=Math.max(0,(o.s||0)-1);o.due=T;S.review10[id]=Date.now()+10*60*1000}else{o.s=Math.min(7,o.s+(r===3?2:1));o.due=T+ST[o.s];delete S.review10[id]}
- S.srs[id]=o;
- if(r<=1)updateWeak(id,false);else updateWeak(id,true);
- recordReview(id,r>=2,"card",previousDue);
- if(fresh)S.nd[t]++;if(r===0)Q.push(id);
+function rate(r){
+ if(!Q.length||![0,1,2,3].includes(r))return;
+ const id=Q.shift(),t=id[0],fresh=!S.srs[id],o=S.srs[id]||{s:0,due:0},T=today();
+ ensureLearningData();
+ const previousReviewed=Number.isFinite(o.lastReviewed)?o.lastReviewed:null;
+ const pending=S.review10[id],pendingReady=Number.isFinite(pending)&&pending<=Date.now();
+ const dueNow=Number.isFinite(o.due)&&o.due<=T;
+ const canAdvance=fresh||(!pending&&!Number.isFinite(o.lastAdvance)&&dueNow)||(dueNow&&o.lastAdvance!==T&&(!pending||pendingReady));
+ const weakSuccess=!fresh&&dueNow&&!pending&&o.lastAdvance!==T;
+ if(r<=1){
+  o.s=r===0?0:Math.max(0,(o.s||0)-1);o.due=T;
+  S.review10[id]=Date.now()+10*60*1000;updateWeak(id,false);
+ }else if(canAdvance){
+  o.s=Math.min(7,(o.s||0)+(r===3?2:1));
+  o.due=T+ST[o.s];o.lastAdvance=T;
+  if(pendingReady)delete S.review10[id];
+  if(weakSuccess)updateWeak(id,true);
+ }else if(pendingReady){
+  delete S.review10[id];if(o.due<=T)o.due=T+1;
+ }
+ o.lastReviewed=T;S.srs[id]=o;
+ recordReview(id,r>=2,"card",previousReviewed,r>=2&&weakSuccess);
+ if(fresh)S.nd[t]++;
+ if(!S.dayCards||S.dayCards.d!==T)S.dayCards={d:T,ids:[]};
+ if(!S.dayCards.ids.includes(id)){S.dayCards.ids.push(id);if(S.dn.d!==T)S.dn={d:T,n:0};S.dn.n++}
  SESS.push({id,r});
  if(S.st.last!==T){S.st.n=S.st.last===T-1?S.st.n+1:1;S.st.last=T}
- if(S.dn.d!==T)S.dn={d:T,n:0};if(r>0)S.dn.n++;
- const g=t==="m"?grade(id):null,xp=[1,3,5,6][r]+(g&&g.lv==="ok"?5:0),L0=lvOf(S.xp);S.xp+=xp;if(!S.days.includes(T)){S.days.push(T);S.days=S.days.slice(-90)}
- save();flip=false;show();scrollTo(0,0);pop(xp,lvOf(S.xp)>L0)}
+ const g=t==="m"?grade(id):null,xp=[1,3,5,6][r]+(g&&g.lv==="ok"?5:0),L0=lvOf(S.xp);
+ S.xp+=xp;if(!S.days.includes(T)){S.days.push(T);S.days=S.days.slice(-90)}
+ save();flip=false;show();scrollTo(0,0);pop(xp,lvOf(S.xp)>L0)
+}
 function finCardInfo(id){
  const t=id[0],it=get(id);
  if(t==="w"){const w=wInfo(id,it);return{ko:w.ko||wk(it),en:w.ex||wk(it),sub:wk(it)}}
@@ -4276,7 +4294,7 @@ function fin(){const T=today(),sk=S.st.last===T?S.st.n:0;
  const picks=uniq.slice(0,3);
  let wrapHtml="";
  if(picks.length){
-  wrapHtml=`<div class="sec" style="text-align:left">🔒 세션 기억 잠금 피날레 (3초 스피킹 인출)</div><p class="mut" style="text-align:left;margin-top:0">방금 본 표현을 닫기 전에 <b>입으로 한 번씩만 소리 내어 말해보세요</b>. 뇌가 ‘중요한 회화 정보’로 분류해 장기 기억으로 보냅니다.</p>`+picks.map((id,idx)=>{
+  wrapHtml=`<div class="sec" style="text-align:left">🔒 세션 기억 잠금 피날레 (3초 스피킹 인출)</div><p class="mut" style="text-align:left;margin-top:0">방금 본 표현을 닫기 전에 <b>입으로 한 번씩만 소리 내어 말해보세요</b>. 다음 복습에서 다시 떠올릴 수 있는지 확인해 보세요.</p>`+picks.map((id,idx)=>{
    const info=finCardInfo(id);
    return`<div class="wrap-item"><div class="mut">복습 ${idx+1} · ${esc(info.ko)}</div><div style="font-weight:800;font-size:17px;margin-top:4px">${esc(info.en)} ${sayBtn(info.en)}${micBtn(info.en)}</div></div>`;
   }).join("")+`<div id="sp"></div>`;
